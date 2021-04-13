@@ -1,16 +1,9 @@
 import React from "react"
+import { useHeader } from "./logic"
 import { HeaderTemplate } from "./template"
 
 export const Header = () => {
-  const [selected, setSelected] = useState("people")
-  const handleSelectChange = newSelected => {
-    setSelected(newSelected)
-  }
+  const data = useHeader()
 
-  return (
-    <HeaderTemplate
-      selected={selected}
-      handleSelectChange={handleSelectChange}
-    />
-  )
+  return <HeaderTemplate {...data} />
 }
