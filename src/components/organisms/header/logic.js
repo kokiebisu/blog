@@ -6,5 +6,5 @@ export const useHeader = () => {
     setSelected(newSelected)
   }
 
-  return { selected, handleSelectChange, content }
+  return { ...content, selected, handleSelectChange }
 }

@@ -5,6 +5,9 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: "米ユニコーン企業を目指すエンジニアの日記",
+    author: "Kenichi Okiebisu",
+  },
   plugins: ["gatsby-plugin-postcss"],
 }

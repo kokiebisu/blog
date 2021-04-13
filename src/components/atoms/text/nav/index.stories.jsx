@@ -8,5 +8,5 @@ export default {
 
 const Template = args => <NavTemplate {...args} />
 
-export const Nav = Template.bind({})
-Nav.args = {}
+export const Navigation = Template.bind({})
+Navigation.args = {}
