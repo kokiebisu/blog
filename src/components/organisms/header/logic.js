@@ -1,3 +1,4 @@
+import { useState } from "react"
 import * as content from "./content"
 
 export const useHeader = () => {

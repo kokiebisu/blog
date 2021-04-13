@@ -4,5 +4,5 @@ import { FooterTemplate } from "./template"
 
 export const Footer = () => {
   const data = useFooter()
-  return <FooterTemplate />
+  return <FooterTemplate {...data} />
 }

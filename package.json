@@ -6,7 +6,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "env-cmd -f .env.development gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -16,7 +16,11 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
     "gatsby": "^3.2.1",
+    "gatsby-plugin-mdx": "^2.2.0",
+    "gatsby-source-filesystem": "^3.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -28,6 +32,7 @@
     "@storybook/react": "^6.2.7",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
+    "env-cmd": "^10.1.0",
     "gatsby-plugin-postcss": "^4.2.0",
     "postcss": "^8.2.10",
     "prettier": "2.2.1",
