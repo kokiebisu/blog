@@ -1,3 +1,51 @@
+@font-face {
+  font-family: "Neue Round";
+  src: url("../../static/light.woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Neue Round";
+  src: url("../../static/medium.woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Neue Round";
+  src: url("../../static/bold.woff2");
+  font-weight: 700;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-neue text-gray-600;
+  }
+
+  h1 {
+    @apply text-gray-900 text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-gray-900 text-2xl font-bold;
+  }
+
+  h3 {
+    @apply text-gray-900 text-xl font-bold;
+  }
+
+  h4 {
+    @apply text-gray-800 text-lg font-bold;
+  }
+
+  h5 {
+    @apply text-gray-700 text-base font-bold;
+  }
+
+  p {
+    @apply text-gray-700 text-sm font-light;
+  }
+}
