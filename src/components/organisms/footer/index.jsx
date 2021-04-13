@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react"
+import { FooterTemplate } from "./template"
 
 export const Footer = () => {
-    return (
-        <div>this is the footer</div>
-    )
+  return <FooterTemplate />
 }

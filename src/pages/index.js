@@ -1,12 +1,11 @@
-import { Link } from "gatsby"
 import React from "react"
+import { Layout } from "../components/layout"
 
 const HomePage = () => {
   return (
-    <div className="bg-red-500">
-      Hello
-      <Link to="/contact">Click me</Link>
-    </div>
+    <Layout>
+      <main>this is the home page</main>
+    </Layout>
   )
 }
 
