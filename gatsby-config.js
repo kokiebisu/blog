@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: "米ユニコーン企業を目指すエンジニアの日記",
+    title: "ここブロ",
     author: "Kenichi Okiebisu",
   },
   plugins: ["gatsby-plugin-postcss"],

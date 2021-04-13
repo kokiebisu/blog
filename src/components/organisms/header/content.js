@@ -1,11 +1,11 @@
-const navItems = [
+export const navItems = [
   { label: "Home", to: "/" },
   { label: "Blog", to: "/blog" },
   { label: "About me", to: "/about" },
   { label: "Contact", to: "/contact" },
 ]
 
-const categoryItems = [
+export const categoryItems = [
   { label: "People", value: "people" },
   { label: "Engineering", value: "engineering" },
   { label: "Growth Marketing", value: "growth" },

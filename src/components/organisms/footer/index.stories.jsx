@@ -10,4 +10,6 @@ export default {
 const Template = args => <FooterTemplate {...args} />
 
 export const Footer = Template.bind({})
-Footer.args = {}
+Footer.args = {
+  author: "Nobody",
+}

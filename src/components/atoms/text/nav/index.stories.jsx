@@ -6,7 +6,9 @@ export default {
   component: Nav,
 }
 
-const Template = args => <NavTemplate {...args} />
+const Template = args => <Nav {...args} />
 
 export const Navigation = Template.bind({})
-Navigation.args = {}
+Navigation.args = {
+  label: "Nav",
+}
