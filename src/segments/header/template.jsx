@@ -1,6 +1,6 @@
 import React from "react"
-import { Icon } from "../../icons"
-import { Text } from "../../atoms/text"
+import { Icon } from "../../components/icons"
+import { Text } from "../../components/atoms/text"
 
 export const HeaderTemplate = ({
   selected,

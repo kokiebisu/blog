@@ -1,4 +1,5 @@
 import { useState } from "react"
+import * as content from "./content"
 
 export const useHeader = () => {
   const [selected, setSelected] = useState("people")
@@ -6,5 +7,5 @@ export const useHeader = () => {
     setSelected(newSelected)
   }
 
-  return { selected, handleSelectChange }
+  return { ...content, selected, handleSelectChange }
 }

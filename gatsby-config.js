@@ -9,16 +9,5 @@ module.exports = {
     title: "ここブロ",
     author: "Kenichi Okiebisu",
   },
-  plugins: [
-    "gatsby-plugin-postcss",
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages/`,
-      },
-    },
-    "gatsby-transformer-javascript-frontmatter",
-    "gatsby-plugin-mdx",
-  ],
+  plugins: ["gatsby-plugin-postcss"],
 }
