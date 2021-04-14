@@ -1,6 +1,6 @@
 import React from "react"
-import { Footer } from "../organisms/footer"
-import { Header } from "../organisms/header"
+import { Footer } from "../templates/footer"
+import { Header } from "../templates/header"
 
 export const Layout = ({ children }) => {
   return (

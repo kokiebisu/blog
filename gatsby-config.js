@@ -18,14 +18,7 @@ module.exports = {
         path: `${__dirname}/src/pages/`,
       },
     },
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [".mdx"],
-        defaultLayouts: {
-          default: require.resolve(`./src/components/layout.js`),
-        },
-      },
-    },
+    "gatsby-transformer-javascript-frontmatter",
+    "gatsby-plugin-mdx",
   ],
 }
