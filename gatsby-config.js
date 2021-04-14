@@ -1,13 +1,7 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
-
 module.exports = {
   siteMetadata: {
-    title: "ここブロ",
+    title: "ここブロッ！",
     author: "Kenichi Okiebisu",
   },
-  plugins: ["gatsby-plugin-postcss"],
+  plugins: ["gatsby-plugin-react-helmet", "gatsby-plugin-postcss"],
 }
