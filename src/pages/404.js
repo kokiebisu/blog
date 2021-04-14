@@ -1,13 +1,13 @@
 import React from "react"
 import { Head } from "../provider/head"
 
-const AboutPage = () => {
+const NotFoundPage = () => {
   return (
     <div>
-      <Head title="About" />
-      <h1>Abotu page</h1>
+      <Head title="Not Found" />
+      wolala
     </div>
   )
 }
 
-export default AboutPage
+export default NotFoundPage
