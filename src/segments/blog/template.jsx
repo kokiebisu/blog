@@ -14,10 +14,10 @@ export const BlogSegmentTemplate = ({ articles }) => {
           image={articles[0].node.image}
         />
       </div>
-      <div className="my-4 grid grid-cols-2">
+      <div className="my-12 grid grid-cols-2 gap-10">
         {articles.map(({ node: { id, ...article } }) => (
           <div key={id}>
-            <Article variant="article" {...article} />
+            <Article variant="plain" {...article} />
           </div>
         ))}
       </div>

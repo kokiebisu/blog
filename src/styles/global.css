@@ -60,4 +60,23 @@
     user-select: none; /* Non-prefixed version, currently
                                       supported by Chrome, Edge, Opera and Firefox */
   }
+
+  .truncate-fade {
+    position: relative;
+    height: 8.5rem;
+  }
+  .truncate-fade:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    height: 1.2em;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1) 50%
+    );
+  }
 }

@@ -15,7 +15,7 @@ export const ProfileBadge = ({ image, name, title }) => {
           <h5>{name}</h5>
         </div>
         <div>
-          <p>Lead Product Owner</p>
+          <p>{title}</p>
         </div>
       </div>
     </div>

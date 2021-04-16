@@ -1,9 +1,9 @@
 import React from "react"
 import { ProfileBadge } from "./badge-profile"
 
-export const Badge = () => {
+export const Badge = ({ variant, ...props }) => {
   const variants = {
-    profile: <ProfileBadge />,
+    profile: <ProfileBadge {...props} />,
   }
   return variants[variant]
 }

@@ -1,18 +1,18 @@
 import React from "react"
 
-export const PlainArticle = ({ category, date, title, content, image }) => {
+export const AbstractArticle = ({ category, date, title, content, image }) => {
   return (
     <div className="relative">
-      <div className="h-full">
-        <div className="w-full h-72">
+      <div className="h-full lg:flex">
+        <div style={{ minWidth: 600 }} className="w-full h-80">
           <img
             src={image}
             alt="article"
             className="block h-full w-full object-cover rounded-md"
           />
         </div>
-        <div className="h-full">
-          <div className="flex items-center my-2">
+        <div className="h-full lg:ml-5">
+          <div className="flex items-center my-2 lg:mt-0 lg:mb-2">
             <div>
               <h5 className="text-xs text-gray-600 font-light">
                 {category.toUpperCase()}
