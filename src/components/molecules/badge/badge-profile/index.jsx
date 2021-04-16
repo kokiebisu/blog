@@ -3,7 +3,7 @@ import React from "react"
 export const ProfileBadge = ({ image, name, title }) => {
   return (
     <div className="flex items-center">
-      <div className="w-12 h-12 border-2 border-green-100 rounded-full">
+      <div className="w-12 h-12 border-2 border-blue-600 rounded-full">
         <img
           src={image}
           alt="avatar"

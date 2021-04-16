@@ -1,18 +1,13 @@
 import React from "react"
+import { Badge } from "../../badge"
+import { Profile } from "../../badge/badge-profile/index.stories"
 
 export const AbstractArticle = ({ category, date, title, content, image }) => {
   return (
     <div className="relative">
-      <div className="h-full lg:flex">
-        <div style={{ minWidth: 600 }} className="w-full h-80">
-          <img
-            src={image}
-            alt="article"
-            className="block h-full w-full object-cover rounded-md"
-          />
-        </div>
-        <div className="h-full lg:ml-5">
-          <div className="flex items-center my-2 lg:mt-0 lg:mb-2">
+      <div className="h-full">
+        <div className="h-full">
+          <div className="flex items-center my-2">
             <div>
               <h5 className="text-xs text-gray-600 font-light">
                 {category.toUpperCase()}
@@ -23,12 +18,15 @@ export const AbstractArticle = ({ category, date, title, content, image }) => {
               <h5 className="text-xs text-gray-600 font-light">{date}</h5>
             </div>
           </div>
+          <div className="my-3">
+            <Badge variant="profile" {...Profile.args} />
+          </div>
           <div className="mb-3">
             <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
               {title}
             </h3>
           </div>
-          <div>
+          <div className="truncate-fade h-12 overflow-hidden">
             <p className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden">
               {content}
             </p>

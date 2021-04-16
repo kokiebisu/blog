@@ -21,6 +21,10 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     @apply font-neue text-gray-600;
   }
@@ -63,7 +67,6 @@
 
   .truncate-fade {
     position: relative;
-    height: 8.5rem;
   }
   .truncate-fade:after {
     content: "";
@@ -72,7 +75,7 @@
     bottom: 0;
     right: 0;
     width: 20%;
-    height: 1.2em;
+    height: 1.6em;
     background: linear-gradient(
       to right,
       rgba(255, 255, 255, 0),

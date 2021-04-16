@@ -1,4 +1,6 @@
 import React from "react"
+import { Badge } from "../../badge"
+import { Profile } from "../../badge/badge-profile/index.stories"
 
 export const PlainArticle = ({ category, date, title, content, image }) => {
   return (
@@ -22,6 +24,9 @@ export const PlainArticle = ({ category, date, title, content, image }) => {
             <div>
               <h5 className="text-xs text-gray-600 font-light">{date}</h5>
             </div>
+          </div>
+          <div className="my-3">
+            <Badge variant="profile" {...Profile.args} />
           </div>
           <div className="mb-3">
             <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
