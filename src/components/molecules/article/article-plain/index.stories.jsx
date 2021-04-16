@@ -1,15 +1,15 @@
 import React from "react"
-import { ArticleCard } from "."
+import { ArticleArticle } from "."
 
 export default {
-  title: "Design System/Molecules/Card",
-  component: ArticleCard,
+  title: "Design System/Molecules/Article",
+  component: ArticleArticle,
 }
 
-const Template = args => <ArticleCard {...args} />
+const Template = args => <ArticleArticle {...args} />
 
-export const Article = Template.bind({})
-Article.args = {
+export const Plain = Template.bind({})
+Plain.args = {
   category: "Product",
   date: "July 24, 2020",
   title: "ワクチン2回接種後に感染　長野県「抗体できる前か」",

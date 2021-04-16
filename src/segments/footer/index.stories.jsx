@@ -3,7 +3,7 @@ import React from "react"
 import { FooterTemplate } from "./template"
 
 export default {
-  title: "Design System/Organisms",
+  title: "Templates",
   component: FooterTemplate,
 }
 

@@ -1,6 +1,11 @@
 import React from "react"
 import { BlogSegment } from "../segments/blog"
 
-const BlogPage = () => <BlogSegment />
+const BlogPage = () => (
+  <div>
+    <Head title="Blog" />
+    <BlogSegment />
+  </div>
+)
 
 export default BlogPage

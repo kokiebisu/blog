@@ -1,5 +1,5 @@
 import React from "react"
-import { Nav } from "./nav"
+import { Nav } from "./text-nav"
 
 export const Text = ({ variant, ...props }) => {
   const variants = {

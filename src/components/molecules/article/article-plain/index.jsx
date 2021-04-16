@@ -1,32 +1,31 @@
 import React from "react"
 
-export const ArticleCard = ({ category, date, title, content, image }) => {
+export const PlainArticle = ({ category, date, title, content, image }) => {
   return (
     <div className="relative" style={{ paddingTop: 300 }}>
       <div className="absolute top-0 bottom-0 right-0 left-0">
-        <div className="h-full md:flex">
-          <div
-            style={{ minWidth: 400, maxWidth: 700 }}
-            className="w-full h-full"
-          >
+        <div className="h-full">
+          <div style={{ minWidth: 500 }} className="w-full h-full">
             <img
               src={image}
               alt="article"
               className="block h-full w-full object-cover rounded-md"
             />
           </div>
-          <div className="h-full md:ml-5 mt-5 md:mt-0">
-            <div className="flex items-center">
+          <div className="h-full">
+            <div className="flex items-center my-2">
               <div>
-                <h5 className="text-xs text-gray-600">{category}</h5>
+                <h5 className="text-xs text-gray-600 font-light">
+                  {category.toUpperCase()}
+                </h5>
               </div>
               <div>&nbsp;•&nbsp;</div>
               <div>
-                <h5 className="text-xs text-gray-500">{date}</h5>
+                <h5 className="text-xs text-gray-600 font-light">{date}</h5>
               </div>
             </div>
-            <div className="mb-4">
-              <h3 className="font-medium text-xl text-gray-600 leading-7">
+            <div className="mb-3">
+              <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
                 {title}
               </h3>
             </div>

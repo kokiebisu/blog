@@ -4,7 +4,7 @@ import { HeaderTemplate } from "./template"
 import * as content from "./content"
 
 export default {
-  title: "Design System/Organisms",
+  title: "Templates",
   component: HeaderTemplate,
 }
 

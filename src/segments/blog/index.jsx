@@ -5,10 +5,5 @@ import { BlogSegmentTemplate } from "./template"
 
 export const BlogSegment = () => {
   const data = useBlog()
-  return (
-    <div>
-      <Head title="Blog" />
-      <BlogSegmentTemplate {...data} />
-    </div>
-  )
+  return <BlogSegmentTemplate {...data} />
 }
