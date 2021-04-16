@@ -16,6 +16,12 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: "Nikkyo Sans";
+  src: url("../../static/nikkyo-sans.ttf");
+  font-weight: 500;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

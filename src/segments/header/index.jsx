@@ -4,6 +4,5 @@ import { HeaderTemplate } from "./template"
 
 export const Header = () => {
   const data = useHeader()
-
   return <HeaderTemplate {...data} />
 }

@@ -1,5 +1,4 @@
 import React from "react"
-
 import { HeaderTemplate } from "./template"
 import * as content from "./content"
 

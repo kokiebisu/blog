@@ -9,6 +9,7 @@ module.exports = {
     },
     fontFamily: {
       neue: ["Neue Round"],
+      nikkyo: ["Nikkyo Sans"],
     },
   },
   variants: {

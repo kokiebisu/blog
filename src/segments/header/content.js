@@ -1,13 +1,12 @@
 export const navItems = [
-  { label: "Home", to: "/" },
-  { label: "Blog", to: "/blog" },
-  { label: "About me", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { label: "ホーム", to: "/" },
+  { label: "ブログ", to: "/blog" },
+  { label: "誰？", to: "/about" },
+  { label: "お問い合わせ", to: "/contact" },
 ]
 
 export const categoryItems = [
-  { label: "People", value: "people" },
-  { label: "Engineering", value: "engineering" },
-  { label: "Growth Marketing", value: "growth" },
-  { label: "Company", value: "company" },
+  { label: "日記", value: "diary" },
+  { label: "プログラミング", value: "programming" },
+  { label: "カナダ", value: "growth" },
 ]

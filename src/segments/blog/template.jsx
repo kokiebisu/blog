@@ -9,14 +9,14 @@ export const BlogSegmentTemplate = ({ articles }) => {
           variant="head"
           title={articles[0].node.title}
           content={articles[0].node.content}
-          category={articles[0].node.category}
+          category="product"
           date={articles[0].node.date}
           image={articles[0].node.image}
         />
       </div>
       <div className="my-12 md:grid grid-cols-2">
         <div className="lg:pr-8">
-          {articles.map(({ node: { id, ...article } }) => (
+          {articles.slice(1, 3).map(({ node: { id, ...article } }) => (
             <div className="mb-16" key={id}>
               <Article variant="plain" {...article} />
             </div>
@@ -26,7 +26,7 @@ export const BlogSegmentTemplate = ({ articles }) => {
           {articles.map(({ node: { id, ...article } }, index) => (
             <div className="mb-8" key={id}>
               <div className="pb-8">
-                <Article variant="abstract" {...article} />
+                <Article variant="abstract" {...article} category="product" />
               </div>
               <div
                 className={`flex justify-center items-center ${
