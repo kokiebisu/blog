@@ -1,13 +1,4 @@
 import React from "react"
-import { Head } from "../provider/head"
+import { BlogSegment } from "../segments/blog"
 
-const BlogPage = () => {
-  return (
-    <div>
-      <Head title="Blog" />
-      Blog
-    </div>
-  )
-}
-
-export default BlogPage
+export default BlogPage = () => <BlogSegment />
