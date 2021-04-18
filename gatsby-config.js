@@ -22,6 +22,7 @@ module.exports = {
           "@providers": "src/providers",
           "@styles": "src/styles",
           "@templates": "src/templates",
+          "@graphql": "src/graphql",
         },
         extensions: ["js", "jsx"],
       },

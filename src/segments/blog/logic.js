@@ -59,6 +59,7 @@ export const useBlog = () => {
       }
     }
   `)
+
   const mostRecentArticle = mostRecentArticleEdge[0].node
   const recentArticles = recentArticlesEdges.map(({ node }) => node)
   const articles = articlesEdges.map(({ node }) => node)
