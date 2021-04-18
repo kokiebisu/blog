@@ -7,38 +7,54 @@ export const BlogSegmentTemplate = ({ articles }) => {
       <div>
         <Article
           variant="head"
-          title={articles[0].node.title}
-          content={articles[0].node.content}
+          title={articles[0].title}
+          content={articles[0].body}
           category="product"
-          date={articles[0].node.date}
-          image={articles[0].node.image}
+          date={articles[0].publishedDate}
+          image="https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=959&q=80"
         />
       </div>
       <div className="my-12 md:grid grid-cols-2">
         <div className="lg:pr-8">
-          {articles.slice(1, 3).map(({ node: { id, ...article } }) => (
+          {articles.slice(1, 3).map(({ id, title, body, publishedDate }) => (
             <div className="mb-16" key={id}>
-              <Article variant="plain" {...article} />
+              <Article
+                variant="plain"
+                title={title}
+                content={body}
+                date={publishedDate}
+                category="product"
+                image="https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=959&q=80"
+              />
             </div>
           ))}
         </div>
         <div className="lg:pl-8">
-          {articles.map(({ node: { id, ...article } }, index) => (
-            <div className="mb-8" key={id}>
-              <div className="pb-8">
-                <Article variant="abstract" {...article} category="product" />
+          {articles
+            .slice(3, 7)
+            .map(({ id, title, body, publishedDate }, index) => (
+              <div className="mb-8" key={id}>
+                <div className="pb-8">
+                  <Article
+                    variant="abstract"
+                    title={title}
+                    body={body}
+                    publishedDate={publishedDate}
+                    category="product"
+                    image="https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=959&q=80"
+                  />
+                </div>
+                <div
+                  className={`flex justify-center items-center ${
+                    index === articles.length - 1 ? "hidden" : ""
+                  }`}
+                >
+                  <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                </div>
               </div>
-              <div
-                className={`flex justify-center items-center ${
-                  index === articles.length - 1 ? "hidden" : ""
-                }`}
-              >
-                <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
