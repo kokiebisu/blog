@@ -4,7 +4,12 @@ import { Profile } from "../../badge/badge-profile/index.stories"
 
 export const HeadArticle = ({ category, date, title, content, image }) => {
   return (
-    <div className="flex flex-col-reverse lg:grid grid-cols-2">
+    <div
+      data-sal="slide-up"
+      data-sal-delay="300"
+      data-sal-easing="ease"
+      className="flex flex-col-reverse lg:grid grid-cols-2"
+    >
       <div
         style={{ gridTemplateRows: "auto auto auto auto" }}
         className="grid lg:h-80 lg:pr-8"

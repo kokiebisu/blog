@@ -4,7 +4,12 @@ import { Profile } from "../../badge/badge-profile/index.stories"
 
 export const PlainArticle = ({ category, date, title, content, image }) => {
   return (
-    <div className="relative">
+    <div
+      data-sal="slide-up"
+      data-sal-delay="300"
+      data-sal-easing="ease"
+      className="relative"
+    >
       <div className="h-full">
         <div className="w-full h-72">
           <img

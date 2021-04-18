@@ -1466,6 +1466,11 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@heroicons/react@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@heroicons/react/-/react-1.0.1.tgz#66d25f6441920bd5c2146ea27fd33995885452dd"
+  integrity sha512-uikw2gKCmqnvjVxitecWfFLMOKyL9BTFcU4VM3hHj9OMwpkCr5Ke+MRMyY2/aQVmsYs4VTq7NCFX05MYwAHi3g==
+
 "@iarna/toml@^2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
@@ -7596,6 +7601,14 @@ gatsby-plugin-react-helmet@^4.3.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+gatsby-plugin-scroll-reveal@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-scroll-reveal/-/gatsby-plugin-scroll-reveal-0.0.7.tgz#5f0d1bcf65bf3c7b3d9d6b69dc4a8896129747ee"
+  integrity sha512-G9slNyz7WNVMwBeGXnQ/FhJc61Q9THkvUIAlft4Uws4QJKn0OdvsDqUAUQkTGKU8hkHhaMAKiugL/8gRYuAZZA==
+  dependencies:
+    intersection-observer "^0.7.0"
+    sal.js "^0.6.2"
+
 gatsby-plugin-typescript@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-3.2.0.tgz#ce86469837e7c9783a8acee7f3859e9b7ad591e8"
@@ -8339,6 +8352,11 @@ gzip-size@5.1.1:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
+hamburger-react@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/hamburger-react/-/hamburger-react-2.4.0.tgz#b2950fe28c4cf46b41e6887550140c3c17cb66a3"
+  integrity sha512-VYUhF7X9JszeHXSGHKJLaTIWPc/U64fVdcr4DTmOb04gOoJwricqi6gcRZXAylVtsJOs4CWtMVZNnWjXiWF0Xw==
+
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
@@ -8960,6 +8978,11 @@ interpret@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-2.2.0.tgz#1a78a0b5965c40a5416d007ad6f50ad27c417df9"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
+
+intersection-observer@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.7.0.tgz#ee16bee978db53516ead2f0a8154b09b400bbdc9"
+  integrity sha512-Id0Fij0HsB/vKWGeBe9PxeY45ttRiBmhFyyt/geBdDHBYNctMRTE3dC1U3ujzz3lap+hVXlEcVaB56kZP/eEUg==
 
 into-stream@^3.1.0:
   version "3.1.0"
@@ -13531,6 +13554,11 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+
+sal.js@^0.6.2:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/sal.js/-/sal.js-0.6.6.tgz#96bd32e9904ef0706f32d08254c28cad6ec890fb"
+  integrity sha512-XuhEEHRnzWMKGTC3ndZ0pCXPA5xU2rrPhFbb82EIq7M3ctjkJIg/AxnnQwPvn7IZ+I2Ku6kaqNOuA64anDwEjg==
 
 sane@^4.0.3:
   version "4.1.0"
