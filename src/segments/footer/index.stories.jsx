@@ -1,5 +1,4 @@
 import React from "react"
-
 import { FooterTemplate } from "./template"
 
 export default {

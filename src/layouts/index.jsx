@@ -1,6 +1,6 @@
 import React from "react"
-import { Footer } from "../segments/footer"
-import { Header } from "../segments/header"
+import { Footer } from "@segments/footer"
+import { Header } from "@segments/header"
 
 export const Layout = ({ children }) => {
   return (

@@ -1,5 +1,5 @@
 import React from "react"
-import { Text } from "../../components/atoms/text"
+import { Text } from "@components/atoms/text"
 import { SearchIcon } from "@heroicons/react/solid"
 import { Spiral as Hamburger } from "hamburger-react"
 

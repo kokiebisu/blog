@@ -1,6 +1,6 @@
 import React from "react"
-import { Layout } from "../layout"
-import { Head } from "../provider/head"
+import { Layout } from "@layouts"
+import { Head } from "@providers/head"
 
 const HomePage = () => {
   return (

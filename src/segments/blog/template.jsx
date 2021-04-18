@@ -1,5 +1,5 @@
 import React from "react"
-import { Article } from "../../components/molecules/article"
+import { Article } from "@components/molecules/article"
 
 export const BlogSegmentTemplate = ({ articles }) => {
   return (

@@ -1,5 +1,5 @@
 import React from "react"
-import { Head } from "../provider/head"
+import { Head } from "@providers/head"
 
 const ContactPage = () => {
   return (
