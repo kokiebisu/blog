@@ -3,10 +3,15 @@ import { graphql, useStaticQuery } from "gatsby"
 
 export const useBlog = () => {
   const {
-    allContentfulArticle: { edges },
+    mostRecentArticle: { edges: mostRecentArticleEdge },
+    recentArticles: { edges: recentArticlesEdges },
+    articles: { edges: articlesEdges },
   } = useStaticQuery(graphql`
     query {
-      allContentfulArticle(sort: { fields: publishedDate, order: DESC }) {
+      mostRecentArticle: allContentfulArticle(
+        sort: { fields: publishedDate, order: DESC }
+        limit: 1
+      ) {
         edges {
           node {
             id
@@ -19,9 +24,43 @@ export const useBlog = () => {
           }
         }
       }
+      recentArticles: allContentfulArticle(
+        sort: { fields: publishedDate, order: DESC }
+        limit: 3
+        skip: 1
+      ) {
+        edges {
+          node {
+            id
+            title
+            body {
+              raw
+            }
+            slug
+            publishedDate(fromNow: true)
+          }
+        }
+      }
+      articles: allContentfulArticle(
+        sort: { fields: publishedDate, order: DESC }
+        skip: 4
+      ) {
+        edges {
+          node {
+            id
+            title
+            body {
+              raw
+            }
+            slug
+            publishedDate(formatString: "MMMM DD, YYYY")
+          }
+        }
+      }
     }
   `)
-  const articles = edges.map(({ node }) => node)
-  console.log("ss", articles)
-  return { ...mockData }
+  const mostRecentArticle = mostRecentArticleEdge[0].node
+  const recentArticles = recentArticlesEdges.map(({ node }) => node)
+  const articles = articlesEdges.map(({ node }) => node)
+  return { ...mockData, mostRecentArticle, recentArticles, articles }
 }

@@ -13,8 +13,8 @@ export const HeaderTemplate = ({
   handleToggleSearch,
 }) => {
   return (
-    <header className="no-select py-3 border-gray-200 border-b">
-      <div className="flex items-center justify-between mb-3">
+    <header className="no-select pb-3 pt-6 lg:py-3 border-gray-200 border-b">
+      <div className="flex items-center justify-between mb-6 lg:mb-3">
         <div>
           <h1 className="text-4xl font-nikkyo tracking-wide">ここブロッ！</h1>
         </div>
