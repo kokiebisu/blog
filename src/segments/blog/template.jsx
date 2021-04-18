@@ -1,13 +1,11 @@
 import React from "react"
 import { Article } from "@components/molecules/article"
-import { IdentificationIcon } from "@heroicons/react/solid"
 
 export const BlogSegmentTemplate = ({
   mostRecentArticle,
   recentArticles,
   articles,
 }) => {
-  console.log("re", recentArticles)
   return (
     <div>
       <div>

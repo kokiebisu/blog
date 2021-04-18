@@ -21,6 +21,7 @@ module.exports = {
           "@segments": "src/segments",
           "@providers": "src/providers",
           "@styles": "src/styles",
+          "@templates": "src/templates",
         },
         extensions: ["js", "jsx"],
       },
