@@ -13,7 +13,7 @@ export const BlogSegmentTemplate = ({
           <Article
             variant="head"
             title={mostRecentArticle.title}
-            content=""
+            content={mostRecentArticle.slug}
             category="product"
             date={mostRecentArticle.publishedDate}
             image="https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=959&q=80"

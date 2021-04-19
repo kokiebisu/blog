@@ -1,7 +1,26 @@
 import React from "react"
+import { graphql } from "gatsby"
 
-const ArticleTemplate = () => {
-  return <div>this is the blog template</div>
+export const query = graphql`
+  query($slug: String!) {
+    contentfulArticle(slug: { eq: $slug }) {
+      title
+      publishedDate(formatString: "MMMM DD, YYYY")
+    }
+  }
+`
+
+const ArticleTemplate = ({
+  data: {
+    contentfulArticle: { title, publishedDate },
+  },
+}) => {
+  return (
+    <div>
+      <div>{title}</div>
+      <div>{publishedDate}</div>
+    </div>
+  )
 }
 
 export default ArticleTemplate
