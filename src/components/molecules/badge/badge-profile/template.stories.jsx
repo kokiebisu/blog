@@ -1,12 +1,12 @@
 import React from "react"
-import { ProfileBadge } from "."
+import { ProfileBadgeTemplate } from "./template"
 
 export default {
   title: "Design System/Molecules/Badge",
-  component: ProfileBadge,
+  component: ProfileBadgeTemplate,
 }
 
-const Template = args => <ProfileBadge {...args} />
+const Template = args => <ProfileBadgeTemplate {...args} />
 
 export const Profile = Template.bind({})
 Profile.args = {

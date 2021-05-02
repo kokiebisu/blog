@@ -1,15 +1,15 @@
 import React from "react"
-import { PlainArticle } from "."
+import { AbstractArticleTemplate } from "./template"
 
 export default {
   title: "Design System/Molecules/Article",
-  component: PlainArticle,
+  component: AbstractArticleTemplate,
 }
 
-const Template = args => <PlainArticle {...args} />
+const Template = args => <AbstractArticleTemplate {...args} />
 
-export const Plain = Template.bind({})
-Plain.args = {
+export const Abstract = Template.bind({})
+Abstract.args = {
   category: "Product",
   date: "July 24, 2020",
   title: "ワクチン2回接種後に感染　長野県「抗体できる前か」",

@@ -1,13 +1,17 @@
 import React from "react"
-import Link from "gatsby-link"
+import * as PropType from "prop-types"
+import { Link } from "gatsby"
+import { NavTextTemplate, NavTextTemplateProps } from "./template"
 
-export const Nav = ({ label, to }) => {
+export const NavText = ({ to, ...props }) => {
   return (
-    <Link
-      to={to}
-      className="text-gray-400 hover:text-green-500 transition font-bold"
-    >
-      {label}
+    <Link to={to}>
+      <NavTextTemplate {...props} />
     </Link>
   )
+}
+
+NavText.propTypes = {
+  to: PropType.string.isRequired,
+  ...NavTextTemplateProps,
 }

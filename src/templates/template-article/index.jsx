@@ -1,5 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { DetailedArticleTemplate } from "./template"
+
+const DetailedArticle = ({ data: { contentfulArticle } }) => {
+  return <DetailedArticleTemplate {...contentfulArticle} />
+}
 
 export const query = graphql`
   query($slug: String!) {
@@ -10,17 +15,4 @@ export const query = graphql`
   }
 `
 
-const ArticleTemplate = ({
-  data: {
-    contentfulArticle: { title, publishedDate },
-  },
-}) => {
-  return (
-    <div>
-      <div>{title}</div>
-      <div>{publishedDate}</div>
-    </div>
-  )
-}
-
-export default ArticleTemplate
+export default DetailedArticle

@@ -3,26 +3,36 @@ const path = require("path")
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const articleTemplate = path.resolve("./src/templates/article.js")
-  const res = await graphql(`
-    query {
-      allContentfulArticle {
-        edges {
-          node {
-            slug
+  try {
+    const res = await graphql(`
+      query {
+        allContentfulArticle {
+          edges {
+            node {
+              slug
+            }
           }
         }
       }
+    `)
+    if (res.errors) {
+      console.log(res.errors)
     }
-  `)
 
-  res.data.allContentfulArticle.edges.forEach(edge => {
-    createPage({
-      component: articleTemplate,
-      path: `/blog/${edge.node.slug}`,
-      context: {
-        slug: edge.node.slug,
-      },
+    const articleTemplate = path.resolve(
+      "./src/templates/template-article/index.jsx"
+    )
+
+    res.data.allContentfulArticle.edges.forEach(edge => {
+      createPage({
+        component: articleTemplate,
+        path: `/blog/${edge.node.slug}`,
+        context: {
+          slug: edge.node.slug,
+        },
+      })
     })
-  })
+  } catch (err) {
+    console.log(err)
+  }
 }

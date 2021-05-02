@@ -1,12 +1,12 @@
 import React from "react"
-import { HeadArticle } from "."
+import { HeadArticleTemplate } from "."
 
 export default {
   title: "Design System/Molecules/Article",
-  component: HeadArticle,
+  component: HeadArticleTemplate,
 }
 
-const Template = args => <HeadArticle {...args} />
+const Template = args => <HeadArticleTemplate {...args} />
 
 export const Head = Template.bind({})
 Head.args = {
