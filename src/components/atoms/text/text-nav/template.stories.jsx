@@ -1,12 +1,12 @@
 import React from "react"
-import { Nav } from "."
+import { NavTextTemplate } from "./template"
 
 export default {
   title: "Design System/Atoms",
-  component: Nav,
+  component: NavTextTemplate,
 }
 
-const Template = args => <Nav {...args} />
+const Template = args => <NavTextTemplate {...args} />
 
 export const Navigation = Template.bind({})
 Navigation.args = {

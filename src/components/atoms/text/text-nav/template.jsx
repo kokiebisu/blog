@@ -1,5 +1,4 @@
 import React from "react"
-import * as PropType from "prop-types"
 
 export const NavTextTemplate = ({ label }) => {
   return (
@@ -7,12 +6,4 @@ export const NavTextTemplate = ({ label }) => {
       {label}
     </p>
   )
-}
-
-export const NavTextTemplateProps = {
-  label: PropType.string.isRequired,
-}
-
-NavTextTemplate.propTypes = {
-  ...NavTextTemplateProps,
 }

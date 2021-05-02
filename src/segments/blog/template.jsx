@@ -22,7 +22,7 @@ export const BlogSegmentTemplate = ({
         ) : null}
       </div>
       <div className="my-12 md:grid grid-cols-2">
-        <div className="pr-4 lg:pr-8">
+        <div className="sm:pr-4 lg:pr-8">
           {recentArticles.length > 0
             ? recentArticles.map(({ id, title, body, publishedDate, slug }) => (
                 <div className="mb-16" key={id}>
@@ -39,7 +39,7 @@ export const BlogSegmentTemplate = ({
               ))
             : null}
         </div>
-        <div className="pl-4 lg:pl-8">
+        <div className="sm:pl-4 lg:pl-8">
           {articles.length > 0
             ? articles.map(
                 ({ id, title, body, publishedDate, slug }, index) => (

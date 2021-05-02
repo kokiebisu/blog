@@ -1,5 +1,5 @@
 import React from "react"
-import { HeadArticleTemplate } from "."
+import { HeadArticleTemplate } from "./template"
 
 export default {
   title: "Design System/Molecules/Article",
