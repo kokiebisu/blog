@@ -6,7 +6,6 @@ import StyledSearchResult from "../search-result"
 import useClickOutside from "../../../hooks/use-click-outside"
 
 export default function Search({ indices }) {
-  console.log("iii", indices)
   const rootRef = createRef()
   const [query, setQuery] = useState()
   const [hasFocus, setFocus] = useState(false)

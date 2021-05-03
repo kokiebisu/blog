@@ -2,13 +2,7 @@ import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 
-export const HeadArticleTemplate = ({
-  category,
-  date,
-  title,
-  content,
-  image,
-}) => {
+export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
   return (
     <div
       data-sal="slide-up"
@@ -40,7 +34,7 @@ export const HeadArticleTemplate = ({
           style={{ height: "auto" }}
           className="truncate-fade overflow-hidden"
         >
-          <p className="text-md text-gray-500 leading-7">{content}</p>
+          <p className="text-md text-gray-500 leading-7">{body}</p>
         </div>
         <div className="mt-3 lg:mt-0">
           <Badge variant="profile" {...Profile.args} />

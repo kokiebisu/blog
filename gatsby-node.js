@@ -16,7 +16,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       }
     `)
     if (res.errors) {
-      console.log(res.errors)
+      console.error(res.errors)
     }
 
     const articleTemplate = path.resolve(
@@ -33,6 +33,6 @@ module.exports.createPages = async ({ graphql, actions }) => {
       })
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }

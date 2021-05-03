@@ -6,7 +6,7 @@ export const PlainArticleTemplate = ({
   category,
   date,
   title,
-  content,
+  body,
   image,
 }) => {
   return (
@@ -46,7 +46,7 @@ export const PlainArticleTemplate = ({
           </div>
           <div>
             <p className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden">
-              {content}
+              {body}
             </p>
           </div>
         </div>

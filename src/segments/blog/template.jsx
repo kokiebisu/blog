@@ -13,7 +13,7 @@ export const BlogSegmentTemplate = ({
           <Article
             variant="head"
             title={mostRecentArticle.title}
-            content={mostRecentArticle.slug}
+            body={mostRecentArticle.body}
             category="product"
             date={mostRecentArticle.publishedDate}
             slug={mostRecentArticle.slug}
@@ -29,7 +29,7 @@ export const BlogSegmentTemplate = ({
                   <Article
                     variant="plain"
                     title={title}
-                    // content={body}
+                    body={body}
                     date={publishedDate}
                     category="product"
                     slug={slug}
@@ -48,7 +48,7 @@ export const BlogSegmentTemplate = ({
                       <Article
                         variant="abstract"
                         title={title}
-                        // body={body}
+                        body={body}
                         publishedDate={publishedDate}
                         category="product"
                         slug={slug}

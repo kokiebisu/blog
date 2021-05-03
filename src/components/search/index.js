@@ -22,8 +22,6 @@ export default function Search({ indices }) {
     process.env.GATSBY_ALGOLIA_SEARCH_KEY
   )
 
-  console.log("indices", indices)
-
   useClickOutside(rootRef, () => setFocus(false))
 
   return (

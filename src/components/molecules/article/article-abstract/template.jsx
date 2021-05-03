@@ -6,7 +6,7 @@ export const AbstractArticleTemplate = ({
   category,
   date,
   title,
-  content,
+  body,
   image,
 }) => {
   return (
@@ -34,7 +34,7 @@ export const AbstractArticleTemplate = ({
           </div>
           <div className="truncate-fade h-12 overflow-hidden">
             <p className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden">
-              {content}
+              {body}
             </p>
           </div>
         </div>
