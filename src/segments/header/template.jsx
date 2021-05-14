@@ -1,7 +1,7 @@
 import React from "react"
 import { Text } from "@components/atoms/text"
 
-import Search from "../../components/search"
+import { Search } from "../../components/organisms/search"
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const HeaderTemplate = ({

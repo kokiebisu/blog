@@ -33,7 +33,7 @@ const PageHit = ({ hit }) => (
 const HitsInIndex = ({ index }) => (
   <Index indexName={index.name}>
     <HitCount />
-    <Hits className="Hits" hitComponent={PageHit} />
+    <Hits hitComponent={PageHit} />
   </Index>
 )
 

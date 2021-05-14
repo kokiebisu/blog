@@ -1,0 +1,36 @@
+import algoliasearch from "algoliasearch/lite"
+import { createRef, default as React, useState } from "react"
+import { InstantSearch } from "react-instantsearch-dom"
+import StyledSearchBox from "../search-box/styled-search-box"
+import StyledSearchResult from "../search-result/styled-search-result"
+import useClickOutside from "../../../hooks/use-click-outside"
+
+export const Search = ({ indices }) => {
+  const rootRef = createRef()
+  const [query, setQuery] = useState()
+  const [hasFocus, setFocus] = useState(false)
+  const searchClient = algoliasearch(
+    process.env.GATSBY_ALGOLIA_APP_ID,
+    process.env.GATSBY_ALGOLIA_SEARCH_KEY
+  )
+
+  useClickOutside(rootRef, () => setFocus(false))
+
+  return (
+    <div className="relative my-4 mx-0" ref={rootRef}>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName={indices[0].name}
+        onSearchStateChange={({ query }) => setQuery(query)}
+      >
+        <StyledSearchBox onFocus={() => setFocus(true)} hasFocus={hasFocus} />
+        <div className="z-50">
+          <StyledSearchResult
+            show={query && query.length > 0 && hasFocus}
+            indices={indices}
+          />
+        </div>
+      </InstantSearch>
+    </div>
+  )
+}
