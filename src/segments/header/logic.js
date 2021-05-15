@@ -3,7 +3,7 @@ import { navigate } from "gatsby"
 import * as content from "./content"
 
 export const useHeader = () => {
-  const [selected, setSelected] = useState("people")
+  const [selected, setSelected] = useState("canada")
   const [searchbarExpanded, setSearchbarExpanded] = useState(false)
 
   const handleSelectChange = newSelected => {

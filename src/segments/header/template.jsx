@@ -12,8 +12,8 @@ export const HeaderTemplate = ({
   handleRedirectToHome,
 }) => {
   return (
-    <header className="no-select pb-3 pt-6 lg:py-3 border-gray-200 border-b">
-      <div className="flex items-center justify-between mb-6 lg:mb-3">
+    <header className="no-select pt-6 border-gray-200 border-b">
+      <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
         <div>
           <button
             onClick={handleRedirectToHome}
@@ -35,11 +35,16 @@ export const HeaderTemplate = ({
           {categoryItems.map(({ label, value }, index) => (
             <li key={index} className="mr-6">
               <button
-                className={`text-sm font-bold text-gray-500 ${
-                  selected === value ? "" : ""
+                disable={selected === value}
+                className={`p-3 text-sm font-bold  ${
+                  selected === value
+                    ? "text-green-700 border-b-2 border-green-700"
+                    : "text-gray-500"
                 }`}
                 onClick={() => handleSelectChange(value)}
               >
+                {console.log("selected", selected)}
+                {console.log("value", value)}
                 {label}
               </button>
             </li>

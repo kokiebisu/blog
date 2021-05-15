@@ -11,7 +11,7 @@ import {
 import { Icon } from "@components/icons"
 
 const PageHit = ({ hit }) => (
-  <div className="py-3">
+  <div className="p-3 hover:bg-gray-200">
     <div className="flex items-center">
       <div className="mr-4">
         <Icon variant="link" height={18} width={18} />
@@ -38,7 +38,9 @@ const HitCount = connectStateResults(({ searchResults }) => {
 
 const HitsInIndex = ({ index }) => (
   <Index indexName={index.name}>
-    <HitCount />
+    <div class="pr-3">
+      <HitCount />
+    </div>
     <div>
       <Hits hitComponent={PageHit} />
     </div>
@@ -54,13 +56,13 @@ export const SearchResultModalTemplate = ({ indices, show }) => (
   >
     <div className="relative">
       <div className="h-2 bg-green-600 absolute top-0 w-full" />
-      <div className="p-4">
+      <div className="py-4">
         <div className="mt-1">
           {indices.map(index => (
             <HitsInIndex index={index} key={index.name} />
           ))}
         </div>
-        <div className="flex justify-end text-sm">
+        <div className="flex justify-end text-sm pr-3">
           <PoweredBy />
         </div>
       </div>
