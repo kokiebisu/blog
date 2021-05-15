@@ -14,7 +14,6 @@ export const SearchInput = connectSearchBox(
       <Component
         {...rest}
         refine={refine}
-        className={className}
         onFocus={onFocus}
         value={currentRefinement}
       />
