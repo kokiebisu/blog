@@ -8,12 +8,13 @@ import {
   Snippet,
   PoweredBy,
 } from "react-instantsearch-dom"
+import { Icon } from "@components/icons"
 
 const PageHit = ({ hit }) => (
   <div className="py-3">
     <div className="flex items-center">
-      <div className="mr-2">
-        <Lightbulb height={25} width={25} />
+      <div className="mr-4">
+        <Icon variant="link" height={18} width={18} />
       </div>
       <Link to={hit.slug}>
         <h4>

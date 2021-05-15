@@ -1,5 +1,5 @@
 import React from "react"
-import { Search as SearchIcon } from "@styled-icons/fa-solid"
+import { Icon } from "@components/icons"
 
 export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
   return (
@@ -7,8 +7,8 @@ export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
       <input
         className={`py-2 outline-none text-md transaction duration-200 ease-in-out text-gray-600 ${
           hasFocus
-            ? "border-b w-56 cursor-text pl-8 -ml-6"
-            : "border-none w-0 bg-transparent cursor-pointer pl-8 -ml-6"
+            ? "w-56 cursor-text pl-8 -ml-6"
+            : "w-0 bg-transparent cursor-pointer pl-8 -ml-6"
         }`}
         type="text"
         placeholder="Search"
@@ -17,8 +17,11 @@ export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
         value={value}
         onFocus={onFocus}
       />
-      <SearchIcon
-        style={{ width: "1rem", margin: "0.3rem", pointerEvents: "none" }}
+      <Icon
+        variant="magnify"
+        height={18}
+        width={18}
+        style={{ margin: "0.3rem", pointerEvents: "none" }}
       />
     </form>
   )
