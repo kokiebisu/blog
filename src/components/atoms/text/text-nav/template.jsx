@@ -1,9 +1,12 @@
 import React from "react"
 
-export const NavTextTemplate = ({ label }) => {
+export const NavTextTemplate = ({ label, handleRedirect }) => {
   return (
-    <p className="text-gray-400 hover:text-green-500 transition font-bold">
+    <button
+      onClick={handleRedirect}
+      className="text-gray-400 hover:text-green-500 transition font-bold"
+    >
       {label}
-    </p>
+    </button>
   )
 }

@@ -1,17 +1,8 @@
 import React from "react"
-import * as PropType from "prop-types"
-import { Link } from "gatsby"
-import { NavTextTemplate, NavTextTemplateProps } from "./template"
+import { NavTextTemplate } from "./template"
+import { useNavText } from "./logic"
 
 export const NavText = ({ to, ...props }) => {
-  return (
-    <Link to={to}>
-      <NavTextTemplate {...props} />
-    </Link>
-  )
-}
-
-NavText.propTypes = {
-  to: PropType.string.isRequired,
-  ...NavTextTemplateProps,
+  const data = useNavText({ to })
+  return <NavTextTemplate {...props} {...data} />
 }

@@ -1,7 +1,7 @@
 const path = require("path")
 
 module.exports = {
-  stories: ["../src/**/*.stories.jsx"],
+  stories: ["../src/components/**/*.stories.jsx"],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   webpackFinal: async config => {
     config.resolve.modules = [

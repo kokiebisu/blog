@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { navigate } from "gatsby"
 import * as content from "./content"
 
 export const useHeader = () => {
@@ -11,11 +12,14 @@ export const useHeader = () => {
 
   const handleSearchbarExpand = () => setSearchbarExpanded(!searchbarExpanded)
 
+  const handleRedirectToHome = () => navigate("/")
+
   return {
     ...content,
     selected,
     searchbarExpanded,
     handleSelectChange,
     handleSearchbarExpand,
+    handleRedirectToHome,
   }
 }

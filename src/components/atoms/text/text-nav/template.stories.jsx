@@ -2,13 +2,14 @@ import React from "react"
 import { NavTextTemplate } from "./template"
 
 export default {
-  title: "Design System/Atoms",
+  title: "Design System/Atoms/Text",
   component: NavTextTemplate,
 }
 
 const Template = args => <NavTextTemplate {...args} />
 
-export const Navigation = Template.bind({})
-Navigation.args = {
-  label: "Nav",
+export const TextNav = Template.bind({})
+TextNav.args = {
+  label: "Label",
+  handleRedirect: () => alert("Handle redirect"),
 }
