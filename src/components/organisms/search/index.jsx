@@ -2,7 +2,7 @@ import algoliasearch from "algoliasearch/lite"
 import { createRef, default as React, useState } from "react"
 import { InstantSearch } from "react-instantsearch-dom"
 import { SearchInput } from "../../atoms/input/input-search"
-import StyledSearchResult from "../search-result/styled-search-result"
+import { SearchResultModal } from "../../molecules/modal/modal-search-result"
 import useClickOutside from "../../../hooks/use-click-outside"
 
 export const Search = ({ indices }) => {
@@ -25,7 +25,7 @@ export const Search = ({ indices }) => {
       >
         <SearchInput onFocus={() => setFocus(true)} hasFocus={hasFocus} />
         <div className="z-50">
-          <StyledSearchResult
+          <SearchResultModal
             show={query && query.length > 0 && hasFocus}
             indices={indices}
           />

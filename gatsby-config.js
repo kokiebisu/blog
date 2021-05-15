@@ -25,6 +25,7 @@ module.exports = {
           "@styles": "src/styles",
           "@templates": "src/templates",
           "@graphql": "src/graphql",
+          "@hooks": "src/hooks",
         },
         extensions: ["js", "jsx"],
       },
@@ -41,6 +42,5 @@ module.exports = {
         queries: require("./src/utils/algolia-queries"),
       },
     },
-    `gatsby-plugin-styled-components`,
   ],
 }
