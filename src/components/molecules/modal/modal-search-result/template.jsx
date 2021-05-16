@@ -11,19 +11,19 @@ import {
 import { Icon } from "@components/icons"
 
 const PageHit = ({ hit }) => (
-  <div className="p-3 hover:bg-gray-200">
-    <div className="flex items-center">
-      <div className="mr-4">
-        <Icon variant="link" height={18} width={18} />
-      </div>
-      <Link to={hit.slug}>
+  <Link to={hit.slug}>
+    <div className="p-3 hover:bg-gray-200">
+      <div className="flex items-center">
+        <div className="mr-4">
+          <Icon variant="link" height={18} width={18} />
+        </div>
         <h4>
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
-      </Link>
+      </div>
+      <Snippet attribute="excerpt" hit={hit} tagName="mark" />
     </div>
-    <Snippet attribute="excerpt" hit={hit} tagName="mark" />
-  </div>
+  </Link>
 )
 
 const HitCount = connectStateResults(({ searchResults }) => {
