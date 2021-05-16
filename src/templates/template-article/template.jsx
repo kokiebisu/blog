@@ -1,11 +1,11 @@
 import React from "react"
 import * as PropTypes from "prop-types"
 
-export const DetailedArticleTemplate = ({ title, publishedDate }) => {
+export const DetailedArticleTemplate = ({ body, title }) => {
   return (
     <div>
-      <div>{title}</div>
-      <div>{publishedDate}</div>
+      <div>{title.text}</div>
+      <div>{body.html}</div>
     </div>
   )
 }

@@ -2,8 +2,12 @@ import React from "react"
 import { graphql } from "gatsby"
 import { DetailedArticleTemplate } from "./template"
 
-const DetailedArticle = ({ data: { prismicArticle } }) => {
-  return <DetailedArticleTemplate {...prismicArticle} />
+const DetailedArticle = ({
+  data: {
+    prismicArticle: { data },
+  },
+}) => {
+  return <DetailedArticleTemplate {...data} />
 }
 
 export const query = graphql`

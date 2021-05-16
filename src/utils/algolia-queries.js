@@ -12,13 +12,6 @@ const articleQuery = `{
         title {
           text
         }
-        image {
-          fluid {
-            base64
-            sizes
-            src
-          }
-        }
         body {
           html
         }
@@ -32,12 +25,16 @@ const queries = [
   {
     query: articleQuery,
     transformer: ({ data }) =>
-      data.allPrismicArticle.nodes.map(({ id, ...rest }) => {
-        return {
-          objectID: id,
-          ...rest,
+      data.allPrismicArticle.nodes.map(
+        ({ id, data: { title, body }, ...rest }) => {
+          return {
+            objectID: id,
+            title: title.text,
+            body: body.html,
+            ...rest,
+          }
         }
-      }),
+      ),
     indexName,
     settings: { attributesToSnippet: [`excerpt:20`] },
   },
