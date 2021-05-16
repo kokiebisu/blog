@@ -1,5 +1,18 @@
 const path = require("path")
 
+// module.exports.onCreateNode = ({ node, actions }) => {
+//   const { createNodeField } = actions
+
+//   if (node.data && Object.keys(node.data) && node.data.body.text) {
+//     const { text } = node.data.body
+//     createNodeField({
+//       node,
+//       name: "readingTime",
+//       value: readingTime(text),
+//     })
+//   }
+// }
+
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 

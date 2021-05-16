@@ -9,6 +9,7 @@ export const PlainArticleTemplate = ({
   title,
   body,
   image,
+  readingTime,
 }) => {
   const optimizedImage = getImage(image)
   return (
@@ -33,6 +34,12 @@ export const PlainArticleTemplate = ({
             <div>
               <h5 className="text-xs text-gray-600 font-light">{date}</h5>
             </div>
+            <div>&nbsp;•&nbsp;</div>
+            <div>
+              <h5 className="text-xs text-gray-600 font-light">
+                {readingTime}
+              </h5>
+            </div>
           </div>
           <div className="my-3">
             <Badge variant="profile" {...Profile.args} />
@@ -44,7 +51,7 @@ export const PlainArticleTemplate = ({
           </div>
           <div
             className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden"
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={{ __html: body.html }}
           />
         </div>
       </div>

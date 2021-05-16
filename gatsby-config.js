@@ -1,18 +1,25 @@
+const readingTime = require("reading-time")
+
 require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
     title: "ここブロッ！",
     author: "Kenichi Okiebisu",
+    siteUrl: "https://www.kokoblo.com",
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-source-contentful",
-    //   options: {
-    //     spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
-    //     accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
-    //   },
-    // },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
+      },
+    },
     {
       resolve: "gatsby-source-prismic",
       options: {
@@ -61,6 +68,5 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-remark`,
   ],
 }

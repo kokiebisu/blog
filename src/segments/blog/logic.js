@@ -35,6 +35,7 @@ export const useBlog = () => {
             }
             body {
               html
+              text
             }
           }
         }
@@ -67,6 +68,7 @@ export const useBlog = () => {
             }
             body {
               html
+              text
             }
           }
         }
@@ -87,6 +89,7 @@ export const useBlog = () => {
             }
             body {
               html
+              text
             }
           }
         }

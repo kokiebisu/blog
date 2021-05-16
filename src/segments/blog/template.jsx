@@ -6,7 +6,6 @@ export const BlogSegmentTemplate = ({
   recentArticles,
   articles,
 }) => {
-  console.log("he", mostRecentArticle.data.body.html)
   return (
     <div>
       <div>
@@ -15,7 +14,7 @@ export const BlogSegmentTemplate = ({
             <Article
               variant="head"
               title={mostRecentArticle.data.title.text}
-              body={mostRecentArticle.data.body.html}
+              body={mostRecentArticle.data.body}
               category="product"
               date={mostRecentArticle.last_publication_date}
               slug={mostRecentArticle.uid}
@@ -38,7 +37,7 @@ export const BlogSegmentTemplate = ({
                     <Article
                       variant="plain"
                       title={title.text}
-                      body={body.html}
+                      body={body}
                       date={last_publication_date}
                       category="product"
                       slug={uid}
@@ -61,7 +60,7 @@ export const BlogSegmentTemplate = ({
                       <Article
                         variant="abstract"
                         title={title.text}
-                        body={body.html}
+                        body={body}
                         publishedDate={last_publication_date}
                         category="product"
                         slug={uid}

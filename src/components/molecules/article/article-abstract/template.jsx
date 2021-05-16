@@ -2,7 +2,13 @@ import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 
-export const AbstractArticleTemplate = ({ category, date, title, body }) => {
+export const AbstractArticleTemplate = ({
+  category,
+  date,
+  title,
+  body,
+  readingTime,
+}) => {
   return (
     <div data-sal="slide-up" data-sal-easing="ease" className="relative">
       <div className="h-full">
@@ -17,6 +23,12 @@ export const AbstractArticleTemplate = ({ category, date, title, body }) => {
             <div>
               <h5 className="text-xs text-gray-600 font-light">{date}</h5>
             </div>
+            <div>&nbsp;•&nbsp;</div>
+            <div>
+              <h5 className="text-xs text-gray-600 font-light">
+                {readingTime}
+              </h5>
+            </div>
           </div>
           <div className="my-3">
             <Badge variant="profile" {...Profile.args} />
@@ -28,7 +40,7 @@ export const AbstractArticleTemplate = ({ category, date, title, body }) => {
           </div>
           <div
             className="truncate-fade h-12 overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis"
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={{ __html: body.html }}
           />
         </div>
       </div>

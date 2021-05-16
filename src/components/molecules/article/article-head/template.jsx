@@ -3,7 +3,14 @@ import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
+export const HeadArticleTemplate = ({
+  category,
+  date,
+  title,
+  body,
+  image,
+  readingTime,
+}) => {
   const optimizedImage = getImage(image)
   return (
     <div
@@ -26,6 +33,10 @@ export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
           <div>
             <h5 className="text-xs text-gray-600 font-light">{date}</h5>
           </div>
+          <div>&nbsp;•&nbsp;</div>
+          <div>
+            <h5 className="text-xs text-gray-600 font-light">{readingTime}</h5>
+          </div>
         </div>
         <div className="mb-3">
           <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
@@ -35,7 +46,7 @@ export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
         <div
           style={{ height: "auto" }}
           className="truncate-fade overflow-hidden text-md text-gray-500 leading-7"
-          dangerouslySetInnerHTML={{ __html: body }}
+          dangerouslySetInnerHTML={{ __html: body.html }}
         ></div>
         <div className="mt-3 lg:mt-0">
           <Badge variant="profile" {...Profile.args} />
