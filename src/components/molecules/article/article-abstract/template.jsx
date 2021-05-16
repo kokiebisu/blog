@@ -26,11 +26,10 @@ export const AbstractArticleTemplate = ({ category, date, title, body }) => {
               {title}
             </h3>
           </div>
-          <div className="truncate-fade h-12 overflow-hidden">
-            <p className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden">
-              {body}
-            </p>
-          </div>
+          <div
+            className="truncate-fade h-12 overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis"
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
         </div>
       </div>
     </div>

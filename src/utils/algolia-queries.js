@@ -1,31 +1,38 @@
 const indexName = `Article`
 
 const articleQuery = `{
-  allContentfulArticle {
-    edges {
-      node {
-        body {
-          raw
+  allPrismicArticle {
+    nodes {
+      id
+      uid
+      tags
+      type
+      last_publication_date(fromNow: true)
+      data {
+        title {
+          text
         }
-        contentful_id
-        createdAt
-        id
-        publishedDate
-        slug
-        title
-        updatedAt
+        image {
+          fluid {
+            base64
+            sizes
+            src
+          }
+        }
+        body {
+          html
+        }
       }
     }
   }
 }
-
 `
 
 const queries = [
   {
     query: articleQuery,
     transformer: ({ data }) =>
-      data.allContentfulArticle.edges.map(({ node: { id, ...rest } }) => {
+      data.allPrismicArticle.nodes.map(({ id, ...rest }) => {
         return {
           objectID: id,
           ...rest,

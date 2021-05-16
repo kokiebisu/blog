@@ -42,11 +42,10 @@ export const PlainArticleTemplate = ({
               {title}
             </h3>
           </div>
-          <div>
-            <p className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden">
-              {body}
-            </p>
-          </div>
+          <div
+            className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden"
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
         </div>
       </div>
     </div>

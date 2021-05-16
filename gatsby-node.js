@@ -6,11 +6,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
   try {
     const res = await graphql(`
       query {
-        allContentfulArticle {
-          edges {
-            node {
-              slug
-            }
+        allPrismicArticle {
+          nodes {
+            uid
           }
         }
       }
@@ -23,12 +21,12 @@ module.exports.createPages = async ({ graphql, actions }) => {
       "./src/templates/template-article/index.jsx"
     )
 
-    res.data.allContentfulArticle.edges.forEach(edge => {
+    res.data.allPrismicArticle.nodes.forEach(node => {
       createPage({
         component: articleTemplate,
-        path: `/blog/${edge.node.slug}`,
+        path: `/blog/${node.uid}`,
         context: {
-          slug: edge.node.slug,
+          slug: node.uid,
         },
       })
     })

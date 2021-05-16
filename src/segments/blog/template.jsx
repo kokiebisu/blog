@@ -6,20 +6,20 @@ export const BlogSegmentTemplate = ({
   recentArticles,
   articles,
 }) => {
+  console.log("he", mostRecentArticle.data.body.html)
   return (
     <div>
       <div>
         {Object.keys(mostRecentArticle) ? (
           <>
-            {console.log("most", mostRecentArticle)}
             <Article
               variant="head"
-              title={mostRecentArticle.title}
-              body={mostRecentArticle.body}
+              title={mostRecentArticle.data.title.text}
+              body={mostRecentArticle.data.body.html}
               category="product"
-              date={mostRecentArticle.publishedDate}
-              slug={mostRecentArticle.slug}
-              image={mostRecentArticle.image}
+              date={mostRecentArticle.last_publication_date}
+              slug={mostRecentArticle.uid}
+              image={mostRecentArticle.data.image.localFile}
             />
           </>
         ) : null}
@@ -28,16 +28,21 @@ export const BlogSegmentTemplate = ({
         <div className="sm:pr-4 lg:pr-8">
           {recentArticles.length > 0
             ? recentArticles.map(
-                ({ id, title, body, publishedDate, slug, image }) => (
+                ({
+                  id,
+                  data: { title, body, image },
+                  last_publication_date,
+                  uid,
+                }) => (
                   <div className="mb-16" key={id}>
                     <Article
                       variant="plain"
-                      title={title}
-                      body={body}
-                      date={publishedDate}
+                      title={title.text}
+                      body={body.html}
+                      date={last_publication_date}
                       category="product"
-                      slug={slug}
-                      image={image}
+                      slug={uid}
+                      image={image.localFile}
                     />
                   </div>
                 )
@@ -47,16 +52,19 @@ export const BlogSegmentTemplate = ({
         <div className="sm:pl-4 lg:pl-8">
           {articles.length
             ? articles.map(
-                ({ id, title, body, publishedDate, slug }, index) => (
+                (
+                  { id, data: { title, body }, last_publication_date, uid },
+                  index
+                ) => (
                   <div className="mb-8" key={id}>
                     <div className="pb-8">
                       <Article
                         variant="abstract"
-                        title={title}
-                        body={body}
-                        publishedDate={publishedDate}
+                        title={title.text}
+                        body={body.html}
+                        publishedDate={last_publication_date}
                         category="product"
-                        slug={slug}
+                        slug={uid}
                       />
                     </div>
                     <div

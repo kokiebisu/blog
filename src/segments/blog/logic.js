@@ -3,71 +3,99 @@ import { graphql, useStaticQuery } from "gatsby"
 
 export const useBlog = () => {
   const {
-    mostRecentArticle: { edges: mostRecentArticleEdge },
-    recentArticles: { edges: recentArticlesEdges },
-    articles: { edges: articlesEdges },
+    mostRecentArticle: { nodes: mostRecentArticleNodes },
+    recentArticles: { nodes: recentArticlesNodes },
+    articles: { nodes: articlesNodes },
   } = useStaticQuery(graphql`
     query {
-      mostRecentArticle: allContentfulArticle(
-        sort: { fields: publishedDate, order: DESC }
+      mostRecentArticle: allPrismicArticle(
+        sort: { order: DESC, fields: last_publication_date }
         limit: 1
       ) {
-        edges {
-          node {
-            id
-            title
-            body {
-              raw
+        nodes {
+          id
+          uid
+          tags
+          type
+          last_publication_date(fromNow: true)
+          data {
+            title {
+              text
             }
-            slug
-            publishedDate(fromNow: true)
             image {
-              gatsbyImageData(width: 980, placeholder: BLURRED, formats: WEBP)
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 980
+                    placeholder: BLURRED
+                    formats: WEBP
+                  )
+                }
+              }
+            }
+            body {
+              html
             }
           }
         }
       }
-      recentArticles: allContentfulArticle(
-        sort: { fields: publishedDate, order: DESC }
+      recentArticles: allPrismicArticle(
+        sort: { order: DESC, fields: last_publication_date }
         limit: 3
         skip: 1
       ) {
-        edges {
-          node {
-            id
-            title
-            body {
-              raw
+        nodes {
+          id
+          uid
+          tags
+          type
+          last_publication_date(fromNow: true)
+          data {
+            title {
+              text
             }
-            slug
-            publishedDate(fromNow: true)
             image {
-              gatsbyImageData(width: 980, placeholder: BLURRED, formats: WEBP)
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 980
+                    placeholder: BLURRED
+                    formats: WEBP
+                  )
+                }
+              }
+            }
+            body {
+              html
             }
           }
         }
       }
-      articles: allContentfulArticle(
-        sort: { fields: publishedDate, order: DESC }
+      articles: allPrismicArticle(
+        sort: { order: DESC, fields: last_publication_date }
         skip: 4
       ) {
-        edges {
-          node {
-            id
-            title
-            body {
-              raw
+        nodes {
+          id
+          uid
+          tags
+          type
+          last_publication_date(fromNow: true)
+          data {
+            title {
+              text
             }
-            slug
-            publishedDate(formatString: "MMMM DD, YYYY")
+            body {
+              html
+            }
           }
         }
       }
     }
   `)
 
-  const mostRecentArticle = mostRecentArticleEdge[0].node
-  const recentArticles = recentArticlesEdges.map(({ node }) => node)
-  const articles = articlesEdges.map(({ node }) => node)
+  const mostRecentArticle = mostRecentArticleNodes[0]
+  const recentArticles = recentArticlesNodes
+  const articles = articlesNodes
   return { ...mockData, mostRecentArticle, recentArticles, articles }
 }

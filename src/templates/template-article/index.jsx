@@ -2,15 +2,21 @@ import React from "react"
 import { graphql } from "gatsby"
 import { DetailedArticleTemplate } from "./template"
 
-const DetailedArticle = ({ data: { contentfulArticle } }) => {
-  return <DetailedArticleTemplate {...contentfulArticle} />
+const DetailedArticle = ({ data: { prismicArticle } }) => {
+  return <DetailedArticleTemplate {...prismicArticle} />
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    contentfulArticle(slug: { eq: $slug }) {
-      title
-      publishedDate(formatString: "MMMM DD, YYYY")
+  query MyQuery($uid: StringQueryOperatorInput = {}) {
+    prismicArticle(uid: $uid) {
+      data {
+        body {
+          html
+        }
+        title {
+          text
+        }
+      }
     }
   }
 `

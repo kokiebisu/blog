@@ -34,10 +34,9 @@ export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
         </div>
         <div
           style={{ height: "auto" }}
-          className="truncate-fade overflow-hidden"
-        >
-          <p className="text-md text-gray-500 leading-7">{body}</p>
-        </div>
+          className="truncate-fade overflow-hidden text-md text-gray-500 leading-7"
+          dangerouslySetInnerHTML={{ __html: body }}
+        ></div>
         <div className="mt-3 lg:mt-0">
           <Badge variant="profile" {...Profile.args} />
         </div>

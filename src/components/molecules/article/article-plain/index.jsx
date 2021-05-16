@@ -1,13 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
 import { PlainArticleTemplate } from "./template"
-import { usePlainArticle } from "./logic"
 
-export const PlainArticle = ({ slug, body, ...props }) => {
-  const data = usePlainArticle({ body })
+export const PlainArticle = ({ slug, ...props }) => {
   return (
     <Link to={slug}>
-      <PlainArticleTemplate {...props} {...data} />
+      <PlainArticleTemplate {...props} />
     </Link>
   )
 }

@@ -6,11 +6,26 @@ module.exports = {
     author: "Kenichi Okiebisu",
   },
   plugins: [
+    // {
+    //   resolve: "gatsby-source-contentful",
+    //   options: {
+    //     spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
+    //     accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+    //   },
+    // },
     {
-      resolve: "gatsby-source-contentful",
+      resolve: "gatsby-source-prismic",
       options: {
-        spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
-        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+        repositoryName: "kokoblo",
+        accessToken: process.env.PRISMIC_API_KEY,
+        linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
+        schemas: {
+          article: require("./src/model/article.json"),
+        },
+        shouldDownloadImage: ({ node, key, value }) => {
+          // Return true to download the image or false to skip.
+          return true
+        },
       },
     },
     {
@@ -46,21 +61,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images-contentful`,
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 980,
-            },
-          },
-        ],
-      },
-    },
+    `gatsby-transformer-remark`,
   ],
 }

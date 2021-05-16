@@ -43,8 +43,6 @@ export const HeaderTemplate = ({
                 }`}
                 onClick={() => handleSelectChange(value)}
               >
-                {console.log("selected", selected)}
-                {console.log("value", value)}
                 {label}
               </button>
             </li>
