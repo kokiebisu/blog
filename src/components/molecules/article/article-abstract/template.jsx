@@ -2,13 +2,7 @@ import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 
-export const AbstractArticleTemplate = ({
-  category,
-  date,
-  title,
-  body,
-  image,
-}) => {
+export const AbstractArticleTemplate = ({ category, date, title, body }) => {
   return (
     <div data-sal="slide-up" data-sal-easing="ease" className="relative">
       <div className="h-full">

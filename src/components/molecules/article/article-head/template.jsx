@@ -4,6 +4,7 @@ import { Profile } from "../../badge/badge-profile/template.stories"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
+  const optimizedImage = getImage(image)
   return (
     <div
       data-sal="slide-up"
@@ -42,11 +43,7 @@ export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
         </div>
       </div>
       <div className="w-full h-80 lg:pl-8">
-        <img
-          src={image}
-          alt="article"
-          className="block h-full w-full object-cover rounded-md"
-        />
+        <GatsbyImage image={optimizedImage} alt="article" />
       </div>
     </div>
   )

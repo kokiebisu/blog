@@ -19,7 +19,7 @@ export const BlogSegmentTemplate = ({
               category="product"
               date={mostRecentArticle.publishedDate}
               slug={mostRecentArticle.slug}
-              image={mostRecentArticle.image.fluid.src}
+              image={mostRecentArticle.image}
             />
           </>
         ) : null}
@@ -37,7 +37,7 @@ export const BlogSegmentTemplate = ({
                       date={publishedDate}
                       category="product"
                       slug={slug}
-                      image={image.fluid.src}
+                      image={image}
                     />
                   </div>
                 )
@@ -47,7 +47,7 @@ export const BlogSegmentTemplate = ({
         <div className="sm:pl-4 lg:pl-8">
           {articles.length
             ? articles.map(
-                ({ id, title, body, publishedDate, slug, image }, index) => (
+                ({ id, title, body, publishedDate, slug }, index) => (
                   <div className="mb-8" key={id}>
                     <div className="pb-8">
                       <Article
@@ -57,7 +57,6 @@ export const BlogSegmentTemplate = ({
                         publishedDate={publishedDate}
                         category="product"
                         slug={slug}
-                        image={image.fluid.src}
                       />
                     </div>
                     <div

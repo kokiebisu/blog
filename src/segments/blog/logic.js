@@ -22,11 +22,7 @@ export const useBlog = () => {
             slug
             publishedDate(fromNow: true)
             image {
-              fluid(maxWidth: 980) {
-                base64
-                sizes
-                src
-              }
+              gatsbyImageData(width: 980, placeholder: BLURRED, formats: WEBP)
             }
           }
         }
@@ -46,11 +42,7 @@ export const useBlog = () => {
             slug
             publishedDate(fromNow: true)
             image {
-              fluid(maxWidth: 980) {
-                base64
-                sizes
-                src
-              }
+              gatsbyImageData(width: 980, placeholder: BLURRED, formats: WEBP)
             }
           }
         }
@@ -68,13 +60,6 @@ export const useBlog = () => {
             }
             slug
             publishedDate(formatString: "MMMM DD, YYYY")
-            image {
-              fluid(maxWidth: 980) {
-                base64
-                sizes
-                src
-              }
-            }
           }
         }
       }

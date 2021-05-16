@@ -1,6 +1,7 @@
 import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 export const PlainArticleTemplate = ({
   category,
@@ -9,6 +10,7 @@ export const PlainArticleTemplate = ({
   body,
   image,
 }) => {
+  const optimizedImage = getImage(image)
   return (
     <div
       data-sal="slide-up"
@@ -18,13 +20,9 @@ export const PlainArticleTemplate = ({
     >
       <div className="h-full">
         <div className="w-full h-72">
-          <img
-            src={image}
-            alt="article"
-            className="block h-full w-full object-cover rounded-md"
-          />
+          <GatsbyImage image={optimizedImage} alt="article" />
         </div>
-        <div className="h-full">
+        <div className="h-full mt-8">
           <div className="flex items-center my-2">
             <div>
               <h5 className="text-xs text-gray-600 font-light">
