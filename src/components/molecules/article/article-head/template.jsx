@@ -2,6 +2,7 @@ import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Tag } from "@components/atoms/tag"
 
 export const HeadArticleTemplate = ({
   category,
@@ -10,6 +11,7 @@ export const HeadArticleTemplate = ({
   body,
   image,
   readingTime,
+  tags,
 }) => {
   const optimizedImage = getImage(image)
   return (
@@ -19,35 +21,56 @@ export const HeadArticleTemplate = ({
       data-sal-easing="ease"
       className="flex flex-col-reverse lg:grid grid-cols-2"
     >
-      <div
-        style={{ gridTemplateRows: "auto auto auto auto" }}
-        className="grid lg:h-80 lg:pr-8"
-      >
-        <div className="flex items-center my-2 lg:mt-0 lg:mb-2">
-          <div>
-            <h5 className="text-xs text-gray-600 font-light">
-              {category.toUpperCase()}
-            </h5>
+      <div className="flex flex-col justify-between lg:pr-8">
+        <div>
+          <div className="flex items-center my-2 lg:mt-0 lg:mb-2">
+            <div>
+              <h5 className="text-xs text-gray-600 font-light">
+                {category.toUpperCase()}
+              </h5>
+            </div>
+            <div>&nbsp;•&nbsp;</div>
+            <div>
+              <h5 className="text-xs text-gray-600 font-light">{date}</h5>
+            </div>
+            <div>&nbsp;•&nbsp;</div>
+            <div>
+              <h5 className="text-xs text-gray-600 font-light">
+                {readingTime}
+              </h5>
+            </div>
           </div>
-          <div>&nbsp;•&nbsp;</div>
-          <div>
-            <h5 className="text-xs text-gray-600 font-light">{date}</h5>
+          <div className="mb-3">
+            <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
+              {title}
+            </h3>
           </div>
-          <div>&nbsp;•&nbsp;</div>
-          <div>
-            <h5 className="text-xs text-gray-600 font-light">{readingTime}</h5>
+          <div
+            style={{ height: 115 }}
+            className="h-full truncate-fade overflow-hidden text-md text-gray-500"
+            dangerouslySetInnerHTML={{ __html: body.html }}
+          ></div>
+          <div className="flex my-4">
+            {tags.length
+              ? tags.map(tag => {
+                  const {
+                    keywords: {
+                      document: {
+                        data: {
+                          name: { text: keyword },
+                        },
+                      },
+                    },
+                  } = tag
+                  return (
+                    <div className="mr-2">
+                      <Tag label={keyword} />
+                    </div>
+                  )
+                })
+              : null}
           </div>
         </div>
-        <div className="mb-3">
-          <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
-            {title}
-          </h3>
-        </div>
-        <div
-          style={{ height: "auto" }}
-          className="truncate-fade overflow-hidden text-md text-gray-500 leading-7"
-          dangerouslySetInnerHTML={{ __html: body.html }}
-        ></div>
         <div className="mt-3 lg:mt-0">
           <Badge variant="profile" {...Profile.args} />
         </div>

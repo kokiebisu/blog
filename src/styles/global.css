@@ -52,11 +52,11 @@
   }
 
   h5 {
-    @apply text-gray-700 text-base font-bold;
+    @apply text-gray-700 text-base font-bold leading-7;
   }
 
   p {
-    @apply text-gray-700 text-sm font-light;
+    @apply text-gray-700 text-sm font-light leading-6;
   }
 }
 

@@ -19,6 +19,7 @@ export const BlogSegmentTemplate = ({
               date={mostRecentArticle.last_publication_date}
               slug={mostRecentArticle.uid}
               image={mostRecentArticle.data.image.localFile}
+              tags={mostRecentArticle.data.tags}
             />
           </>
         ) : null}

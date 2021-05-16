@@ -1,0 +1,29 @@
+{
+  "Main": {
+    "name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "name",
+        "placeholder": "Tag Name"
+      }
+    },
+    "tags": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "related": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["article"],
+              "label": "related",
+              "placeholder": "Related"
+            }
+          }
+        },
+        "label": "tags"
+      }
+    }
+  }
+}

@@ -15,7 +15,6 @@ export const useBlog = () => {
         nodes {
           id
           uid
-          tags
           type
           last_publication_date(fromNow: true)
           data {
@@ -36,6 +35,20 @@ export const useBlog = () => {
             body {
               html
               text
+            }
+            tags {
+              keywords {
+                document {
+                  ... on PrismicTag {
+                    id
+                    data {
+                      name {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -48,7 +61,6 @@ export const useBlog = () => {
         nodes {
           id
           uid
-          tags
           type
           last_publication_date(fromNow: true)
           data {
@@ -70,6 +82,20 @@ export const useBlog = () => {
               html
               text
             }
+            tags {
+              keywords {
+                document {
+                  ... on PrismicTag {
+                    id
+                    data {
+                      name {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -80,7 +106,6 @@ export const useBlog = () => {
         nodes {
           id
           uid
-          tags
           type
           last_publication_date(fromNow: true)
           data {
@@ -91,6 +116,20 @@ export const useBlog = () => {
               html
               text
             }
+            tags {
+              keywords {
+                document {
+                  ... on PrismicTag {
+                    id
+                    data {
+                      name {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -100,5 +139,6 @@ export const useBlog = () => {
   const mostRecentArticle = mostRecentArticleNodes[0]
   const recentArticles = recentArticlesNodes
   const articles = articlesNodes
+
   return { ...mockData, mostRecentArticle, recentArticles, articles }
 }

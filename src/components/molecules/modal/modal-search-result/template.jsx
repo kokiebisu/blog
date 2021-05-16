@@ -32,7 +32,7 @@ const HitCount = connectStateResults(({ searchResults }) => {
   const hitCount = searchResults && searchResults.nbHits
 
   return hitCount > 0 ? (
-    <div className="flex justify-end">
+    <div className="flex justify-end mb-2">
       {hitCount} result{hitCount !== 1 ? `s` : ``}
     </div>
   ) : null

@@ -1,5 +1,3 @@
-const readingTime = require("reading-time")
-
 require("dotenv").config()
 
 module.exports = {
@@ -28,6 +26,7 @@ module.exports = {
         linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
         schemas: {
           article: require("./src/model/article.json"),
+          tag: require("./src/model/tag.json"),
         },
         shouldDownloadImage: ({ node, key, value }) => {
           // Return true to download the image or false to skip.
