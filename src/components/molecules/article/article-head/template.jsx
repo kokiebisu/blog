@@ -1,12 +1,13 @@
 import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 export const HeadArticleTemplate = ({ category, date, title, body, image }) => {
   return (
     <div
       data-sal="slide-up"
-      data-sal-delay="300"
+      data-sal-delay="100"
       data-sal-easing="ease"
       className="flex flex-col-reverse lg:grid grid-cols-2"
     >

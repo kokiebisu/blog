@@ -12,7 +12,7 @@ export const PlainArticleTemplate = ({
   return (
     <div
       data-sal="slide-up"
-      data-sal-delay="300"
+      data-sal-delay="100"
       data-sal-easing="ease"
       className="relative"
     >
