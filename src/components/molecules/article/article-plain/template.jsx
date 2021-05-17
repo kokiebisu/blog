@@ -11,7 +11,7 @@ export const PlainArticleTemplate = ({
   body,
   image,
   readingTime,
-  tags,
+  tags = [],
 }) => {
   const optimizedImage = getImage(image)
   return (
