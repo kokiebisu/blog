@@ -51,7 +51,7 @@ export const HeadArticleTemplate = ({
             dangerouslySetInnerHTML={{ __html: body.html }}
           ></div>
           <div className="flex my-4">
-            {tags.length
+            {tags
               ? tags.map(tag => {
                   const {
                     keywords: {
