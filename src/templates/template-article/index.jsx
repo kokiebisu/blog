@@ -1,28 +1,17 @@
 import React from "react"
-import { graphql } from "gatsby"
 import { DetailedArticleTemplate } from "./template"
 
-const DetailedArticle = ({
-  data: {
-    prismicArticle: { data },
-  },
-}) => {
-  return <DetailedArticleTemplate {...data} />
+const DetailedArticle = ({ pageContext }) => {
+  const { data, ...rest } = pageContext.article
+  return (
+    <DetailedArticleTemplate
+      {...rest}
+      title={data.title.text}
+      image={data.image.localFile}
+      body={data.body.html}
+      tags={data.tags}
+    />
+  )
 }
-
-export const query = graphql`
-  query MyQuery($uid: StringQueryOperatorInput = {}) {
-    prismicArticle(uid: $uid) {
-      data {
-        body {
-          html
-        }
-        title {
-          text
-        }
-      }
-    }
-  }
-`
 
 export default DetailedArticle

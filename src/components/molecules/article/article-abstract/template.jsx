@@ -1,6 +1,7 @@
 import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
+import { Tag } from "@components/atoms/tag"
 
 export const AbstractArticleTemplate = ({
   category,
@@ -8,6 +9,7 @@ export const AbstractArticleTemplate = ({
   title,
   body,
   readingTime,
+  tags,
 }) => {
   return (
     <div data-sal="slide-up" data-sal-easing="ease" className="relative">
@@ -42,6 +44,26 @@ export const AbstractArticleTemplate = ({
             className="truncate-fade h-12 overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis"
             dangerouslySetInnerHTML={{ __html: body.html }}
           />
+          <div className="flex my-4">
+            {tags.length
+              ? tags.map(tag => {
+                  const {
+                    keywords: {
+                      document: {
+                        data: {
+                          name: { text: keyword },
+                        },
+                      },
+                    },
+                  } = tag
+                  return (
+                    <div className="mr-2">
+                      <Tag label={keyword} />
+                    </div>
+                  )
+                })
+              : null}
+          </div>
         </div>
       </div>
     </div>

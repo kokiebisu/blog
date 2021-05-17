@@ -6,6 +6,7 @@ export const BlogSegmentTemplate = ({
   recentArticles,
   articles,
 }) => {
+  console.log("lsdsdsd", mostRecentArticle.uid)
   return (
     <div>
       <div>

@@ -3,7 +3,7 @@ import { Icon } from "."
 
 export default {
   title: "Assets/Icons",
-  component: HeaderTemplate,
+  component: Icon,
 }
 
 const Template = args => <Icon {...args} />

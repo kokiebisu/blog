@@ -2,7 +2,7 @@ import React from "react"
 import { Footer } from "@segments/footer"
 import { Header } from "@segments/header"
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, headerType = "general" }) => {
   return (
     <div className="min-h-screen flex flex-col w-full">
       <div
@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
         className="w-full h-full px-8 md:px-16 flex-col flex mx-auto flex-grow"
       >
         <div className="flex-none">
-          <Header />
+          <Header variant={headerType} />
         </div>
         <div className="flex-grow">{children}</div>
       </div>

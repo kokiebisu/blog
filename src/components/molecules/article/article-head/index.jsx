@@ -5,9 +5,10 @@ import { useHeadArticle } from "./logic"
 
 export const HeadArticle = ({ slug, ...props }) => {
   const { body } = props
+
   const data = useHeadArticle({ body })
   return (
-    <Link to={slug}>
+    <Link to={`/blog/${slug}`}>
       <HeadArticleTemplate {...props} {...data} />
     </Link>
   )

@@ -1,10 +1,10 @@
 import React from "react"
 import { Text } from "@components/atoms/text"
 
-import { Search } from "../../components/organisms/search"
+import { Search } from "@components/organisms/search"
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
-export const HeaderTemplate = ({
+export const GeneralHeaderTemplate = ({
   selected,
   handleSelectChange,
   navItems,
@@ -12,7 +12,7 @@ export const HeaderTemplate = ({
   handleRedirectToHome,
 }) => {
   return (
-    <header className="no-select pt-6 border-gray-200 border-b">
+    <header className="no-select pt-6">
       <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
         <div>
           <button

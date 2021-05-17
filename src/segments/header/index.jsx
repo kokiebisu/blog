@@ -1,8 +1,11 @@
 import React from "react"
-import { useHeader } from "./logic"
-import { HeaderTemplate } from "./template"
+import { ArticleHeader } from "./header-article"
+import { GeneralHeader } from "./header-general"
 
-export const Header = () => {
-  const data = useHeader()
-  return <HeaderTemplate {...data} />
+export const Header = ({ variant }) => {
+  const variants = {
+    article: <ArticleHeader />,
+    general: <GeneralHeader />,
+  }
+  return variants[variant]
 }

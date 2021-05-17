@@ -6,7 +6,7 @@ import { Head } from "@providers/head"
 const BlogPage = () => (
   <div style={{ maxWidth: 1100 }} className="w-full px-8 md:px-16 mx-auto">
     <Head title="Blog" />
-    <Header />
+    <Header variant="general" />
     <div className="mt-12">
       <BlogSegment />
     </div>

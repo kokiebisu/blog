@@ -3,13 +3,13 @@ import { HeaderTemplate } from "./template"
 import * as content from "./content"
 
 export default {
-  title: "Templates",
+  title: "Segments/Header",
   component: HeaderTemplate,
 }
 
 const Template = args => <HeaderTemplate {...args} />
 
-export const Header = Template.bind({})
-Header.args = {
+export const Article = Template.bind({})
+Article.args = {
   ...content,
 }

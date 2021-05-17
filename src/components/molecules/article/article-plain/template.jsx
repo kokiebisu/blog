@@ -2,6 +2,7 @@ import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Tag } from "@components/atoms/tag"
 
 export const PlainArticleTemplate = ({
   category,
@@ -10,6 +11,7 @@ export const PlainArticleTemplate = ({
   body,
   image,
   readingTime,
+  tags,
 }) => {
   const optimizedImage = getImage(image)
   return (
@@ -53,6 +55,26 @@ export const PlainArticleTemplate = ({
             className="text-md text-gray-500 leading-7 overflow-ellipsis overflow-hidden"
             dangerouslySetInnerHTML={{ __html: body.html }}
           />
+          <div className="flex my-4">
+            {tags.length
+              ? tags.map(tag => {
+                  const {
+                    keywords: {
+                      document: {
+                        data: {
+                          name: { text: keyword },
+                        },
+                      },
+                    },
+                  } = tag
+                  return (
+                    <div className="mr-2">
+                      <Tag label={keyword} />
+                    </div>
+                  )
+                })
+              : null}
+          </div>
         </div>
       </div>
     </div>
