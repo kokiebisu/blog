@@ -14,13 +14,10 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "storybook": "start-storybook -p 6006 -s ./static",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy": "gatsby-plugin-s3 deploy --yes"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^14.1.3",
-    "@contentful/rich-text-types": "^14.1.2",
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
     "algoliasearch": "^4.9.1",
     "dotenv": "^8.2.0",
     "gatsby": "^3.2.1",
@@ -32,6 +29,7 @@
     "gatsby-plugin-offline": "^4.3.0",
     "gatsby-plugin-react-helmet": "^4.3.0",
     "gatsby-plugin-robots-txt": "^1.6.2",
+    "gatsby-plugin-s3": "^0.3.8",
     "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-sharp": "^3.5.0",
     "gatsby-plugin-sitemap": "^4.1.0",

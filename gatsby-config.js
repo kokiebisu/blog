@@ -67,5 +67,11 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-plugin-s3",
+      options: {
+        bucketName: "kocoblo.com",
+      },
+    },
   ],
 }

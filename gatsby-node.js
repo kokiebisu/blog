@@ -1,16 +1,51 @@
 const path = require("path")
+const readingTime = require("reading-time")
 
-// module.exports.onCreateNode = ({ node, actions }) => {
-//   const { createNodeField } = actions
+/**
+ * Adds a `ReadingTime` GraphQL type to represent data from the `reading-time` library.
+ */
+// exports.createSchemaCustomization = (gatsbyContext) => {
+//   const { actions, schema } = gatsbyContext
+//   const { createTypes } = actions
 
-//   if (node.data && Object.keys(node.data) && node.data.body.text) {
-//     const { text } = node.data.body
-//     createNodeField({
-//       node,
-//       name: "readingTime",
-//       value: readingTime(text),
-//     })
+//   const ReadingTime = schema.buildObjectType({
+//     name: 'ReadingTime',
+//     fields: {
+//       text: 'String!',
+//       minutes: 'Int!',
+//       time: 'Int!',
+//       words: 'Int!'
+//     }
+//   })
+
+//   createTypes([ReadingTime])
+// }
+
+/**
+ * Adds a `readingTime` field to `PrismicBlogPost`.
+ *
+ * NOTE: This field will only be processed during build-time. During a
+ * client-side Prismic preview, `readingTime` be the non-preview value.
+ */
+// exports.createResolvers = gatsbyContext => {
+//   const { createResolvers } = gatsbyContext
+
+//   const resolvers = {
+//     PrismicBlogPost: {
+//       readingTime: {
+//         type: "ReadingTime",
+//         resolve: source => {
+//           if (source.data?.body?.text) {
+//             return readingTime(source.data?.body?.text)
+//           } else {
+//             return null
+//           }
+//         },
+//       },
+//     },
 //   }
+
+//   createResolvers(resolvers)
 // }
 
 module.exports.createPages = async ({ graphql, actions }) => {
