@@ -15,7 +15,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
-    "deploy": "gatsby-plugin-s3 deploy --yes"
+    "deploy": "gatsby-plugin-s3 deploy"
   },
   "dependencies": {
     "algoliasearch": "^4.9.1",
