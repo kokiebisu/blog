@@ -1,10 +1,12 @@
 import React from "react"
 import { ProfileBadgeTemplate } from "./template"
 
-export default {
+const config = {
   title: "Design System/Molecules/Badge",
   component: ProfileBadgeTemplate,
 }
+
+export default config
 
 const Template = args => <ProfileBadgeTemplate {...args} />
 

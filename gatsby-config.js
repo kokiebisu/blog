@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: "ここブロッ！",
     author: "Kenichi Okiebisu",
-    siteUrl: "https://www.kokoblo.com",
+    siteUrl: "https://www.kocoblo.com",
   },
   plugins: [
     `gatsby-plugin-sitemap`,
