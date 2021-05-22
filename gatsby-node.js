@@ -96,10 +96,10 @@ module.exports.createPages = async ({ graphql, actions }) => {
                   }
                 }
               }
-              readingTime {
-                text
-                words
-              }
+            }
+            readingTime {
+              text
+              words
             }
           }
         }

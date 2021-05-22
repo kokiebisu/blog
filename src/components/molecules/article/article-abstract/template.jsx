@@ -9,6 +9,7 @@ export const AbstractArticleTemplate = ({
   title,
   body,
   readingTime,
+  publishedDate,
   tags,
 }) => {
   return (
@@ -23,7 +24,9 @@ export const AbstractArticleTemplate = ({
             </div>
             <div>&nbsp;•&nbsp;</div>
             <div>
-              <h5 className="text-xs text-gray-600 font-light">{date}</h5>
+              <h5 className="text-xs text-gray-600 font-light">
+                {publishedDate}
+              </h5>
             </div>
             <div>&nbsp;•&nbsp;</div>
             <div>
