@@ -51,6 +51,10 @@ export const useBlog = () => {
               }
             }
           }
+          readingTime {
+            text
+            words
+          }
         }
       }
       recentArticles: allPrismicArticle(
@@ -97,6 +101,10 @@ export const useBlog = () => {
               }
             }
           }
+          readingTime {
+            text
+            words
+          }
         }
       }
       articles: allPrismicArticle(
@@ -130,6 +138,10 @@ export const useBlog = () => {
                 }
               }
             }
+          }
+          readingTime {
+            text
+            words
           }
         }
       }

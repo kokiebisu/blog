@@ -6,7 +6,7 @@ import { Tag } from "@components/atoms/tag"
 
 export const PlainArticleTemplate = ({
   category,
-  date,
+  publishedDate,
   title,
   body,
   image,
@@ -34,7 +34,9 @@ export const PlainArticleTemplate = ({
             </div>
             <div>&nbsp;•&nbsp;</div>
             <div>
-              <h5 className="text-xs text-gray-600 font-light">{date}</h5>
+              <h5 className="text-xs text-gray-600 font-light">
+                {publishedDate}
+              </h5>
             </div>
             <div>&nbsp;•&nbsp;</div>
             <div>
