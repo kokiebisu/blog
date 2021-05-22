@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <Layout>
       <Head title="Home" />
-      <main>this is the home page</main>
+      <main>Testing purpose?</main>
     </Layout>
   )
 }
