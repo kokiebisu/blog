@@ -58,48 +58,50 @@ module.exports.createPages = async ({ graphql, actions }) => {
     const res = await graphql(`
       query {
         allPrismicArticle {
-          nodes {
-            id
-            uid
-            type
-            last_publication_date(fromNow: true)
-            data {
-              title {
-                text
-              }
-              image {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData(
-                      height: 400
-                      placeholder: BLURRED
-                      formats: WEBP
-                    )
+          edges {
+            node {
+              id
+              uid
+              type
+              last_publication_date(fromNow: true)
+              data {
+                title {
+                  text
+                }
+                image {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(
+                        height: 400
+                        placeholder: BLURRED
+                        formats: WEBP
+                      )
+                    }
                   }
                 }
-              }
-              body {
-                html
-                text
-              }
-              tags {
-                keywords {
-                  document {
-                    ... on PrismicTag {
-                      id
-                      data {
-                        name {
-                          text
+                body {
+                  html
+                  text
+                }
+                tags {
+                  keywords {
+                    document {
+                      ... on PrismicTag {
+                        id
+                        data {
+                          name {
+                            text
+                          }
                         }
                       }
                     }
                   }
                 }
               }
-            }
-            readingTime {
-              text
-              words
+              readingTime {
+                text
+                words
+              }
             }
           }
         }
@@ -113,7 +115,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       "./src/templates/template-article/index.jsx"
     )
 
-    res.data.allPrismicArticle.nodes.forEach(node => {
+    res.data.allPrismicArticle.edges.forEach(({ node }) => {
       createPage({
         component: articleTemplate,
         path: `/blog/${node.uid}`,

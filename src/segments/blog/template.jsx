@@ -6,7 +6,6 @@ export const BlogSegmentTemplate = ({
   recentArticles,
   articles,
 }) => {
-  console.log("lsdsdsd", mostRecentArticle.uid)
   return (
     <div>
       <div>
@@ -31,11 +30,13 @@ export const BlogSegmentTemplate = ({
           {recentArticles.length > 0
             ? recentArticles.map(
                 ({
-                  id,
-                  data: { title, body, image },
-                  last_publication_date,
-                  uid,
-                  readingTime,
+                  node: {
+                    id,
+                    data: { title, body, image },
+                    last_publication_date,
+                    uid,
+                    readingTime,
+                  },
                 }) => (
                   <div className="mb-16" key={id}>
                     <Article
@@ -58,11 +59,13 @@ export const BlogSegmentTemplate = ({
             ? articles.map(
                 (
                   {
-                    id,
-                    data: { title, body },
-                    last_publication_date,
-                    uid,
-                    readingTime,
+                    node: {
+                      id,
+                      data: { title, body },
+                      last_publication_date,
+                      uid,
+                      readingTime,
+                    },
                   },
                   index
                 ) => (
