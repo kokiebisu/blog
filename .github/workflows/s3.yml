@@ -7,12 +7,11 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
-      GATSBY_ALGOLIA_ADMIN_API_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}
-      GATSBY_ALGOLIA_SEARCH_API_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}
-      PRISMIC_API_KEY: ${{ secrets.PRISMIC_API_KEY }}
     steps:
       - uses: actions/checkout@v2
+
+      - name: Show Secrets
+        run: echo ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
 
       - name: Install dependencies
         run: yarn
@@ -34,3 +33,9 @@ jobs:
       #     delete-removed: true
       #     no-cache: true
       #     private: true
+
+env:
+  GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
+  GATSBY_ALGOLIA_ADMIN_API_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}
+  GATSBY_ALGOLIA_SEARCH_API_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}
+  PRISMIC_API_KEY: ${{ secrets.PRISMIC_API_KEY }}
