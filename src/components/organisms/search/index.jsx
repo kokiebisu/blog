@@ -10,8 +10,8 @@ export const Search = ({ indices }) => {
   const [query, setQuery] = useState()
   const [hasFocus, setFocus] = useState(false)
   const searchClient = algoliasearch(
-    process.env.ALGOLIA_APP_ID,
-    process.env.ALGOLIA_SEARCH_KEY
+    process.env.GATSBY_ALGOLIA_APP_ID,
+    process.env.GATSBY_ALGOLIA_SEARCH_API_KEY
   )
 
   useClickOutside(rootRef, () => setFocus(false))

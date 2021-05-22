@@ -1,4 +1,4 @@
-name: Example workflow for S3 Deploy
+name: S3 Deployment
 
 on: [push]
 jobs:
@@ -7,11 +7,10 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
-      GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
-      ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-      ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-      ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
+      GATSBY_GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_GATSBY_ALGOLIA_APP_ID }}
+      GATSBY_ALGOLIA_ADMIN_API_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}
+      GATSBY_ALGOLIA_SEARCH_API_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}
+      GATSBY_ALGOLIA_INDEX_NAME: ${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}
       PRISMIC_API_KEY: ${{ secrets.PRISMIC_API_KEY }}
     steps:
       - uses: actions/checkout@v2
