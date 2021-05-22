@@ -4,22 +4,22 @@ const readingTime = require("reading-time")
 /**
  * Adds a `ReadingTime` GraphQL type to represent data from the `reading-time` library.
  */
-// exports.createSchemaCustomization = (gatsbyContext) => {
-//   const { actions, schema } = gatsbyContext
-//   const { createTypes } = actions
+exports.createSchemaCustomization = gatsbyContext => {
+  const { actions, schema } = gatsbyContext
+  const { createTypes } = actions
 
-//   const ReadingTime = schema.buildObjectType({
-//     name: 'ReadingTime',
-//     fields: {
-//       text: 'String!',
-//       minutes: 'Int!',
-//       time: 'Int!',
-//       words: 'Int!'
-//     }
-//   })
+  const ReadingTime = schema.buildObjectType({
+    name: "ReadingTime",
+    fields: {
+      text: "String!",
+      minutes: "Int!",
+      time: "Int!",
+      words: "Int!",
+    },
+  })
 
-//   createTypes([ReadingTime])
-// }
+  createTypes([ReadingTime])
+}
 
 /**
  * Adds a `readingTime` field to `PrismicBlogPost`.
@@ -27,27 +27,30 @@ const readingTime = require("reading-time")
  * NOTE: This field will only be processed during build-time. During a
  * client-side Prismic preview, `readingTime` be the non-preview value.
  */
-// exports.createResolvers = gatsbyContext => {
-//   const { createResolvers } = gatsbyContext
+exports.createResolvers = gatsbyContext => {
+  const { createResolvers } = gatsbyContext
 
-//   const resolvers = {
-//     PrismicBlogPost: {
-//       readingTime: {
-//         type: "ReadingTime",
-//         resolve: source => {
-//           if (source.data?.body?.text) {
-//             return readingTime(source.data?.body?.text)
-//           } else {
-//             return null
-//           }
-//         },
-//       },
-//     },
-//   }
+  const resolvers = {
+    PrismicArticle: {
+      readingTime: {
+        type: "ReadingTime",
+        resolve: source => {
+          if (source.data?.body?.text) {
+            return readingTime(source.data?.body?.text)
+          } else {
+            return null
+          }
+        },
+      },
+    },
+  }
 
-//   createResolvers(resolvers)
-// }
+  createResolvers(resolvers)
+}
 
+/**
+ * Creates the page for a specific `Article` model
+ */
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -92,6 +95,10 @@ module.exports.createPages = async ({ graphql, actions }) => {
                     }
                   }
                 }
+              }
+              readingTime {
+                text
+                words
               }
             }
           }
