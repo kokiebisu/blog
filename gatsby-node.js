@@ -107,7 +107,6 @@ module.exports.createPages = async ({ graphql, actions }) => {
     )
 
     res.data.allPrismicArticle.nodes.forEach(node => {
-      console.log("uid", node.uid)
       createPage({
         component: articleTemplate,
         path: `/blog/${node.uid}`,
