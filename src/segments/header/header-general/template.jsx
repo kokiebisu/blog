@@ -1,7 +1,8 @@
 import React from "react"
 import { Text } from "@components/atoms/text"
-
 import { Search } from "@components/organisms/search"
+import PropTypes from "prop-types"
+
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const GeneralHeaderTemplate = ({
@@ -54,4 +55,12 @@ export const GeneralHeaderTemplate = ({
       </div>
     </header>
   )
+}
+
+GeneralHeaderTemplate.propTypes = {
+  selected: PropTypes.string,
+  handleSelectChange: PropTypes.func,
+  navItems: PropTypes.array,
+  categoryItems: PropTypes.array,
+  handleRedirectToHome: PropTypes.func,
 }

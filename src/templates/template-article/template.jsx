@@ -2,6 +2,7 @@ import React from "react"
 import { Layout } from "@layouts"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
+import PropTypes from "prop-types"
 
 export const DetailedArticleTemplate = ({
   last_publication_date,
@@ -25,16 +26,19 @@ export const DetailedArticleTemplate = ({
           <div className="flex mb-8">
             {tags.length
               ? tags.map(
-                  ({
-                    keywords: {
-                      document: {
-                        data: {
-                          name: { text },
+                  (
+                    {
+                      keywords: {
+                        document: {
+                          data: {
+                            name: { text },
+                          },
                         },
                       },
                     },
-                  }) => (
-                    <div className="mx-1">
+                    index
+                  ) => (
+                    <div key={index} className="mx-1">
                       <Tag label={text} />
                     </div>
                   )
@@ -52,4 +56,12 @@ export const DetailedArticleTemplate = ({
       </main>
     </Layout>
   )
+}
+
+DetailedArticleTemplate.propTypes = {
+  last_publication_date: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  body: PropTypes.string,
+  tags: PropTypes.array,
 }

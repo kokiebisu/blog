@@ -1,6 +1,7 @@
 import React from "react"
 import { Footer } from "@segments/footer"
 import { Header } from "@segments/header"
+import PropTypes from "prop-types"
 
 export const Layout = ({ children, headerType = "general" }) => {
   return (
@@ -24,4 +25,9 @@ export const Layout = ({ children, headerType = "general" }) => {
       </div>
     </div>
   )
+}
+
+Layout.propTypes = {
+  children: PropTypes.element,
+  headerType: PropTypes.string,
 }

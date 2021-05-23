@@ -9,6 +9,7 @@ import {
   PoweredBy,
 } from "react-instantsearch-dom"
 import { Icon } from "@components/icons"
+import PropTypes from "prop-types"
 
 const PageHit = ({ hit }) => {
   return (
@@ -28,6 +29,10 @@ const PageHit = ({ hit }) => {
   )
 }
 
+PageHit.propTypes = {
+  hit: PropTypes.object,
+}
+
 const HitCount = connectStateResults(({ searchResults }) => {
   const hitCount = searchResults && searchResults.nbHits
 
@@ -40,7 +45,7 @@ const HitCount = connectStateResults(({ searchResults }) => {
 
 const HitsInIndex = ({ index }) => (
   <Index indexName={index.name}>
-    <div class="pr-3">
+    <div className="pr-3">
       <HitCount />
     </div>
     <div>
@@ -48,6 +53,10 @@ const HitsInIndex = ({ index }) => (
     </div>
   </Index>
 )
+
+HitsInIndex.propTypes = {
+  index: PropTypes.object,
+}
 
 export const SearchResultModalTemplate = ({ indices, show }) => (
   <div
@@ -71,3 +80,8 @@ export const SearchResultModalTemplate = ({ indices, show }) => (
     </div>
   </div>
 )
+
+SearchResultModalTemplate.propTypes = {
+  indices: PropTypes.array,
+  show: PropTypes.bool,
+}

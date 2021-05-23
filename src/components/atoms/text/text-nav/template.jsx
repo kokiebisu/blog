@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 export const NavTextTemplate = ({ label, handleRedirect }) => {
   return (
@@ -9,4 +10,9 @@ export const NavTextTemplate = ({ label, handleRedirect }) => {
       {label}
     </button>
   )
+}
+
+NavTextTemplate.propTypes = {
+  label: PropTypes.string,
+  handleRedirect: PropTypes.func,
 }

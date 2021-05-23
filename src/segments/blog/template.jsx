@@ -1,5 +1,6 @@
 import React from "react"
 import { Article } from "../../components/molecules/article"
+import PropTypes from "prop-types"
 
 export const BlogSegmentTemplate = ({
   mostRecentArticle,
@@ -98,4 +99,10 @@ export const BlogSegmentTemplate = ({
       </div>
     </div>
   )
+}
+
+BlogSegmentTemplate.propTypes = {
+  mostRecentArticle: PropTypes.object,
+  recentArticles: PropTypes.array,
+  articles: PropTypes.array,
 }
