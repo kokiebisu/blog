@@ -1,14 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-export const NavTextTemplate = ({ label, handleRedirect }) => {
+export const NavTextTemplate = ({ label }) => {
   return (
-    <button
-      onClick={handleRedirect}
-      className="text-gray-400 hover:text-green-500 transition font-bold"
-    >
+    <div className="text-gray-400 hover:text-green-500 transition font-bold">
       {label}
-    </button>
+    </div>
   )
 }
 
