@@ -1,5 +1,6 @@
 import React from "react"
 import { DetailedArticleTemplate } from "./template"
+import PropTypes from "prop-types"
 
 const DetailedArticle = ({ pageContext }) => {
   const { data, ...rest } = pageContext.article
@@ -12,6 +13,10 @@ const DetailedArticle = ({ pageContext }) => {
       tags={data.tags}
     />
   )
+}
+
+DetailedArticle.propTypes = {
+  pageContext: PropTypes.object,
 }
 
 export default DetailedArticle

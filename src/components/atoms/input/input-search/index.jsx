@@ -2,6 +2,7 @@ import React from "react"
 import { SearchInputTemplate } from "./template"
 import { connectSearchBox } from "react-instantsearch-dom"
 import { useSearchInput } from "./logic"
+import PropTypes from "prop-types"
 
 const Component = ({ refine, ...props }) => {
   const data = useSearchInput({ refine })
@@ -20,3 +21,7 @@ export const SearchInput = connectSearchBox(
     )
   }
 )
+
+Component.propTypes = {
+  refine: PropTypes.any,
+}

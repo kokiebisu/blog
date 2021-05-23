@@ -4,6 +4,7 @@ import { InstantSearch } from "react-instantsearch-dom"
 import { SearchInput } from "../../atoms/input/input-search"
 import { SearchResultModal } from "../../molecules/modal/modal-search-result"
 import useClickOutside from "../../../hooks/use-click-outside"
+import PropTypes from "prop-types"
 
 export const Search = ({ indices }) => {
   const rootRef = createRef()
@@ -33,4 +34,8 @@ export const Search = ({ indices }) => {
       </InstantSearch>
     </div>
   )
+}
+
+Search.propTypes = {
+  indices: PropTypes.array,
 }
