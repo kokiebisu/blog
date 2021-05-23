@@ -2,7 +2,7 @@ import React from "react"
 import { Text } from "@components/atoms/text"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
-
+import { Link } from "gatsby"
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const GeneralHeaderTemplate = ({
@@ -26,7 +26,9 @@ export const GeneralHeaderTemplate = ({
         <nav className="hidden md:flex list-none">
           {navItems.map((item, index) => (
             <li key={index} className="px-3 py-2">
-              <Text variant="nav" {...item} />
+              <Link to={item.to}>
+                <Text variant="nav" {...item} />
+              </Link>
             </li>
           ))}
         </nav>

@@ -11,5 +11,4 @@ const Template = args => <TagTemplate {...args} />
 export const Tag = Template.bind({})
 Tag.args = {
   label: "Label",
-  handleRedirect: () => alert("Redirect"),
 }

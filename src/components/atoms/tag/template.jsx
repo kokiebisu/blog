@@ -1,14 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-export const TagTemplate = ({ label, handleRedirect }) => {
+export const TagTemplate = ({ label }) => {
   return (
-    <button
-      onClick={handleRedirect}
-      className="hover:bg-blue-400 hover:text-white hover:border-transparent transition inline-block text-xs px-2 py-1 border border-gray-400 rounded"
-    >
+    <div className="hover:bg-blue-400 hover:text-white hover:border-transparent transition inline-block text-xs px-2 py-1 border border-gray-400 rounded">
       {label}
-    </button>
+    </div>
   )
 }
 
