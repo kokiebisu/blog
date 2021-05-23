@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 export const FooterTemplate = ({ author }) => {
   return (
@@ -6,4 +7,8 @@ export const FooterTemplate = ({ author }) => {
       <h3>created by {author}</h3>
     </div>
   )
+}
+
+FooterTemplate.propTypes = {
+  author: PropTypes.string,
 }

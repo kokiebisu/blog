@@ -3,6 +3,7 @@ import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
+import PropTypes from "prop-types"
 
 export const PlainArticleTemplate = ({
   category,
@@ -59,7 +60,7 @@ export const PlainArticleTemplate = ({
           />
           <div className="flex my-4">
             {tags
-              ? tags.map(tag => {
+              ? tags.map((tag, index) => {
                   const {
                     keywords: {
                       document: {
@@ -70,7 +71,7 @@ export const PlainArticleTemplate = ({
                     },
                   } = tag
                   return (
-                    <div className="mr-2">
+                    <div key={index} className="mr-2">
                       <Tag label={keyword} />
                     </div>
                   )
@@ -81,4 +82,14 @@ export const PlainArticleTemplate = ({
       </div>
     </div>
   )
+}
+
+PlainArticleTemplate.propTypes = {
+  category: PropTypes.string,
+  publishedDate: PropTypes.string,
+  title: PropTypes.string,
+  body: PropTypes.string,
+  image: PropTypes.string,
+  readingTime: PropTypes.string,
+  tags: PropTypes.array,
 }

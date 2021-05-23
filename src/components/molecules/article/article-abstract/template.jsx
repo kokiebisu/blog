@@ -2,10 +2,10 @@ import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
 import { Tag } from "@components/atoms/tag"
+import PropTypes from "prop-types"
 
 export const AbstractArticleTemplate = ({
   category,
-  date,
   title,
   body,
   readingTime,
@@ -49,7 +49,7 @@ export const AbstractArticleTemplate = ({
           />
           <div className="flex my-4">
             {tags
-              ? tags.map(tag => {
+              ? tags.map((tag, index) => {
                   const {
                     keywords: {
                       document: {
@@ -60,7 +60,7 @@ export const AbstractArticleTemplate = ({
                     },
                   } = tag
                   return (
-                    <div className="mr-2">
+                    <div key={index} className="mr-2">
                       <Tag label={keyword} />
                     </div>
                   )
@@ -71,4 +71,14 @@ export const AbstractArticleTemplate = ({
       </div>
     </div>
   )
+}
+
+AbstractArticleTemplate.propTypes = {
+  category: PropTypes.string,
+  date: PropTypes.string,
+  title: PropTypes.string,
+  body: PropTypes.string,
+  readingTime: PropTypes.string,
+  publishedDate: PropTypes.stirng,
+  tags: PropTypes.array,
 }

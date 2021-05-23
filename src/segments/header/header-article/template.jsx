@@ -1,6 +1,7 @@
 import React from "react"
-
 import { Search } from "@components/organisms/search"
+import PropTypes from "prop-types"
+
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const ArticleHeaderTemplate = ({ handleRedirectToHome }) => {
@@ -21,4 +22,8 @@ export const ArticleHeaderTemplate = ({ handleRedirectToHome }) => {
       </div>
     </header>
   )
+}
+
+ArticleHeaderTemplate.propTypes = {
+  handleRedirectToHome: PropTypes.func,
 }

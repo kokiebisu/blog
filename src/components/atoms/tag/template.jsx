@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 export const TagTemplate = ({ label, handleRedirect }) => {
   return (
@@ -9,4 +10,9 @@ export const TagTemplate = ({ label, handleRedirect }) => {
       {label}
     </button>
   )
+}
+
+TagTemplate.propTypes = {
+  label: PropTypes.string,
+  handleRedirect: PropTypes.func,
 }

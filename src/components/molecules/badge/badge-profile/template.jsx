@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 export const ProfileBadgeTemplate = ({ image, name, title }) => {
   return (
@@ -20,4 +21,10 @@ export const ProfileBadgeTemplate = ({ image, name, title }) => {
       </div>
     </div>
   )
+}
+
+ProfileBadgeTemplate.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+  title: PropTypes.string,
 }

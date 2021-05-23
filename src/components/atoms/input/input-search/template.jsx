@@ -1,5 +1,6 @@
 import React from "react"
 import { Icon } from "@components/icons"
+import PropTypes from "prop-types"
 
 export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
   return (
@@ -25,4 +26,11 @@ export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
       />
     </form>
   )
+}
+
+SearchInputTemplate.propTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  onFocus: PropTypes.func,
+  hasFocus: PropTypes.bool,
 }
