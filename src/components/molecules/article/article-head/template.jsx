@@ -1,9 +1,10 @@
 import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
 import PropTypes from "prop-types"
+import { useHeadArticleTemplate } from "./use-template"
 
 export const HeadArticleTemplate = ({
   category,
@@ -14,7 +15,7 @@ export const HeadArticleTemplate = ({
   readingTime,
   tags,
 }) => {
-  const optimizedImage = getImage(image)
+  const { optimizedImage } = useHeadArticleTemplate({ image })
   return (
     <div
       data-sal="slide-up"
@@ -55,16 +56,7 @@ export const HeadArticleTemplate = ({
           ></div>
           <div className="flex my-4">
             {tags
-              ? tags.map((tag, index) => {
-                  const {
-                    keywords: {
-                      document: {
-                        data: {
-                          name: { text: keyword },
-                        },
-                      },
-                    },
-                  } = tag
+              ? tags.map(({ keyword }, index) => {
                   return (
                     <div key={index} className="mr-2">
                       <Tag label={keyword} />
@@ -79,7 +71,14 @@ export const HeadArticleTemplate = ({
         </div>
       </div>
       <div className="w-full h-80 lg:pl-8">
-        <GatsbyImage image={optimizedImage} alt="article" />
+        {image ? (
+          <GatsbyImage image={optimizedImage} alt="article" />
+        ) : (
+          <div
+            style={{ backgroundColor: "gray" }}
+            className="w-full h-full rounded-lg"
+          ></div>
+        )}
       </div>
     </div>
   )

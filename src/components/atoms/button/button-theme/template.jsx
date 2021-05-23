@@ -1,11 +1,21 @@
 import React from "react"
-import { useThemeButton } from "./use-template"
+import { useThemeButtonTemplate } from "./use-template"
+import PropTypes from "prop-types"
 
-export const ThemeButtonTemplate = ({ onClick }) => {
-  const { isDarkMode, handleDarkModeChange } = useThemeButton()
+export const ThemeButtonTemplate = ({ handleThemeChange }) => {
+  const { isDarkMode, handleDarkModeChange } = useThemeButtonTemplate({
+    handleThemeChange,
+  })
   return (
-    <button onClick={onClick}>
+    <button
+      className={`${isDarkMode ? "bg-blue-500" : "bg-red-500"}`}
+      onClick={handleDarkModeChange}
+    >
       <div>hello</div>
     </button>
   )
+}
+
+ThemeButtonTemplate.propTypes = {
+  handleThemeChange: PropTypes.func,
 }

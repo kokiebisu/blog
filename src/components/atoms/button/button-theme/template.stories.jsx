@@ -6,9 +6,9 @@ export default {
   component: ThemeButtonTemplate,
 }
 
-const Template = args => <SearchInputTemplate {...args} />
+const Template = args => <ThemeButtonTemplate {...args} />
 
 export const Theme = Template.bind({})
 Theme.args = {
-  onClick: () => alert("Clicked"),
+  handleThemeChange: () => alert("Theme should be changed"),
 }

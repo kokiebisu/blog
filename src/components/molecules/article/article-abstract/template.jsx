@@ -1,7 +1,7 @@
 import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
-import { Tag } from "@components/atoms/tag"
+import { Tag } from "../../../atoms/tag"
 import PropTypes from "prop-types"
 
 export const AbstractArticleTemplate = ({
@@ -49,16 +49,7 @@ export const AbstractArticleTemplate = ({
           />
           <div className="flex my-4">
             {tags
-              ? tags.map((tag, index) => {
-                  const {
-                    keywords: {
-                      document: {
-                        data: {
-                          name: { text: keyword },
-                        },
-                      },
-                    },
-                  } = tag
+              ? tags.map(({ keyword }, index) => {
                   return (
                     <div key={index} className="mr-2">
                       <Tag label={keyword} />

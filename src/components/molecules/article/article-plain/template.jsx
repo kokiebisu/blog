@@ -1,8 +1,9 @@
 import React from "react"
 import { Badge } from "../../badge"
 import { Profile } from "../../badge/badge-profile/template.stories"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
+import { usePlainArticleTemplate } from "./use-template"
 import PropTypes from "prop-types"
 
 export const PlainArticleTemplate = ({
@@ -12,9 +13,10 @@ export const PlainArticleTemplate = ({
   body,
   image,
   readingTime,
-  tags = [],
+  tags,
 }) => {
-  const optimizedImage = getImage(image)
+  const { optimizedImage } = usePlainArticleTemplate({ image })
+
   return (
     <div
       data-sal="slide-up"
@@ -24,7 +26,14 @@ export const PlainArticleTemplate = ({
     >
       <div className="h-full">
         <div className="w-full h-72">
-          <GatsbyImage image={optimizedImage} alt="article" />
+          {image ? (
+            <GatsbyImage image={optimizedImage} alt="article" />
+          ) : (
+            <div
+              style={{ backgroundColor: "gray" }}
+              className="w-full h-full rounded-lg"
+            ></div>
+          )}
         </div>
         <div className="h-full mt-8">
           <div className="flex items-center my-2">
@@ -60,16 +69,7 @@ export const PlainArticleTemplate = ({
           />
           <div className="flex my-4">
             {tags
-              ? tags.map((tag, index) => {
-                  const {
-                    keywords: {
-                      document: {
-                        data: {
-                          name: { text: keyword },
-                        },
-                      },
-                    },
-                  } = tag
+              ? tags.map(({ keyword }, index) => {
                   return (
                     <div key={index} className="mr-2">
                       <Tag label={keyword} />

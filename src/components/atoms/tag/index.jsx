@@ -1,8 +1,11 @@
 import React from "react"
-import { useTag } from "./logic"
 import { TagTemplate } from "./template"
+import PropTypes from "prop-types"
 
-export const Tag = props => {
-  const data = useTag()
-  return <TagTemplate {...data} {...props} />
+export const Tag = ({ ...props }) => {
+  return <TagTemplate {...props} />
+}
+
+Tag.propTypes = {
+  redirectTo: PropTypes.string,
 }
