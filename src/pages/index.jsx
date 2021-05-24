@@ -6,7 +6,9 @@ const HomePage = () => {
   return (
     <Layout>
       <Head title="Home" />
-      <main>Is the new user working?</main>
+      <main className="dark:bg-red-500">
+        <div>Is the new user working?</div>
+      </main>
     </Layout>
   )
 }

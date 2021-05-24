@@ -1,6 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-export const MagnifyIcon = props => {
+export const MagnifyIcon = ({ stroke, ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,6 +11,7 @@ export const MagnifyIcon = props => {
       stroke="currentColor"
     >
       <path
+        stroke={stroke}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
@@ -17,4 +19,8 @@ export const MagnifyIcon = props => {
       />
     </svg>
   )
+}
+
+MagnifyIcon.propTypes = {
+  stroke: PropTypes.string,
 }

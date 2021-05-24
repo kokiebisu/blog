@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: "gatsby-source-prismic",
       options: {
-        repositoryName: "kokoblo",
+        repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
         accessToken: process.env.PRISMIC_API_KEY,
         linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
         schemas: {
@@ -51,6 +51,7 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-postcss",
+    "gatsby-plugin-dark-mode",
     "gatsby-plugin-offline",
     "gatsby-plugin-scroll-reveal",
     {

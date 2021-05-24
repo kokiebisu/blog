@@ -6,16 +6,26 @@ const articleQuery = `{
       node {
         id
         uid
-        tags
-        type
-        last_publication_date(fromNow: true)
         data {
-          title {
-            text
-          }
           body {
             html
           }
+          title {
+            text
+          }
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(placeholder: BLURRED, width: 980, formats: WEBP)
+              }
+            }
+          }
+        }
+        type
+        last_publication_date(fromNow: true)
+        readingTime {
+          text
+          words
         }
       }
     }

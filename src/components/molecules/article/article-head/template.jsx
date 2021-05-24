@@ -26,51 +26,56 @@ export const HeadArticleTemplate = ({
         <div>
           <div className="flex items-center my-2 lg:mt-0 lg:mb-2">
             <div>
-              <h5 className="text-xs text-gray-600 font-light">
+              <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">
                 {category.toUpperCase()}
               </h5>
             </div>
-            <div>&nbsp;•&nbsp;</div>
+            <div className="text-gray-600 dark:text-gray-100">
+              &nbsp;•&nbsp;
+            </div>
             <div>
-              <h5 className="text-xs text-gray-600 font-light">
+              <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">
                 {publishedDate}
               </h5>
             </div>
-            <div>&nbsp;•&nbsp;</div>
+            <div className="text-gray-600 dark:text-gray-100">
+              &nbsp;•&nbsp;
+            </div>
             <div>
-              <h5 className="text-xs text-gray-600 font-light">
+              <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">
                 {readingTime}
               </h5>
             </div>
           </div>
           <div className="mb-3">
-            <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide">
+            <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide dark:text-white">
               {title}
             </h3>
           </div>
           <div
             style={{ height: 115 }}
-            className="h-full truncate-fade overflow-hidden text-md text-gray-500"
-            dangerouslySetInnerHTML={{ __html: body.html }}
-          ></div>
+            className="h-full overflow-hidden text-md text-gray-500 dark:text-gray-200"
+          >
+            {body}
+          </div>
           <div className="flex my-4">
             {tags
-              ? tags.map((tag, index) => {
-                  const {
-                    keywords: {
-                      document: {
-                        data: {
-                          name: { text: keyword },
-                        },
+              ? tags.map(
+                  (
+                    {
+                      data: {
+                        name: { text, color },
                       },
                     },
-                  } = tag
-                  return (
-                    <div key={index} className="mr-2">
-                      <Tag label={keyword} />
-                    </div>
-                  )
-                })
+                    index
+                  ) => {
+                    return (
+                      <div key={index} className="mr-2">
+                        <Tag label={text} color={color} />
+                      </div>
+                    )
+                  }
+                )
               : null}
           </div>
         </div>

@@ -1,28 +1,35 @@
 {
   "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid",
+        "placeholder": "UID"
+      }
+    },
     "name": {
       "type": "StructuredText",
       "config": {
         "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-        "label": "name",
-        "placeholder": "Tag Name"
+        "label": "Name",
+        "placeholder": "名前"
       }
     },
-    "tags": {
-      "type": "Group",
+    "color": {
+      "type": "Select",
       "config": {
-        "fields": {
-          "related": {
-            "type": "Link",
-            "config": {
-              "select": "document",
-              "customtypes": ["article"],
-              "label": "related",
-              "placeholder": "Related"
-            }
-          }
-        },
-        "label": "tags"
+        "options": [
+          "blue",
+          "red",
+          "green",
+          "yellow",
+          "indigo",
+          "purple",
+          "pink"
+        ],
+        "default_value": "blue",
+        "label": "color",
+        "placeholder": "色"
       }
     }
   }

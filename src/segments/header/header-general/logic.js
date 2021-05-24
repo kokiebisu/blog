@@ -3,12 +3,7 @@ import { navigate } from "gatsby"
 import * as content from "./content"
 
 export const useGeneralHeader = () => {
-  const [selected, setSelected] = useState("canada")
   const [searchbarExpanded, setSearchbarExpanded] = useState(false)
-
-  const handleSelectChange = newSelected => {
-    setSelected(newSelected)
-  }
 
   const handleSearchbarExpand = () => setSearchbarExpanded(!searchbarExpanded)
 
@@ -16,9 +11,7 @@ export const useGeneralHeader = () => {
 
   return {
     ...content,
-    selected,
     searchbarExpanded,
-    handleSelectChange,
     handleSearchbarExpand,
     handleRedirectToHome,
   }

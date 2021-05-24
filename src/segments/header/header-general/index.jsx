@@ -2,7 +2,7 @@ import React from "react"
 import { useGeneralHeader } from "./logic"
 import { GeneralHeaderTemplate } from "./template"
 
-export const GeneralHeader = () => {
+export const GeneralHeader = props => {
   const data = useGeneralHeader()
-  return <GeneralHeaderTemplate {...data} />
+  return <GeneralHeaderTemplate {...data} {...props} />
 }

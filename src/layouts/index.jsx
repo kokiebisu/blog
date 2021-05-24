@@ -2,28 +2,40 @@ import React from "react"
 import { Footer } from "@segments/footer"
 import { Header } from "@segments/header"
 import PropTypes from "prop-types"
+import { ThemeToggler } from "gatsby-plugin-dark-mode"
 
 export const Layout = ({ children, headerType = "general" }) => {
   return (
-    <div className="min-h-screen flex flex-col w-full">
-      <div
-        style={{ maxWidth: 1100 }}
-        className="w-full h-full px-8 md:px-16 flex-col flex mx-auto flex-grow"
-      >
-        <div className="flex-none">
-          <Header variant={headerType} />
-        </div>
-        <div className="flex-grow">{children}</div>
-      </div>
-      <div className="flex-none bg-blue-500">
+    <ThemeToggler>
+      {({ theme, toggleTheme }) => (
         <div
-          style={{ maxWidth: 1100 }}
-          className="w-full mx-auto px-8 md:px-16 "
+          style={{ minHeight: "100vh" }}
+          className="flex flex-col w-full dark:bg-gray-700 transition ease-in-out"
         >
-          <Footer />
+          <div
+            style={{ maxWidth: 1100, flex: 1 }}
+            className="w-full h-full px-8 md:px-16 flex-col flex mx-auto flex-grow"
+          >
+            <div className="flex-none">
+              <Header
+                variant={headerType}
+                theme={theme}
+                toggleTheme={toggleTheme}
+              />
+            </div>
+            <div className="flex-grow ">{children}</div>
+          </div>
+          <div className="flex-none ">
+            <div
+              style={{ maxWidth: 1100 }}
+              className="w-full mx-auto px-8 md:px-16"
+            >
+              <Footer />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </ThemeToggler>
   )
 }
 

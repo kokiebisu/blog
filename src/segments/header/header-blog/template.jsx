@@ -1,16 +1,19 @@
 import React from "react"
+import { Text } from "@components/atoms/text"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import { Text } from "@components/atoms/text"
 import { SunnyIcon, MoonIcon } from "../../../../static/svg"
 
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
-export const GeneralHeaderTemplate = ({
+export const BlogHeaderTemplate = ({
+  selected,
+  handleSelectChange,
+  navItems,
+  categoryItems,
   handleRedirectToHome,
   toggleTheme,
-  navItems,
 }) => {
   return (
     <header className="no-select pt-6">
@@ -18,12 +21,12 @@ export const GeneralHeaderTemplate = ({
         <div>
           <button
             onClick={handleRedirectToHome}
-            className="block text-4xl font-nikkyo tracking-wide dark:text-white"
+            className="block text-4xl font-nikkyo tracking-wide dark:text-white transition ease-in-out"
           >
             ここブロッ！
           </button>
         </div>
-        <div className="flex items-center">
+        <nav className="hidden md:flex list-none">
           <div className="flex items-center mx-1">
             <button
               className="inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
@@ -46,27 +49,47 @@ export const GeneralHeaderTemplate = ({
               )}
             </button>
           </div>
-          <div className="mx-2">
-            {navItems.map((item, index) => (
-              <li key={index} className="px-3 py-2 list-none">
-                <Link to={item.to}>
-                  <Text variant="nav" {...item} />
-                </Link>
-              </li>
-            ))}
-          </div>
-          <div>
-            <Search indices={searchIndices} />
-          </div>
+          {navItems.map((item, index) => (
+            <li key={index} className="px-3 py-2">
+              <Link to={item.to}>
+                <Text variant="nav" {...item} />
+              </Link>
+            </li>
+          ))}
+        </nav>
+      </div>
+      <div className="w-full flex items-center justify-between">
+        <nav className="flex list-none items-center">
+          {categoryItems.map(({ label, value }, index) => (
+            <li key={index} className="mr-6">
+              <button
+                disable={selected === value}
+                className={`p-3 text-sm font-bold  ${
+                  selected === value
+                    ? "text-green-700 border-b-2 border-green-700 dark:text-green-300 dark:border-green-300"
+                    : "text-gray-500 dark:text-gray-white"
+                }`}
+                onClick={() => handleSelectChange(value)}
+              >
+                {label}
+              </button>
+            </li>
+          ))}
+        </nav>
+        <div>
+          <Search indices={searchIndices} />
         </div>
       </div>
     </header>
   )
 }
 
-GeneralHeaderTemplate.propTypes = {
-  handleRedirectToHome: PropTypes.func,
-  toggleTheme: PropTypes.any,
-  theme: PropTypes.any,
+BlogHeaderTemplate.propTypes = {
+  selected: PropTypes.string,
+  handleSelectChange: PropTypes.func,
   navItems: PropTypes.array,
+  categoryItems: PropTypes.array,
+  handleRedirectToHome: PropTypes.func,
+  theme: PropTypes.any,
+  toggleTheme: PropTypes.any,
 }

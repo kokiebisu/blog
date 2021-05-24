@@ -62,9 +62,10 @@ module.exports.createPages = async ({ graphql, actions }) => {
             node {
               id
               uid
-              type
-              last_publication_date(fromNow: true)
               data {
+                body {
+                  html
+                }
                 title {
                   text
                 }
@@ -72,32 +73,16 @@ module.exports.createPages = async ({ graphql, actions }) => {
                   localFile {
                     childImageSharp {
                       gatsbyImageData(
-                        height: 400
                         placeholder: BLURRED
+                        width: 980
                         formats: WEBP
                       )
                     }
                   }
                 }
-                body {
-                  html
-                  text
-                }
-                tags {
-                  keywords {
-                    document {
-                      ... on PrismicTag {
-                        id
-                        data {
-                          name {
-                            text
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
+              type
+              last_publication_date(fromNow: true)
               readingTime {
                 text
                 words
