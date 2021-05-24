@@ -3,10 +3,10 @@ import { ArticleHeader } from "./header-article"
 import { GeneralHeader } from "./header-general"
 import PropTypes from "prop-types"
 
-export const Header = ({ variant }) => {
+export const Header = ({ variant, ...props }) => {
   const variants = {
-    article: <ArticleHeader />,
-    general: <GeneralHeader />,
+    article: <ArticleHeader {...props} />,
+    general: <GeneralHeader {...props} />,
   }
   return variants[variant]
 }

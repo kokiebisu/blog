@@ -11,6 +11,8 @@ export const GeneralHeaderTemplate = ({
   navItems,
   categoryItems,
   handleRedirectToHome,
+  theme,
+  toggleTheme,
 }) => {
   return (
     <header className="no-select pt-6">
@@ -18,12 +20,17 @@ export const GeneralHeaderTemplate = ({
         <div>
           <button
             onClick={handleRedirectToHome}
-            className="block text-4xl font-nikkyo tracking-wide"
+            className="block text-4xl font-nikkyo tracking-wide dark:text-white transition ease-in-out"
           >
             ここブロッ！
           </button>
         </div>
         <nav className="hidden md:flex list-none">
+          <input
+            type="checkbox"
+            onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
+            checked={theme === "dark"}
+          />
           {navItems.map((item, index) => (
             <li key={index} className="px-3 py-2">
               <Link to={item.to}>
@@ -41,8 +48,8 @@ export const GeneralHeaderTemplate = ({
                 disable={selected === value}
                 className={`p-3 text-sm font-bold  ${
                   selected === value
-                    ? "text-green-700 border-b-2 border-green-700"
-                    : "text-gray-500"
+                    ? "text-green-700 border-b-2 border-green-700 dark:text-green-300 dark:border-green-300"
+                    : "text-gray-500 dark:text-gray-white"
                 }`}
                 onClick={() => handleSelectChange(value)}
               >
@@ -65,4 +72,6 @@ GeneralHeaderTemplate.propTypes = {
   navItems: PropTypes.array,
   categoryItems: PropTypes.array,
   handleRedirectToHome: PropTypes.func,
+  theme: PropTypes.any,
+  toggleTheme: PropTypes.any,
 }

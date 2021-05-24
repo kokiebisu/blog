@@ -8,7 +8,7 @@ export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
       <input
         className={`py-2 outline-none text-md transaction duration-200 ease-in-out text-gray-600 ${
           hasFocus
-            ? "w-56 cursor-text pl-8 -ml-6"
+            ? "w-56 cursor-text pl-8 -ml-6 bg-transparent"
             : "w-0 bg-transparent cursor-pointer pl-8 -ml-6"
         }`}
         type="text"
