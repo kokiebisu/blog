@@ -1,13 +1,13 @@
 import React from "react"
-import { GeneralHeaderTemplate } from "./template"
+import { HeaderTemplate } from "./template"
 import * as content from "./content"
 
 export default {
-  title: "Templates",
-  component: GeneralHeaderTemplate,
+  title: "Segments/Header",
+  component: HeaderTemplate,
 }
 
-const Template = args => <GeneralHeaderTemplate {...args} />
+const Template = args => <HeaderTemplate {...args} />
 
 export const General = Template.bind({})
 General.args = {

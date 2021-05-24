@@ -1,12 +1,12 @@
 import React from "react"
-import { ArticleHeader } from "./header-article"
 import { GeneralHeader } from "./header-general"
+import { BlogHeader } from "./header-blog"
 import PropTypes from "prop-types"
 
 export const Header = ({ variant, ...props }) => {
   const variants = {
-    article: <ArticleHeader {...props} />,
     general: <GeneralHeader {...props} />,
+    blog: <BlogHeader {...props} />,
   }
   return variants[variant]
 }
