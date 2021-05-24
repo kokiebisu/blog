@@ -29,7 +29,7 @@ export const BlogHeaderTemplate = ({
         <nav className="hidden md:flex list-none">
           <div className="flex items-center mx-1">
             <button
-              className="inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
+              className="animate-ping inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   const mode = localStorage.getItem("theme")
