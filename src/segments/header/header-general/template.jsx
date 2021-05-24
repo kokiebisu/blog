@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
-
+import { Link } from "gatsby"
+import { Text } from "@components/atoms/text"
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const GeneralHeaderTemplate = ({
   handleRedirectToHome,
   toggleTheme,
+  navItems,
 }) => {
   const [darkMode, setDarkMode] = useState(false)
   useEffect(() => {
@@ -34,6 +36,15 @@ export const GeneralHeaderTemplate = ({
             </button>
           </div>
           <div>
+            {navItems.map((item, index) => (
+              <li key={index} className="px-3 py-2">
+                <Link to={item.to}>
+                  <Text variant="nav" {...item} />
+                </Link>
+              </li>
+            ))}
+          </div>
+          <div>
             <Search indices={searchIndices} />
           </div>
         </div>
@@ -46,4 +57,5 @@ GeneralHeaderTemplate.propTypes = {
   handleRedirectToHome: PropTypes.func,
   toggleTheme: PropTypes.any,
   theme: PropTypes.any,
+  navItems: PropTypes.array,
 }

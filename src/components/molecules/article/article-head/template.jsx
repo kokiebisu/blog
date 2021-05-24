@@ -51,8 +51,9 @@ export const HeadArticleTemplate = ({
           <div
             style={{ height: 115 }}
             className="h-full truncate-fade overflow-hidden text-md text-gray-500"
-            dangerouslySetInnerHTML={{ __html: body.html }}
-          ></div>
+          >
+            {body.text}
+          </div>
           <div className="flex my-4">
             {tags
               ? tags.map((tag, index) => {

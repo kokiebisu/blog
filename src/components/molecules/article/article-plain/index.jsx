@@ -4,6 +4,7 @@ import { PlainArticleTemplate } from "./template"
 import PropTypes from "prop-types"
 
 export const PlainArticle = ({ slug, ...props }) => {
+  console.log("plain", props)
   return (
     <Link to={slug}>
       <PlainArticleTemplate {...props} />

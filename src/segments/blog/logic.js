@@ -18,7 +18,7 @@ export const useBlog = () => {
             uid
             data {
               body {
-                html
+                text
               }
               title {
                 text
@@ -55,7 +55,7 @@ export const useBlog = () => {
             uid
             data {
               body {
-                html
+                text
               }
               title {
                 text
@@ -91,7 +91,7 @@ export const useBlog = () => {
             uid
             data {
               body {
-                html
+                text
               }
               title {
                 text
@@ -129,6 +129,8 @@ export const useBlog = () => {
   const articles = articlesNodes.map(({ node }) => {
     return node
   })
+
+  console.log("recentArticles", recentArticles)
 
   return { ...mockData, mostRecentArticle, recentArticles, articles }
 }

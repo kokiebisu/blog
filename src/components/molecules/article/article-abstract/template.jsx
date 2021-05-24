@@ -43,10 +43,9 @@ export const AbstractArticleTemplate = ({
               {title}
             </h3>
           </div>
-          <div
-            className="truncate-fade h-12 overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis"
-            dangerouslySetInnerHTML={{ __html: body.html }}
-          />
+          <div className="truncate-fade h-12 overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis">
+            {body.text}
+          </div>
           <div className="flex my-4">
             {tags
               ? tags.map((tag, index) => {

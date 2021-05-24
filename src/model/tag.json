@@ -16,9 +16,20 @@
       }
     },
     "color": {
-      "type": "Color",
+      "type": "Select",
       "config": {
-        "label": "color"
+        "options": [
+          "blue",
+          "red",
+          "green",
+          "yellow",
+          "indigo",
+          "purple",
+          "pink"
+        ],
+        "default_value": "blue",
+        "label": "color",
+        "placeholder": "色"
       }
     }
   }

@@ -11,8 +11,8 @@ export const BlogHeaderTemplate = ({
   navItems,
   categoryItems,
   handleRedirectToHome,
-  theme,
-  toggleTheme,
+  // theme,
+  // toggleTheme,
 }) => {
   return (
     <header className="no-select pt-6">
@@ -26,11 +26,11 @@ export const BlogHeaderTemplate = ({
           </button>
         </div>
         <nav className="hidden md:flex list-none">
-          <input
+          {/* <input // should be button
             type="checkbox"
             onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
             checked={theme === "dark"}
-          />
+          /> */}
           {navItems.map((item, index) => (
             <li key={index} className="px-3 py-2">
               <Link to={item.to}>
