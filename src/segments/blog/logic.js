@@ -150,27 +150,6 @@ export const useBlog = () => {
     }
   `)
 
-  // const generateArticle = nodes => {
-  //   const result = nodes.map(({ node }) => {
-  //     return {
-  //       last_publication_date: node.last_publication_date,
-  //       readingTime: node.readingTime,
-  //       title: node.data.title,
-  //       body: node.data.body,
-  //       keywords: node.data.keywords
-  //         ? node.data.keywords.map(keyword => {
-  //             return keyword.tag.document
-  //           })
-  //         : null,
-  //       image: node.data.image,
-  //     }
-  //   })
-  //   return result
-  // }
-
-  // const mostRecentArticle1 = generateArticle(mostRecentArticleNodes)
-  // console.log("momp", mostRecentArticle1)
-
   const mostRecentArticle = mostRecentArticleNodes.map(({ node }) => {
     return {
       uid: node.uid,
