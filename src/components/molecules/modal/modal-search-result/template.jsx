@@ -22,7 +22,10 @@ const PageHit = ({ hit }) => {
               height={18}
               width={18}
               stroke={
-                localStorage.getItem("theme") === "dark" ? "white" : "gray"
+                typeof window !== "undefined" &&
+                localStorage.getItem("theme") === "dark"
+                  ? "white"
+                  : "gray"
               }
             />
           </div>

@@ -22,7 +22,12 @@ export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
         variant="magnify"
         height={18}
         width={18}
-        stroke={localStorage.getItem("theme") === "dark" ? "white" : "black"}
+        stroke={
+          typeof window !== "undefined" &&
+          localStorage.getItem("theme") === "dark"
+            ? "white"
+            : "black"
+        }
         style={{ margin: "0.3rem", pointerEvents: "none" }}
       />
     </form>
