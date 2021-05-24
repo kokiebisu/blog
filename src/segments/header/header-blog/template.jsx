@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Text } from "@components/atoms/text"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
+import { SunnyIcon, MoonIcon } from "../../../../static/svg"
+
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const BlogHeaderTemplate = ({
@@ -11,9 +13,12 @@ export const BlogHeaderTemplate = ({
   navItems,
   categoryItems,
   handleRedirectToHome,
-  // theme,
-  // toggleTheme,
+  toggleTheme,
 }) => {
+  const [darkMode, setDarkMode] = useState(false)
+  useEffect(() => {
+    toggleTheme(!darkMode ? "light" : "dark")
+  }, [darkMode])
   return (
     <header className="no-select pt-6">
       <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
@@ -26,11 +31,24 @@ export const BlogHeaderTemplate = ({
           </button>
         </div>
         <nav className="hidden md:flex list-none">
-          {/* <input // should be button
-            type="checkbox"
-            onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
-            checked={theme === "dark"}
-          /> */}
+          <div className="flex items-center mx-1">
+            <button
+              className="inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
+              onClick={() => {
+                setDarkMode(!darkMode)
+              }}
+            >
+              {darkMode ? (
+                <div className="p-2">
+                  <MoonIcon size={16} fill="white" />
+                </div>
+              ) : (
+                <div className="p-2">
+                  <SunnyIcon size={16} fill="gray" />
+                </div>
+              )}
+            </button>
+          </div>
           {navItems.map((item, index) => (
             <li key={index} className="px-3 py-2">
               <Link to={item.to}>

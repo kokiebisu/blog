@@ -3,6 +3,8 @@ import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import { Text } from "@components/atoms/text"
+import { SunnyIcon, MoonIcon } from "../../../../static/svg"
+
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
 export const GeneralHeaderTemplate = ({
@@ -25,19 +27,28 @@ export const GeneralHeaderTemplate = ({
             ここブロッ！
           </button>
         </div>
-        <div className="flex">
-          <div className="p-6 border border-gray-400 rounded-full">
+        <div className="flex items-center">
+          <div className="flex items-center mx-1">
             <button
+              className="inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
               onClick={() => {
                 setDarkMode(!darkMode)
               }}
             >
-              click
+              {darkMode ? (
+                <div className="p-2">
+                  <MoonIcon size={16} fill="white" />
+                </div>
+              ) : (
+                <div className="p-2">
+                  <SunnyIcon size={16} fill="gray" />
+                </div>
+              )}
             </button>
           </div>
-          <div>
+          <div className="mx-2">
             {navItems.map((item, index) => (
-              <li key={index} className="px-3 py-2">
+              <li key={index} className="px-3 py-2 list-none">
                 <Link to={item.to}>
                   <Text variant="nav" {...item} />
                 </Link>
