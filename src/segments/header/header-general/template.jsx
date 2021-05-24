@@ -12,10 +12,6 @@ export const GeneralHeaderTemplate = ({
   toggleTheme,
   navItems,
 }) => {
-  const [darkMode, setDarkMode] = useState(false)
-  useEffect(() => {
-    toggleTheme(!darkMode ? "light" : "dark")
-  }, [darkMode])
   return (
     <header className="no-select pt-6">
       <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
@@ -32,10 +28,14 @@ export const GeneralHeaderTemplate = ({
             <button
               className="inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
               onClick={() => {
-                setDarkMode(!darkMode)
+                if (typeof window !== "undefined") {
+                  const mode = localStorage.getItem("theme")
+                  toggleTheme(mode === "light" ? "dark" : "light")
+                }
               }}
             >
-              {darkMode ? (
+              {typeof window !== "undefined" &&
+              localStorage.getItem("theme") === "dark" ? (
                 <div className="p-2">
                   <MoonIcon size={16} fill="white" />
                 </div>
