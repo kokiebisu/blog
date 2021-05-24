@@ -24,14 +24,17 @@ export const DetailedArticleTemplate = ({
             <h2>{title}</h2>
           </div>
           <div className="flex mb-8">
-            {tags.length
+            {tags
               ? tags.map(
                   (
                     {
                       keywords: {
-                        document: {
-                          data: {
-                            name: { text },
+                        tag: {
+                          document: {
+                            data: {
+                              color,
+                              name: { text },
+                            },
                           },
                         },
                       },
@@ -39,7 +42,7 @@ export const DetailedArticleTemplate = ({
                     index
                   ) => (
                     <div key={index} className="mx-1">
-                      <Tag label={text} />
+                      <Tag label={text} color={color} />
                     </div>
                   )
                 )

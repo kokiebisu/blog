@@ -16,9 +16,10 @@ export const useBlog = () => {
           node {
             id
             uid
-            type
-            last_publication_date(fromNow: true)
             data {
+              body {
+                html
+              }
               title {
                 text
               }
@@ -26,32 +27,16 @@ export const useBlog = () => {
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
-                      width: 980
                       placeholder: BLURRED
+                      width: 980
                       formats: WEBP
                     )
                   }
                 }
               }
-              body {
-                html
-                text
-              }
-              tags {
-                keywords {
-                  document {
-                    ... on PrismicTag {
-                      id
-                      data {
-                        name {
-                          text
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
+            type
+            last_publication_date(fromNow: true)
             readingTime {
               text
               words
@@ -68,9 +53,10 @@ export const useBlog = () => {
           node {
             id
             uid
-            type
-            last_publication_date(fromNow: true)
             data {
+              body {
+                html
+              }
               title {
                 text
               }
@@ -78,32 +64,16 @@ export const useBlog = () => {
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
-                      width: 980
                       placeholder: BLURRED
+                      width: 980
                       formats: WEBP
                     )
                   }
                 }
               }
-              body {
-                html
-                text
-              }
-              tags {
-                keywords {
-                  document {
-                    ... on PrismicTag {
-                      id
-                      data {
-                        name {
-                          text
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
+            type
+            last_publication_date(fromNow: true)
             readingTime {
               text
               words
@@ -119,31 +89,27 @@ export const useBlog = () => {
           node {
             id
             uid
-            type
-            last_publication_date(fromNow: true)
             data {
+              body {
+                html
+              }
               title {
                 text
               }
-              body {
-                html
-                text
-              }
-              tags {
-                keywords {
-                  document {
-                    ... on PrismicTag {
-                      id
-                      data {
-                        name {
-                          text
-                        }
-                      }
-                    }
+              image {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(
+                      placeholder: BLURRED
+                      width: 980
+                      formats: WEBP
+                    )
                   }
                 }
               }
             }
+            type
+            last_publication_date(fromNow: true)
             readingTime {
               text
               words
@@ -154,9 +120,15 @@ export const useBlog = () => {
     }
   `)
 
-  const mostRecentArticle = mostRecentArticleNodes[0].node
-  const recentArticles = recentArticlesNodes
-  const articles = articlesNodes
+  const mostRecentArticle = mostRecentArticleNodes.map(({ node }) => {
+    return node
+  })
+  const recentArticles = recentArticlesNodes.map(({ node }) => {
+    return node
+  })
+  const articles = articlesNodes.map(({ node }) => {
+    return node
+  })
 
   return { ...mockData, mostRecentArticle, recentArticles, articles }
 }

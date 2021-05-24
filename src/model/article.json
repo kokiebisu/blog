@@ -4,7 +4,7 @@
       "type": "UID",
       "config": {
         "label": "slug",
-        "placeholder": "slug"
+        "placeholder": "スラッグ"
       }
     },
     "image": {
@@ -20,31 +20,32 @@
       "config": {
         "single": "heading1, heading2, heading3, heading4, heading5, heading6",
         "label": "title",
-        "placeholder": "title"
+        "placeholder": "タイトル"
       }
     },
     "body": {
       "type": "StructuredText",
       "config": {
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
-        "label": "Body"
+        "label": "body",
+        "placeholder": "内容"
       }
     },
-    "tags": {
+    "keywords": {
       "type": "Group",
       "config": {
         "fields": {
-          "keywords": {
+          "tag": {
             "type": "Link",
             "config": {
               "select": "document",
               "customtypes": ["tag"],
-              "label": "keywords",
-              "placeholder": "keywords"
+              "label": "tag",
+              "placeholder": "タグ"
             }
           }
         },
-        "label": "tags"
+        "label": "keywords"
       }
     }
   }
