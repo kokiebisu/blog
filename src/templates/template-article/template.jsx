@@ -14,7 +14,7 @@ export const DetailedArticleTemplate = ({
   const optimizedImage = getImage(image)
 
   return (
-    <Layout headerType="article">
+    <Layout headerType="general">
       <main>
         <div className="mt-16 flex flex-col items-center">
           <div className="mb-3">

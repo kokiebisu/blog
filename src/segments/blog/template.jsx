@@ -12,24 +12,29 @@ export const BlogSegmentTemplate = ({
       <div>
         {mostRecentArticle
           ? mostRecentArticle.map(
-              ({
-                id,
-                data: { title, body, image, tags },
-                last_publication_date,
-                uid,
-                readingTime,
-              }) => {
+              (
+                {
+                  body,
+                  image,
+                  keywords,
+                  last_publication_date,
+                  readingTime,
+                  title,
+                  uid,
+                },
+                index
+              ) => {
                 return (
                   <Article
-                    key={id}
+                    key={index}
                     variant="head"
                     title={title.text}
-                    body={body}
+                    body={body.text}
                     category="product"
                     publishedDate={last_publication_date}
                     slug={uid}
                     image={image.localFile}
-                    tags={tags}
+                    tags={keywords}
                     readingTime={readingTime.text}
                   />
                 )
@@ -41,22 +46,28 @@ export const BlogSegmentTemplate = ({
         <div className="sm:pr-4 lg:pr-8">
           {recentArticles
             ? recentArticles.map(
-                ({
-                  id,
-                  data: { title, body, image },
-                  last_publication_date,
-                  uid,
-                  readingTime,
-                }) => (
-                  <div className="mb-16" key={id}>
+                (
+                  {
+                    body,
+                    image,
+                    keywords,
+                    last_publication_date,
+                    readingTime,
+                    title,
+                    uid,
+                  },
+                  index
+                ) => (
+                  <div className="mb-16" key={index}>
                     <Article
                       variant="plain"
                       title={title.text}
-                      body={body}
-                      publishedDate={last_publication_date}
+                      body={body.text}
                       category="product"
+                      publishedDate={last_publication_date}
                       slug={uid}
                       image={image.localFile}
+                      tags={keywords}
                       readingTime={readingTime.text}
                     />
                   </div>
@@ -66,41 +77,32 @@ export const BlogSegmentTemplate = ({
         </div>
         <div className="sm:pl-4 lg:pl-8">
           {articles.length
-            ? articles.map(
-                (
-                  {
-                    id,
-                    data: { title, body },
-                    last_publication_date,
-                    uid,
-                    readingTime,
-                  },
-                  index
-                ) => (
-                  <div className="mb-8" key={id}>
-                    <div className="pb-8">
-                      <Article
-                        variant="abstract"
-                        title={title.text}
-                        body={body}
-                        publishedDate={last_publication_date}
-                        category="product"
-                        slug={uid}
-                        readingTime={readingTime.text}
-                      />
-                    </div>
-                    <div
-                      className={`flex justify-center items-center ${
-                        index === articles.length - 1 ? "hidden" : ""
-                      }`}
-                    >
-                      <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                      <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                      <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                    </div>
+            ? articles.map(({ body,
+                keywords, last_publication_date, readingTime, title, uid }, index) => (
+                <div className="mb-8" key={index}>
+                  <div className="pb-8">
+                    <Article
+                      variant="abstract"
+                      title={title.text}
+                      body={body.text}
+                      category="product"
+                      publishedDate={last_publication_date}
+                      slug={uid}
+                      tags={keywords}
+                      readingTime={readingTime.text}
+                    />
                   </div>
-                )
-              )
+                  <div
+                    className={`flex justify-center items-center ${
+                      index === articles.length - 1 ? "hidden" : ""
+                    }`}
+                  >
+                    <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                    <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                    <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                  </div>
+                </div>
+              ))
             : null}
         </div>
       </div>

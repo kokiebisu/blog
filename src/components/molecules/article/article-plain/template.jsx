@@ -12,7 +12,7 @@ export const PlainArticleTemplate = ({
   body,
   image,
   readingTime,
-  tags = [],
+  tags,
 }) => {
   const optimizedImage = getImage(image)
   return (
@@ -58,26 +58,26 @@ export const PlainArticleTemplate = ({
             style={{ height: 115 }}
             className="h-full truncate-fade overflow-hidden text-md text-gray-500"
           >
-            {body.text}
+            {body}
           </div>
           <div className="flex my-4">
             {tags
-              ? tags.map((tag, index) => {
-                  const {
-                    keywords: {
-                      document: {
-                        data: {
-                          name: { text: keyword },
-                        },
+              ? tags.map(
+                  (
+                    {
+                      data: {
+                        name: { text, color },
                       },
                     },
-                  } = tag
-                  return (
-                    <div key={index} className="mr-2">
-                      <Tag label={keyword} />
-                    </div>
-                  )
-                })
+                    index
+                  ) => {
+                    return (
+                      <div key={index} className="mr-2">
+                        <Tag label={text} color={color} />
+                      </div>
+                    )
+                  }
+                )
               : null}
           </div>
         </div>
