@@ -18,10 +18,12 @@ export const DetailedArticleTemplate = ({
       <main>
         <div className="mt-16 flex flex-col items-center">
           <div className="mb-3">
-            <p>Published {last_publication_date}</p>
+            <p className="dark:text-gray-100">
+              Published {last_publication_date}
+            </p>
           </div>
           <div className="mb-6">
-            <h2>{title}</h2>
+            <h2 className="dark:text-white">{title}</h2>
           </div>
           <div className="flex mb-8">
             {tags
@@ -53,7 +55,10 @@ export const DetailedArticleTemplate = ({
           <GatsbyImage image={optimizedImage} alt="article" />
         </div>
         <div className="px-6 my-24 md:flex mx-auto">
-          <div className="w-full" dangerouslySetInnerHTML={{ __html: body }} />
+          <div
+            className="w-full dark:text-white"
+            dangerouslySetInnerHTML={{ __html: body.html }}
+          />
           <div className="max-w-md w-full h-24 pl-16">hello</div>
         </div>
       </main>

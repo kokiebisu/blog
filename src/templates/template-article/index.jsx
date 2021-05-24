@@ -9,7 +9,7 @@ const DetailedArticle = ({ pageContext }) => {
       {...rest}
       title={data.title.text}
       image={data.image.localFile}
-      body={data.body.html}
+      body={data.body}
       tags={data.tags}
     />
   )
