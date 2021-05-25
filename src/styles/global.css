@@ -61,6 +61,11 @@
 }
 
 @layer utilities {
+  .search-placeholder {
+    position: relative;
+    left: 1px;
+  }
+
   .no-select {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

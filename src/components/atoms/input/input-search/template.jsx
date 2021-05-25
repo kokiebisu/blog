@@ -6,7 +6,7 @@ export const SearchInputTemplate = ({ onChange, value, onFocus, hasFocus }) => {
   return (
     <form className="flex flex-row-reverse items-center mb-0 h-10">
       <input
-        className={`py-2 outline-none text-md transaction duration-200 ease-in-out text-gray-600 ${
+        className={`dark:placeholder-white dark:text-white py-2 outline-none text-md transaction duration-200 ease-in-out text-gray-600 ${
           hasFocus
             ? "w-56 cursor-text pl-8 -ml-6 bg-transparent"
             : "w-0 bg-transparent cursor-pointer pl-8 -ml-6"
