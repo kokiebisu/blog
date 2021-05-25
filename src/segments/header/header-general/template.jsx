@@ -1,8 +1,6 @@
 import React from "react"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
-import { Text } from "@components/atoms/text"
 import { SunnyIcon, MoonIcon } from "../../../../static/svg"
 
 const searchIndices = [{ name: `Article`, title: `Articles` }]
@@ -10,7 +8,6 @@ const searchIndices = [{ name: `Article`, title: `Articles` }]
 export const GeneralHeaderTemplate = ({
   handleRedirectToHome,
   toggleTheme,
-  navItems,
 }) => {
   return (
     <header className="no-select pt-6">
@@ -46,16 +43,7 @@ export const GeneralHeaderTemplate = ({
               )}
             </button>
           </div>
-          <div className="mx-2">
-            {navItems.map((item, index) => (
-              <li key={index} className="px-3 py-2 list-none">
-                <Link to={item.to}>
-                  <Text variant="nav" {...item} />
-                </Link>
-              </li>
-            ))}
-          </div>
-          <div>
+          <div className="ml-2">
             <Search indices={searchIndices} />
           </div>
         </div>

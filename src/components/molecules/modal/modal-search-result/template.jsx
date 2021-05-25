@@ -72,7 +72,7 @@ HitsInIndex.propTypes = {
 
 export const SearchResultModalTemplate = ({ indices, show }) => (
   <div
-    style={{ maxHeight: "80vh", width: "40vw" }}
+    style={{ maxHeight: "80vh", width: "40vw", minWidth: 450 }}
     className={`bg-white dark:bg-gray-600 overflow-scroll absolute z-10 right-0 top-full mt-4 shadow-md rounded-lg ${
       show ? "block" : "hidden"
     }`}

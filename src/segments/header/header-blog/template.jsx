@@ -49,13 +49,6 @@ export const BlogHeaderTemplate = ({
               )}
             </button>
           </div>
-          {navItems.map((item, index) => (
-            <li key={index} className="px-3 py-2">
-              <Link to={item.to}>
-                <Text variant="nav" {...item} />
-              </Link>
-            </li>
-          ))}
         </nav>
       </div>
       <div className="w-full flex items-center justify-between">

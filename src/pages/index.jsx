@@ -1,9 +1,36 @@
-import React from "react"
+import React, { useState, createRef, useEffect } from "react"
 import { Layout } from "@layouts"
 import { Head } from "@providers/head"
 import { Link } from "gatsby"
+import lottie from "lottie-web"
+import articleDark from "../../static/animation/article-dark.json"
+import articleLight from "../../static/animation/article-light.json"
 
 const HomePage = () => {
+  let blogAnimationContainer = createRef()
+  let blogAnimationElement = createRef()
+
+  useEffect(() => {
+    const anim = lottie.loadAnimation({
+      container: blogAnimationElement.current,
+      renderer: "svg",
+      loop: false,
+      autoplay: false,
+      animationData: articleLight,
+    })
+
+    if (blogAnimationContainer && blogAnimationContainer.current) {
+      blogAnimationContainer.current.addEventListener("mouseenter", () => {
+        anim.goToAndPlay(0)
+      })
+    }
+
+    return () => {
+      blogAnimationContainer.current.removeEventListener("mouseenter")
+      anim.destroy()
+    }
+  }, [])
+
   return (
     <Layout>
       <Head title="Home" />
@@ -32,12 +59,17 @@ const HomePage = () => {
         <div className="flex my-16">
           <div className="mr-4">
             <Link to="/blog">
-              <div className="rounded-md w-40 h-40 shadow-md hover:shadow-lg transition ease-in-out duration-300 dark:bg-gray-600"></div>
-            </Link>
-          </div>
-          <div>
-            <Link to="/blog">
-              <div className="rounded-md w-40 h-40 shadow-md hover:shadow-lg transition ease-in-out duration-300 dark:bg-gray-600"></div>
+              <div
+                ref={blogAnimationContainer}
+                className="flex flex-col justify-center items-center rounded-md w-40 h-40 shadow-md hover:shadow-lg transition ease-in-out duration-300 dark:bg-gray-600"
+              >
+                <div className="w-20 h-20" ref={blogAnimationElement} />
+                <div>
+                  <p className="dark:text-gray-200 font-semibold text-gray-500">
+                    ブログ
+                  </p>
+                </div>
+              </div>
             </Link>
           </div>
         </div>
