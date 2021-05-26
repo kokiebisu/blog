@@ -1,0 +1,37 @@
+name: S3 Deployment on push
+
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to S3 Bucket
+        run: aws s3 sync ./public s3://kocoblo.com
+
+      - name: Invalidate Cloudfront CDN
+        run: aws cloudfront create-invalidation --distribution-id=${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
+
+env:
+  GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
+  GATSBY_ALGOLIA_ADMIN_API_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}
+  GATSBY_ALGOLIA_SEARCH_API_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}
+  PRISMIC_API_KEY: ${{ secrets.PRISMIC_API_KEY }}
+  PRISMIC_REPOSITORY_NAME: ${{ secrets.PRISMIC_REPOSITORY_NAME }}
