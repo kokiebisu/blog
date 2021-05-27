@@ -1,8 +1,6 @@
 import React from "react"
-import { Text } from "@components/atoms/text"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 import { SunnyIcon, MoonIcon } from "../../../../static/svg"
 
 const searchIndices = [{ name: `Article`, title: `Articles` }]
@@ -10,7 +8,6 @@ const searchIndices = [{ name: `Article`, title: `Articles` }]
 export const BlogHeaderTemplate = ({
   selected,
   handleSelectChange,
-  navItems,
   categoryItems,
   handleRedirectToHome,
   toggleTheme,

@@ -7,6 +7,14 @@ module.exports = {
     siteUrl: "https://www.kocoblo.com",
   },
   plugins: [
+    `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `article`,
+        path: `${__dirname}/src/contents/articles`,
+      },
+    },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     {
@@ -16,22 +24,22 @@ module.exports = {
         showSpinner: false,
       },
     },
-    {
-      resolve: "gatsby-source-prismic",
-      options: {
-        repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
-        accessToken: process.env.PRISMIC_API_KEY,
-        linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
-        schemas: {
-          article: require("./src/model/article.json"),
-          tag: require("./src/model/tag.json"),
-        },
-        shouldDownloadImage: ({ node, key, value }) => {
-          // Return true to download the image or false to skip.
-          return true
-        },
-      },
-    },
+    // {
+    //   resolve: "gatsby-source-prismic",
+    //   options: {
+    //     repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
+    //     accessToken: process.env.PRISMIC_API_KEY,
+    //     linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
+    //     schemas: {
+    //       article: require("./src/model/article.json"),
+    //       tag: require("./src/model/tag.json"),
+    //     },
+    //     shouldDownloadImage: ({ node, key, value }) => {
+    //       // Return true to download the image or false to skip.
+    //       return true
+    //     },
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
