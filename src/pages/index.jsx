@@ -1,9 +1,8 @@
-import React, { useState, createRef, useEffect } from "react"
+import React, { createRef, useEffect } from "react"
 import { Layout } from "@layouts"
 import { Head } from "@providers/head"
 import { Link } from "gatsby"
 import lottie from "lottie-web"
-import articleDark from "../../static/animation/article-dark.json"
 import articleLight from "../../static/animation/article-light.json"
 
 const HomePage = () => {

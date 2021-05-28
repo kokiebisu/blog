@@ -1,13 +1,16 @@
 require("dotenv").config()
 
+const siteMetadata = {
+  title: "ここブロッ！",
+  author: "Kenichi Okiebisu",
+  description: "Kenichi's blog",
+  keywords: ["ソフトウェアエンジニア", "カナダ"],
+  siteUrl: "https://www.kocoblo.com",
+}
+
 module.exports = {
-  siteMetadata: {
-    title: "ここブロッ！",
-    author: "Kenichi Okiebisu",
-    siteUrl: "https://www.kocoblo.com",
-  },
+  siteMetadata,
   plugins: [
-    `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -24,22 +27,29 @@ module.exports = {
         showSpinner: false,
       },
     },
-    // {
-    //   resolve: "gatsby-source-prismic",
-    //   options: {
-    //     repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
-    //     accessToken: process.env.PRISMIC_API_KEY,
-    //     linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
-    //     schemas: {
-    //       article: require("./src/model/article.json"),
-    //       tag: require("./src/model/tag.json"),
-    //     },
-    //     shouldDownloadImage: ({ node, key, value }) => {
-    //       // Return true to download the image or false to skip.
-    //       return true
-    //     },
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
@@ -80,6 +90,18 @@ module.exports = {
         bucketName: "kocoblo.com",
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-manifest",
+    //   options: {
+    //     name: "A learning, teaching and writing software engineer",
+    //     short_name: "Kocoblo",
+    //     start_url: "/",
+    //     background_color: "#fff",
+    //     theme_color: "#525dce",
+    //     display: "standalone",
+    //     // icon: 'assets/logo.png',
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-eslint-v2",
       options: {

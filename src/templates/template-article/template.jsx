@@ -2,30 +2,29 @@ import React from "react"
 import { Layout } from "@layouts"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
+import { graphql } from "gatsby"
 import PropTypes from "prop-types"
 
 export const DetailedArticleTemplate = ({
-  last_publication_date,
   title,
-  image,
+  date,
   body,
-  tags,
+  previous,
+  next,
 }) => {
-  const optimizedImage = getImage(image)
+  // const optimizedImage = getImage(image)
 
   return (
     <Layout headerType="general">
       <main>
         <div className="mt-16 flex flex-col items-center">
           <div className="mb-3">
-            <p className="dark:text-gray-100">
-              Published {last_publication_date}
-            </p>
+            <p className="dark:text-gray-100">Published {date}</p>
           </div>
           <div className="mb-6">
             <h2 className="dark:text-white">{title}</h2>
           </div>
-          <div className="flex mb-8">
+          {/* <div className="flex mb-8">
             {tags
               ? tags.map(
                   (
@@ -49,17 +48,15 @@ export const DetailedArticleTemplate = ({
                   )
                 )
               : null}
-          </div>
+          </div> */}
         </div>
-        <div className="flex justify-center h-70">
+        {/* <div className="flex justify-center h-70">
           <GatsbyImage image={optimizedImage} alt="article" />
-        </div>
-        <div className="px-6 my-24 md:flex mx-auto">
-          <div
-            className="w-full dark:text-white"
-            dangerouslySetInnerHTML={{ __html: body.html }}
-          />
-          <div className="max-w-md w-full h-24 pl-16">hello</div>
+        </div> */}
+        <div className="px-6 my-24 md:flex mx-auto">{body}</div>
+        <div className="flex">
+          <div>{previous}</div>
+          <div>{next}</div>
         </div>
       </main>
     </Layout>

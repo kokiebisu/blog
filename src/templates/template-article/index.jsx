@@ -1,22 +1,43 @@
 import React from "react"
 import { DetailedArticleTemplate } from "./template"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import PropTypes from "prop-types"
+import { graphql, Link } from "gatsby"
 
-const DetailedArticle = ({ pageContext }) => {
-  const { data, ...rest } = pageContext.article
+const DetailedArticle = ({
+  data: {
+    mdx: { body, frontmatter },
+  },
+  pageContext: { next, previous },
+}) => {
   return (
     <DetailedArticleTemplate
-      {...rest}
-      title={data.title.text}
-      image={data.image.localFile}
-      body={data.body}
-      tags={data.tags}
+      title={frontmatter.title}
+      date={frontmatter.date}
+      previous={next ? <Link to={next.node.fields.slug}>次の記事</Link> : null}
+      next={
+        previous ? <Link to={previous.node.fields.slug}>前の記事</Link> : null
+      }
+      body={<MDXRenderer>{body}</MDXRenderer>}
     />
   )
 }
 
 DetailedArticle.propTypes = {
+  data: PropTypes.object,
   pageContext: PropTypes.object,
 }
 
 export default DetailedArticle
+
+export const query = graphql`
+  query PostsBySlug($slug: String!) {
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
+      frontmatter {
+        title
+        date(fromNow: true)
+      }
+    }
+  }
+`
