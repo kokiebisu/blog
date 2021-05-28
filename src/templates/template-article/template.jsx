@@ -11,8 +11,9 @@ export const DetailedArticleTemplate = ({
   body,
   previous,
   next,
+  coverImg,
 }) => {
-  // const optimizedImage = getImage(image)
+  const optimizedImage = getImage(coverImg)
 
   return (
     <Layout headerType="general">
@@ -50,9 +51,9 @@ export const DetailedArticleTemplate = ({
               : null}
           </div> */}
         </div>
-        {/* <div className="flex justify-center h-70">
+        <div className="flex justify-center h-70">
           <GatsbyImage image={optimizedImage} alt="article" />
-        </div> */}
+        </div>
         <div className="px-6 my-24 md:flex mx-auto">{body}</div>
         <div className="flex">
           <div>{previous}</div>

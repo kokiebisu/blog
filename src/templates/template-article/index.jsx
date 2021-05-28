@@ -6,7 +6,7 @@ import { graphql, Link } from "gatsby"
 
 const DetailedArticle = ({
   data: {
-    mdx: { body, frontmatter },
+    mdx: { body, frontmatter, fields, timeToRead, excerpt },
   },
   pageContext: { next, previous },
 }) => {
@@ -18,6 +18,7 @@ const DetailedArticle = ({
       next={
         previous ? <Link to={previous.node.fields.slug}>前の記事</Link> : null
       }
+      coverImg={frontmatter.coverImg}
       body={<MDXRenderer>{body}</MDXRenderer>}
     />
   )
@@ -33,11 +34,26 @@ export default DetailedArticle
 export const query = graphql`
   query PostsBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      body
       frontmatter {
-        title
+        category
         date(fromNow: true)
+        title
+        coverImg {
+          childImageSharp {
+            gatsbyImageData(
+              width: 980
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
       }
+      excerpt(pruneLength: 10)
+      body
+      fields {
+        slug
+      }
+      timeToRead
     }
   }
 `
