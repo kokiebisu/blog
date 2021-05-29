@@ -14,13 +14,13 @@ export const BlogSegmentTemplate = ({
           ? mostRecentArticle.map(
               (
                 {
-                  body,
-                  image,
-                  keywords,
-                  last_publication_date,
-                  readingTime,
+                  excerpt,
+                  slug,
+                  coverImg,
+                  publishedDate,
+                  readTime,
+                  category,
                   title,
-                  uid,
                 },
                 index
               ) => {
@@ -28,14 +28,14 @@ export const BlogSegmentTemplate = ({
                   <Article
                     key={index}
                     variant="head"
-                    title={title.text}
-                    body={body.text}
-                    category="product"
-                    publishedDate={last_publication_date}
-                    slug={uid}
-                    image={image.localFile}
-                    tags={keywords}
-                    readingTime={readingTime.text}
+                    title={title}
+                    body={excerpt}
+                    category={category}
+                    publishedDate={publishedDate}
+                    slug={slug}
+                    image={coverImg}
+                    // tags={keywords}
+                    readingTime={readTime}
                   />
                 )
               }
@@ -48,61 +48,76 @@ export const BlogSegmentTemplate = ({
             ? recentArticles.map(
                 (
                   {
-                    body,
-                    image,
-                    keywords,
-                    last_publication_date,
-                    readingTime,
+                    excerpt,
+                    slug,
+                    coverImg,
+                    publishedDate,
+                    readTime,
+                    category,
                     title,
-                    uid,
                   },
                   index
-                ) => (
-                  <div className="mb-16" key={index}>
+                ) => {
+                  return (
                     <Article
+                      key={index}
                       variant="plain"
-                      title={title.text}
-                      body={body.text}
-                      category="product"
-                      publishedDate={last_publication_date}
-                      slug={uid}
-                      image={image.localFile}
-                      tags={keywords}
-                      readingTime={readingTime.text}
+                      title={title}
+                      body={excerpt}
+                      category={category}
+                      publishedDate={publishedDate}
+                      slug={slug}
+                      image={coverImg}
+                      // tags={keywords}
+                      readingTime={readTime}
                     />
-                  </div>
-                )
+                  )
+                }
               )
             : null}
         </div>
         <div className="sm:pl-4 lg:pl-8">
-          {articles.length
-            ? articles.map(({ body,
-                keywords, last_publication_date, readingTime, title, uid }, index) => (
-                <div className="mb-8" key={index}>
-                  <div className="pb-8">
-                    <Article
-                      variant="abstract"
-                      title={title.text}
-                      body={body.text}
-                      category="product"
-                      publishedDate={last_publication_date}
-                      slug={uid}
-                      tags={keywords}
-                      readingTime={readingTime.text}
-                    />
+          {articles
+            ? articles.map(
+                (
+                  {
+                    excerpt,
+                    slug,
+                    coverImg,
+                    publishedDate,
+                    readTime,
+                    category,
+                    title,
+                  },
+                  index
+                ) => (
+                  <div className="mb-8" key={index}>
+                    <div className="pb-8">
+                      <Article
+                        key={index}
+                        variant="abstract"
+                        title={title}
+                        body={excerpt}
+                        category={category}
+                        publishedDate={publishedDate}
+                        slug={slug}
+                        image={coverImg}
+                        // tags={keywords}
+                        readingTime={readTime}
+                      />
+                    </div>
+                    <div
+                      className={`flex justify-center items-center ${
+                        index === articles.length - 1 ? "hidden" : ""
+                      }`}
+                    >
+                      <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                      <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                      <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
+                    </div>
                   </div>
-                  <div
-                    className={`flex justify-center items-center ${
-                      index === articles.length - 1 ? "hidden" : ""
-                    }`}
-                  >
-                    <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                    <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                    <div className="w-2 h-2 bg-gray-300 rounded-full mx-2" />
-                  </div>
-                </div>
-              ))
+                )
+              )
             : null}
         </div>
       </div>

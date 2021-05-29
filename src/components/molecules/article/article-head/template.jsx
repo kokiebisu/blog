@@ -11,7 +11,7 @@ export const HeadArticleTemplate = ({
   title,
   body,
   image,
-  readingTime,
+  readTime,
   tags,
 }) => {
   const optimizedImage = getImage(image)
@@ -43,7 +43,7 @@ export const HeadArticleTemplate = ({
             </div>
             <div>
               <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">
-                {readingTime}
+                {readTime} {readTime === 1 ? "minute" : "minutes"} read
               </h5>
             </div>
           </div>
@@ -80,7 +80,12 @@ export const HeadArticleTemplate = ({
           </div>
         </div>
         <div className="mt-3 lg:mt-0">
-          <Badge variant="profile" {...Profile.args} />
+          <Badge
+            variant="profile"
+            image="https://images.unsplash.com/photo-1534342357876-491359270a66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"
+            name="Kenichi Okiebisu"
+            title="Lead Product Owner"
+          />
         </div>
       </div>
       <div className="w-full h-80 lg:pl-8">
@@ -96,6 +101,6 @@ HeadArticleTemplate.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   image: PropTypes.string,
-  readingTime: PropTypes.string,
+  readTime: PropTypes.string,
   tags: PropTypes.array,
 }

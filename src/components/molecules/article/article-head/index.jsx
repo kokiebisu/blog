@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 
 export const HeadArticle = ({ slug, ...props }) => {
   return (
-    <Link to={`/blog/${slug}`}>
+    <Link to={slug}>
       <HeadArticleTemplate {...props} />
     </Link>
   )

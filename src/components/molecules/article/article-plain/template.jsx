@@ -51,7 +51,12 @@ export const PlainArticleTemplate = ({
             </div>
           </div>
           <div className="my-3">
-            <Badge variant="profile" {...Profile.args} />
+            <Badge
+              variant="profile"
+              image="https://images.unsplash.com/photo-1534342357876-491359270a66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"
+              name="Kenichi Okiebisu"
+              title="Lead Product Owner"
+            />
           </div>
           <div className="mb-3">
             <h3 className="font-bold text-xl text-gray-600 leading-7 tracking-wide dark:text-white">
