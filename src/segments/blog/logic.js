@@ -1,4 +1,3 @@
-import * as mockData from "./mock"
 import { graphql, useStaticQuery } from "gatsby"
 
 export const useBlog = () => {
@@ -9,7 +8,6 @@ export const useBlog = () => {
       allMdx(
         sort: { fields: frontmatter___date, order: DESC }
         filter: { frontmatter: { published: { eq: true } } }
-        limit: 1
       ) {
         edges {
           node {
@@ -41,7 +39,7 @@ export const useBlog = () => {
       coverImg: node.frontmatter.coverImg,
       publishedDate: node.frontmatter.date,
       title: node.frontmatter.title,
-      readTime: node.timeToRead,
+      timeToRead: node.timeToRead,
       category: node.frontmatter.category,
     }
   })

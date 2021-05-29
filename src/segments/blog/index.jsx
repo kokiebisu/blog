@@ -4,6 +4,5 @@ import { BlogSegmentTemplate } from "./template"
 
 export const BlogSegment = () => {
   const data = useBlog()
-
   return <BlogSegmentTemplate {...data} />
 }

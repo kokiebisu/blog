@@ -8,7 +8,7 @@ export const AbstractArticleTemplate = ({
   category,
   title,
   body,
-  readingTime,
+  timeToRead,
   publishedDate,
   tags,
 }) => {
@@ -35,7 +35,7 @@ export const AbstractArticleTemplate = ({
             </div>
             <div>
               <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">
-                {readingTime}
+                {timeToRead} {timeToRead === 1 ? "minute" : "minutes"} read
               </h5>
             </div>
           </div>
@@ -86,7 +86,7 @@ AbstractArticleTemplate.propTypes = {
   date: PropTypes.string,
   title: PropTypes.string,
   body: PropTypes.string,
-  readingTime: PropTypes.string,
+  timeToRead: PropTypes.string,
   publishedDate: PropTypes.stirng,
   tags: PropTypes.array,
 }

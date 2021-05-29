@@ -25,7 +25,7 @@ const HomePage = () => {
     }
 
     return () => {
-      blogAnimationContainer.current.removeEventListener("mouseenter")
+      // blogAnimationContainer.current.removeEventListener("mouseenter")
       anim.destroy()
     }
   }, [])

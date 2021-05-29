@@ -18,7 +18,7 @@ export const BlogSegmentTemplate = ({
                   slug,
                   coverImg,
                   publishedDate,
-                  readTime,
+                  timeToRead,
                   category,
                   title,
                 },
@@ -35,7 +35,7 @@ export const BlogSegmentTemplate = ({
                     slug={slug}
                     image={coverImg}
                     // tags={keywords}
-                    readingTime={readTime}
+                    timeToRead={timeToRead}
                   />
                 )
               }
@@ -52,7 +52,7 @@ export const BlogSegmentTemplate = ({
                     slug,
                     coverImg,
                     publishedDate,
-                    readTime,
+                    timeToRead,
                     category,
                     title,
                   },
@@ -69,7 +69,7 @@ export const BlogSegmentTemplate = ({
                       slug={slug}
                       image={coverImg}
                       // tags={keywords}
-                      readingTime={readTime}
+                      timeToRead={timeToRead}
                     />
                   )
                 }
@@ -85,7 +85,7 @@ export const BlogSegmentTemplate = ({
                     slug,
                     coverImg,
                     publishedDate,
-                    readTime,
+                    timeToRead,
                     category,
                     title,
                   },
@@ -103,7 +103,7 @@ export const BlogSegmentTemplate = ({
                         slug={slug}
                         image={coverImg}
                         // tags={keywords}
-                        readingTime={readTime}
+                        timeToRead={timeToRead}
                       />
                     </div>
                     <div

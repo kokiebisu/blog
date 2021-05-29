@@ -1,6 +1,5 @@
 import React from "react"
 import { Badge } from "../../badge"
-import { Profile } from "../../badge/badge-profile/template.stories"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
 import PropTypes from "prop-types"
@@ -11,7 +10,7 @@ export const PlainArticleTemplate = ({
   title,
   body,
   image,
-  readingTime,
+  timeToRead,
   tags,
 }) => {
   const optimizedImage = getImage(image)
@@ -46,7 +45,7 @@ export const PlainArticleTemplate = ({
             </div>
             <div>
               <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">
-                {readingTime}
+                {timeToRead} {timeToRead === 1 ? "minute" : "minutes"} read
               </h5>
             </div>
           </div>
@@ -101,6 +100,6 @@ PlainArticleTemplate.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   image: PropTypes.string,
-  readingTime: PropTypes.string,
+  timeToRead: PropTypes.string,
   tags: PropTypes.array,
 }
