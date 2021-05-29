@@ -29,7 +29,6 @@ export const DetailedArticleTemplate = ({
             {keywords
               ? keywords.map((keyword, index) => (
                   <div key={index} className="mx-1">
-                    {console.log("key", keyword)}
                     <Tag label={keyword} color="blue" />
                   </div>
                 ))
@@ -42,7 +41,7 @@ export const DetailedArticleTemplate = ({
         <div className="flex justify-center my-16">
           <div className="w-full max-w-2xl">{body}</div>
         </div>
-        <div className="flex">
+        <div className="mx-auto w-full flex max-w-lg justify-between my-12">
           <div>{previous}</div>
           <div>{next}</div>
         </div>

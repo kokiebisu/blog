@@ -3,6 +3,8 @@ import { DetailedArticleTemplate } from "./template"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import PropTypes from "prop-types"
 import { graphql, Link } from "gatsby"
+import { Icon } from "@components/icons"
+import { motion } from "framer-motion"
 
 const DetailedArticle = ({
   data: {
@@ -14,9 +16,29 @@ const DetailedArticle = ({
     <DetailedArticleTemplate
       title={frontmatter.title}
       date={frontmatter.date}
-      previous={next ? <Link to={next.node.fields.slug}>次の記事</Link> : null}
+      previous={
+        previous ? (
+          <Link to={previous.node.fields.slug}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex justify-center items-center w-12 h-12 shadow-md rounded-full bg-white dark:bg-gray-500"
+            >
+              <Icon variant="chevronRight" />
+            </motion.div>
+          </Link>
+        ) : null
+      }
       next={
-        previous ? <Link to={previous.node.fields.slug}>前の記事</Link> : null
+        next ? (
+          <Link to={next.node.fields.slug}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex justify-center items-center w-12 h-12 shadow-md rounded-full bg-white dark:bg-gray-500"
+            >
+              <Icon variant="chevronLeft" />
+            </motion.div>
+          </Link>
+        ) : null
       }
       coverImg={frontmatter.coverImg}
       body={<MDXRenderer>{body}</MDXRenderer>}
