@@ -10,10 +10,10 @@ export const AbstractArticleTemplate = ({
   body,
   timeToRead,
   publishedDate,
-  tags,
+  keywords,
 }) => {
   return (
-    <div data-sal="slide-up" data-sal-easing="ease" className="relative">
+    <div data-sal="fade-in" data-sal-easing="ease" className="relative">
       <div className="h-full">
         <div className="h-full">
           <div className="flex items-center my-2">
@@ -52,27 +52,18 @@ export const AbstractArticleTemplate = ({
               {title}
             </h3>
           </div>
-          <div className="h-12 overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis dark:text-gray-200">
+          <div className="overflow-hidden text-md text-gray-500 leading-7 overflow-ellipsis dark:text-gray-200">
             {body}
           </div>
           <div className="flex my-4">
-            {tags
-              ? tags.map(
-                  (
-                    {
-                      data: {
-                        name: { text, color },
-                      },
-                    },
-                    index
-                  ) => {
-                    return (
-                      <div key={index} className="mr-2">
-                        <Tag label={text} color={color} />
-                      </div>
-                    )
-                  }
-                )
+            {keywords
+              ? keywords.map((keyword, index) => {
+                  return (
+                    <div key={index} className="mr-2">
+                      <Tag label={keyword} color="blue" />
+                    </div>
+                  )
+                })
               : null}
           </div>
         </div>

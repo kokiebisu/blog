@@ -12,6 +12,7 @@ export const DetailedArticleTemplate = ({
   next,
   coverImg,
   keywords,
+  photographer,
 }) => {
   const optimizedImage = getImage(coverImg)
 
@@ -37,6 +38,13 @@ export const DetailedArticleTemplate = ({
         </div>
         <div className="flex justify-center h-96">
           <GatsbyImage image={optimizedImage} alt="article" />
+        </div>
+        <div className="mt-8 flex justify-center">
+          {photographer ? (
+            <p className="text-xs dark:text-gray-300 text-gray-500">
+              Photograph by {photographer}
+            </p>
+          ) : null}
         </div>
         <div className="flex justify-center my-16">
           <div className="w-full max-w-2xl">{body}</div>

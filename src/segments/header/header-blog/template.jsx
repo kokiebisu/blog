@@ -1,7 +1,7 @@
 import React from "react"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
-import { SunnyIcon, MoonIcon } from "../../../../static/svg"
+import { Button } from "@components/atoms/button"
 
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
@@ -25,26 +25,15 @@ export const BlogHeaderTemplate = ({
         </div>
         <nav className="hidden md:flex list-none">
           <div className="flex items-center mx-1">
-            <button
-              className="animate-ping inline-flex justify-center items-center shadow-md rounded-full w-8 h-8 bg-white dark:bg-gray-600"
+            <Button
+              variant="mode"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   const mode = localStorage.getItem("theme")
                   toggleTheme(mode === "light" ? "dark" : "light")
                 }
               }}
-            >
-              {typeof window !== "undefined" &&
-              localStorage.getItem("theme") === "dark" ? (
-                <div className="p-2">
-                  <MoonIcon size={16} fill="white" />
-                </div>
-              ) : (
-                <div className="p-2">
-                  <SunnyIcon size={16} fill="gray" />
-                </div>
-              )}
-            </button>
+            />
           </div>
         </nav>
       </div>

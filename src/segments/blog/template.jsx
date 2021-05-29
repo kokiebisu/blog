@@ -56,22 +56,24 @@ export const BlogSegmentTemplate = ({
                     timeToRead,
                     category,
                     title,
+                    keywords,
                   },
                   index
                 ) => {
                   return (
-                    <Article
-                      key={index}
-                      variant="plain"
-                      title={title}
-                      body={excerpt}
-                      category={category}
-                      publishedDate={publishedDate}
-                      slug={slug}
-                      image={coverImg}
-                      // tags={keywords}
-                      timeToRead={timeToRead}
-                    />
+                    <div key={index} className="mb-8">
+                      <Article
+                        variant="plain"
+                        title={title}
+                        body={excerpt}
+                        category={category}
+                        publishedDate={publishedDate}
+                        slug={slug}
+                        image={coverImg}
+                        keywords={keywords}
+                        timeToRead={timeToRead}
+                      />
+                    </div>
                   )
                 }
               )
@@ -89,6 +91,7 @@ export const BlogSegmentTemplate = ({
                     timeToRead,
                     category,
                     title,
+                    keywords,
                   },
                   index
                 ) => (
@@ -103,7 +106,7 @@ export const BlogSegmentTemplate = ({
                         publishedDate={publishedDate}
                         slug={slug}
                         image={coverImg}
-                        // tags={keywords}
+                        keywords={keywords}
                         timeToRead={timeToRead}
                       />
                     </div>

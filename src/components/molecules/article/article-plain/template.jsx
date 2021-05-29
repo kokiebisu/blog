@@ -11,12 +11,12 @@ export const PlainArticleTemplate = ({
   body,
   image,
   timeToRead,
-  tags,
+  keywords,
 }) => {
   const optimizedImage = getImage(image)
   return (
     <div
-      data-sal="slide-up"
+      data-sal="fade-in"
       data-sal-delay="100"
       data-sal-easing="ease"
       className="relative"
@@ -62,30 +62,18 @@ export const PlainArticleTemplate = ({
               {title}
             </h3>
           </div>
-          <div
-            style={{ height: 115 }}
-            className="h-full overflow-hidden text-md text-gray-500 dark:text-gray-200"
-          >
+          <div className="h-full overflow-hidden text-md text-gray-500 dark:text-gray-200">
             {body}
           </div>
           <div className="flex my-4">
-            {tags
-              ? tags.map(
-                  (
-                    {
-                      data: {
-                        name: { text, color },
-                      },
-                    },
-                    index
-                  ) => {
-                    return (
-                      <div key={index} className="mr-2">
-                        <Tag label={text} color={color} />
-                      </div>
-                    )
-                  }
-                )
+            {keywords
+              ? keywords.map((keyword, index) => {
+                  return (
+                    <div key={index} className="mr-2">
+                      <Tag label={keyword} color="blue" />
+                    </div>
+                  )
+                })
               : null}
           </div>
         </div>

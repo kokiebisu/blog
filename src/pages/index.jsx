@@ -4,6 +4,7 @@ import { Head } from "@providers/head"
 import { Link } from "gatsby"
 import lottie from "lottie-web"
 import articleLight from "../../static/animation/article-light.json"
+import { motion } from "framer-motion"
 
 const HomePage = () => {
   let blogAnimationContainer = createRef()
@@ -37,21 +38,33 @@ const HomePage = () => {
         <div className="my-4">
           <h1 className="text-gray-600 dark:text-white">
             はじめまして。
-            <span className="relative top-2 font-baby text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="relative top-2 font-baby text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300"
+            >
               Ken
-            </span>
+            </motion.span>
             です。
           </h1>
         </div>
         <div>
           <h2 className="text-gray-600 dark:text-gray-300">
-            <span className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-green-600 dark:from-blue-100 dark:to-green-200">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-green-600 dark:from-blue-100 dark:to-green-200"
+            >
               カナダ
-            </span>
+            </motion.span>
             で
-            <span className="text-3xl font-extrabold text-white dark:text-gray-800 bg-gradient-to-br from-purple-400 to-red-600 dark:from-purple-300 dark:to-red-400">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-3xl font-extrabold text-white dark:text-gray-800 bg-gradient-to-br from-purple-400 to-red-600 dark:from-purple-300 dark:to-red-400"
+            >
               ソフトウェア
-            </span>
+            </motion.span>
             を作っています。
           </h2>
         </div>

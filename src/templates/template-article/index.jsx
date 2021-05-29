@@ -16,6 +16,7 @@ const DetailedArticle = ({
     <DetailedArticleTemplate
       title={frontmatter.title}
       date={frontmatter.date}
+      photographer={frontmatter.photographer}
       previous={
         previous ? (
           <Link to={previous.node.fields.slug}>
@@ -60,6 +61,7 @@ export const query = graphql`
         category
         date(fromNow: true)
         title
+        photographer
         coverImg {
           childImageSharp {
             gatsbyImageData(

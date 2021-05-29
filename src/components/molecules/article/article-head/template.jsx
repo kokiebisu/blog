@@ -16,12 +16,12 @@ export const HeadArticleTemplate = ({
   const optimizedImage = getImage(image)
   return (
     <div
-      data-sal="slide-up"
+      data-sal="fade-in"
       data-sal-delay="100"
       data-sal-easing="ease"
       className="flex flex-col-reverse lg:grid grid-cols-2"
     >
-      <div className="flex flex-col justify-between lg:pr-8">
+      <div className="flex flex-col lg:pr-8">
         <div>
           <div className="flex items-center my-2 lg:mt-0 lg:mb-2">
             <div>
@@ -51,10 +51,7 @@ export const HeadArticleTemplate = ({
               {title}
             </h3>
           </div>
-          <div
-            style={{ height: 115 }}
-            className="h-full overflow-hidden text-md text-gray-500 dark:text-gray-200"
-          >
+          <div className="overflow-hidden text-md text-gray-500 dark:text-gray-200">
             {body}
           </div>
           <div className="flex my-4">
