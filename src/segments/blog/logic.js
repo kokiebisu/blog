@@ -55,9 +55,11 @@ export const useBlog = () => {
     }
   )
 
+  console.log("fo", formattedArticles)
+
   const mostRecentArticle = formattedArticles.slice(0, 1)
   const recentArticles =
-    formattedArticles.length > 1 ? formattedArticles.slice(2, 5) : null
+    formattedArticles.length > 1 ? formattedArticles.slice(1, 2) : null
   const articles =
     formattedArticles.length > 5 ? formattedArticles.slice(6, 8) : null
 

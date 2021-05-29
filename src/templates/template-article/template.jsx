@@ -20,7 +20,7 @@ export const DetailedArticleTemplate = ({
       <main>
         <div className="mt-16 flex flex-col items-center">
           <div className="mb-3">
-            <p className="dark:text-gray-100">Published {date}</p>
+            <p className="dark:text-gray-100 text-sm">Published {date}</p>
           </div>
           <div className="mb-6">
             <h2 className="dark:text-white">{title}</h2>
