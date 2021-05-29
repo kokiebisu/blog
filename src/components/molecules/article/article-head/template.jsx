@@ -11,7 +11,7 @@ export const HeadArticleTemplate = ({
   body,
   image,
   timeToRead,
-  tags,
+  keywords,
 }) => {
   const optimizedImage = getImage(image)
   return (
@@ -58,23 +58,14 @@ export const HeadArticleTemplate = ({
             {body}
           </div>
           <div className="flex my-4">
-            {tags
-              ? tags.map(
-                  (
-                    {
-                      data: {
-                        name: { text, color },
-                      },
-                    },
-                    index
-                  ) => {
-                    return (
-                      <div key={index} className="mr-2">
-                        <Tag label={text} color={color} />
-                      </div>
-                    )
-                  }
-                )
+            {keywords
+              ? keywords.map((keyword, index) => {
+                  return (
+                    <div key={index} className="mr-2">
+                      <Tag label={keyword} color="blue" />
+                    </div>
+                  )
+                })
               : null}
           </div>
         </div>

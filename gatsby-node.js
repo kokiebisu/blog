@@ -1,5 +1,4 @@
 const path = require("path")
-const readingTime = require("reading-time")
 const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

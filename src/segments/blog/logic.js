@@ -20,6 +20,7 @@ export const useBlog = () => {
                   gatsbyImageData(placeholder: BLURRED, width: 980)
                 }
               }
+              keywords
             }
             excerpt(pruneLength: 200)
             fields {
@@ -32,22 +33,34 @@ export const useBlog = () => {
     }
   `)
 
-  const formattedArticles = edges.map(({ node }) => {
-    return {
-      excerpt: node.excerpt,
-      slug: node.fields.slug,
-      coverImg: node.frontmatter.coverImg,
-      publishedDate: node.frontmatter.date,
-      title: node.frontmatter.title,
-      timeToRead: node.timeToRead,
-      category: node.frontmatter.category,
+  const formattedArticles = edges.map(
+    ({
+      node: {
+        frontmatter: { coverImg, date, title, category, keywords },
+        timeToRead,
+        fields: { slug },
+        excerpt,
+      },
+    }) => {
+      return {
+        excerpt,
+        slug,
+        coverImg,
+        publishedDate: date,
+        title,
+        timeToRead,
+        category,
+        keywords,
+      }
     }
-  })
+  )
 
   const mostRecentArticle = formattedArticles.slice(0, 1)
   const recentArticles =
     formattedArticles.length > 1 ? formattedArticles.slice(2, 5) : null
   const articles =
     formattedArticles.length > 5 ? formattedArticles.slice(6, 8) : null
+
+  console.log("most", mostRecentArticle)
   return { mostRecentArticle, recentArticles, articles }
 }

@@ -21,6 +21,7 @@ export const BlogSegmentTemplate = ({
                   timeToRead,
                   category,
                   title,
+                  keywords,
                 },
                 index
               ) => {
@@ -34,7 +35,7 @@ export const BlogSegmentTemplate = ({
                     publishedDate={publishedDate}
                     slug={slug}
                     image={coverImg}
-                    // tags={keywords}
+                    keywords={keywords}
                     timeToRead={timeToRead}
                   />
                 )

@@ -35,9 +35,9 @@ const HomePage = () => {
       <Head title="Home" />
       <main className="mt-24">
         <div className="my-4">
-          <h1 className="text-gray-800 dark:text-white">
+          <h1 className="text-gray-600 dark:text-white">
             はじめまして。
-            <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300">
+            <span className="relative top-2 font-baby text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300">
               Ken
             </span>
             です。

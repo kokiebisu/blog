@@ -2,7 +2,6 @@ import React from "react"
 import { Layout } from "@layouts"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Tag } from "@components/atoms/tag"
-import { graphql } from "gatsby"
 import PropTypes from "prop-types"
 
 export const DetailedArticleTemplate = ({
@@ -12,6 +11,7 @@ export const DetailedArticleTemplate = ({
   previous,
   next,
   coverImg,
+  keywords,
 }) => {
   const optimizedImage = getImage(coverImg)
 
@@ -25,36 +25,23 @@ export const DetailedArticleTemplate = ({
           <div className="mb-6">
             <h2 className="dark:text-white">{title}</h2>
           </div>
-          {/* <div className="flex mb-8">
-            {tags
-              ? tags.map(
-                  (
-                    {
-                      keywords: {
-                        tag: {
-                          document: {
-                            data: {
-                              color,
-                              name: { text },
-                            },
-                          },
-                        },
-                      },
-                    },
-                    index
-                  ) => (
-                    <div key={index} className="mx-1">
-                      <Tag label={text} color={color} />
-                    </div>
-                  )
-                )
+          <div className="flex mb-8">
+            {keywords
+              ? keywords.map((keyword, index) => (
+                  <div key={index} className="mx-1">
+                    {console.log("key", keyword)}
+                    <Tag label={keyword} color="blue" />
+                  </div>
+                ))
               : null}
-          </div> */}
+          </div>
         </div>
-        <div className="flex justify-center h-70">
+        <div className="flex justify-center h-96">
           <GatsbyImage image={optimizedImage} alt="article" />
         </div>
-        <div className="px-6 my-24 md:flex mx-auto">{body}</div>
+        <div className="flex justify-center my-16">
+          <div className="w-full max-w-2xl">{body}</div>
+        </div>
         <div className="flex">
           <div>{previous}</div>
           <div>{next}</div>
