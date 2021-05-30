@@ -1,6 +1,9 @@
+import { useContext } from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { FilterContext } from "../../context/filter"
 
 export const useBlog = () => {
+  const { filterState } = useContext(FilterContext)
   const {
     allMdx: { edges },
   } = useStaticQuery(graphql`
@@ -33,7 +36,7 @@ export const useBlog = () => {
     }
   `)
 
-  const formattedArticles = edges.map(
+  let formattedArticles = edges.map(
     ({
       node: {
         frontmatter: { coverImg, date, title, category, keywords },
@@ -55,11 +58,20 @@ export const useBlog = () => {
     }
   )
 
+  formattedArticles =
+    filterState.filterBy === "latest"
+      ? formattedArticles
+      : formattedArticles.filter(article =>
+          article.keywords.includes(filterState.filterBy)
+        )
+
+  const size = formattedArticles.length > 12 ? 12 : formattedArticles.length
+
   const mostRecentArticle = formattedArticles.slice(0, 1)
   const recentArticles =
-    formattedArticles.length > 1 ? formattedArticles.slice(1, 5) : null
+    size > 1 && size <= 4 ? formattedArticles.slice(1, size) : null
   const articles =
-    formattedArticles.length > 4 ? formattedArticles.slice(5, 12) : null
+    size > 4 && size <= 12 ? formattedArticles.slice(5, size) : null
 
   return { mostRecentArticle, recentArticles, articles }
 }

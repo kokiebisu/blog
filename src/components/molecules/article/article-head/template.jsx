@@ -51,7 +51,7 @@ export const HeadArticleTemplate = ({
               {title}
             </h3>
           </div>
-          <div className="overflow-hidden text-md text-gray-500 dark:text-gray-200">
+          <div className="overflow-hidden text-md text-gray-500 dark:text-gray-200 leading-7">
             {body}
           </div>
           <div className="flex my-4">

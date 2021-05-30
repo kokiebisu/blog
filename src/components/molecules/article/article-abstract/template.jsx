@@ -1,6 +1,5 @@
 import React from "react"
 import { Badge } from "../../badge"
-import { Profile } from "../../badge/badge-profile/template.stories"
 import { Tag } from "@components/atoms/tag"
 import PropTypes from "prop-types"
 
