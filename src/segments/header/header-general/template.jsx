@@ -2,6 +2,7 @@ import React from "react"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
 import { Button } from "@components/atoms/button"
+import { motion } from "framer-motion"
 
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 

@@ -22,10 +22,10 @@ export const PlainArticleTemplate = ({
       className="relative"
     >
       <div className="h-full">
-        <div className="w-full h-72">
+        <div className="w-full h-80 mb-8">
           <GatsbyImage image={optimizedImage} alt="article" />
         </div>
-        <div className="h-full mt-8">
+        <div className="h-full">
           <div className="flex items-center my-2">
             <div>
               <h5 className="text-xs text-gray-600 font-light dark:text-gray-100">

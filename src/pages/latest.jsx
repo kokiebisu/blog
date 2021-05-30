@@ -3,7 +3,7 @@ import { BlogSegment } from "@segments/blog"
 import { Layout } from "@layouts"
 
 const BlogPage = () => (
-  <Layout>
+  <Layout headerType="blogs">
     <div className="mt-12">
       <BlogSegment />
     </div>
