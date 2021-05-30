@@ -43,7 +43,7 @@ export const BlogsHeaderTemplate = ({
           </div>
         </div>
       </div>
-      <div className="my-8 flex justify-between items-center">
+      <div className="my-8 flex justify-between items-end">
         <div className="">
           <motion.button
             onClick={openModal}
@@ -62,7 +62,7 @@ export const BlogsHeaderTemplate = ({
           </motion.button>
         </div>
         <div className="pl-4">
-          <h3 className="text-5xl text-gray-800 dark:text-white">
+          <h3 className="text-5xl text-gray-500 dark:text-gray-100">
             {searchedKeyword}
           </h3>
         </div>

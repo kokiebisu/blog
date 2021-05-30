@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react"
+import { useState, useContext } from "react"
 import { navigate } from "gatsby"
 import { ModalContext } from "../../../context/modal"
 import { FilterContext } from "../../../context/filter"
