@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 
 const DetailedArticle = ({
   data: {
-    mdx: { body, frontmatter },
+    mdx: { body, frontmatter, featuredImg },
   },
   pageContext: { next, previous },
 }) => {
@@ -41,7 +41,7 @@ const DetailedArticle = ({
           </Link>
         ) : null
       }
-      coverImg={frontmatter.coverImg}
+      coverImg={featuredImg}
       body={<MDXRenderer>{body}</MDXRenderer>}
     />
   )
@@ -57,27 +57,25 @@ export default DetailedArticle
 export const query = graphql`
   query PostsBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        category
-        date(fromNow: true)
-        title
-        photographer
-        coverImg {
-          childImageSharp {
-            gatsbyImageData(
-              width: 980
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
-      }
       excerpt(pruneLength: 10)
       body
+      timeToRead
       fields {
         slug
       }
-      timeToRead
+      featuredImg {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      frontmatter {
+        category
+        title
+        keywords
+        date(fromNow: true)
+        photographer
+        published
+      }
     }
   }
 `

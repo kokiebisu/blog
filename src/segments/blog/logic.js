@@ -14,22 +14,25 @@ export const useBlog = () => {
       ) {
         edges {
           node {
-            frontmatter {
-              category
-              date(fromNow: true)
-              title
-              coverImg {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, width: 980)
-                }
-              }
-              keywords
-            }
-            excerpt(pruneLength: 200)
+            excerpt(pruneLength: 10)
+            body
+            timeToRead
             fields {
               slug
             }
-            timeToRead
+            featuredImg {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            frontmatter {
+              category
+              title
+              keywords
+              date(fromNow: true)
+              photographer
+              published
+            }
           }
         }
       }
@@ -39,16 +42,17 @@ export const useBlog = () => {
   let formattedArticles = edges.map(
     ({
       node: {
-        frontmatter: { coverImg, date, title, category, keywords },
+        frontmatter: { date, title, category, keywords },
         timeToRead,
         fields: { slug },
         excerpt,
+        featuredImg,
       },
     }) => {
       return {
         excerpt,
         slug,
-        coverImg,
+        coverImg: featuredImg,
         publishedDate: date,
         title,
         timeToRead,
@@ -66,6 +70,7 @@ export const useBlog = () => {
         )
 
   const mostRecentArticle = formattedArticles.splice(0, 1)
+
   const recentArticles =
     formattedArticles.length > 4
       ? formattedArticles.splice(0, 4)
