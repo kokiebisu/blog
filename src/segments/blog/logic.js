@@ -65,13 +65,14 @@ export const useBlog = () => {
           article.keywords.includes(filterState.filterBy)
         )
 
-  const size = formattedArticles.length > 12 ? 12 : formattedArticles.length
-
-  const mostRecentArticle = formattedArticles.slice(0, 1)
+  const mostRecentArticle = formattedArticles.splice(0, 1)
   const recentArticles =
-    size > 1 && size <= 4 ? formattedArticles.slice(1, size) : null
+    formattedArticles.length > 4
+      ? formattedArticles.splice(0, 4)
+      : formattedArticles
   const articles =
-    size > 4 && size <= 12 ? formattedArticles.slice(5, size) : null
-
+    formattedArticles.length > 4
+      ? formattedArticles.splice(0, 6)
+      : formattedArticles
   return { mostRecentArticle, recentArticles, articles }
 }
