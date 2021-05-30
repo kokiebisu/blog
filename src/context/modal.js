@@ -35,7 +35,9 @@ export const ModalProvider = ({ children }) => {
     })
   }
 
-  const value = { openModal, closeModal, modalState: state }
-
-  return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+  return (
+    <ModalContext.Provider value={{ openModal, closeModal, modalState: state }}>
+      {children}
+    </ModalContext.Provider>
+  )
 }

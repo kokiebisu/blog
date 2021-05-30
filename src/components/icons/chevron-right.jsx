@@ -1,6 +1,6 @@
 import React from "react"
 
-export const ChevronRightIcon = ({ props }) => {
+export const ChevronRightIcon = () => {
   return (
     <svg stroke="black" width={12} height={12} viewBox="0 0 444.819 444.819">
       <g>

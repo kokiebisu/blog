@@ -1,13 +1,8 @@
-import React, { useRef } from "react"
+import React from "react"
 import { Footer } from "@segments/footer"
 import { Header } from "@segments/header"
 import PropTypes from "prop-types"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
-import { useContext } from "react"
-import { ModalContext } from "../context/modal"
-import { Modal } from "../components/molecules/modal"
-import useOnClickOutside from "../hooks/use-click-outside"
-import { motion } from "framer-motion"
 
 export const Layout = ({ children, headerType = "general" }) => {
   return (

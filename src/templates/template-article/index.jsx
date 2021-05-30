@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 
 const DetailedArticle = ({
   data: {
-    mdx: { body, frontmatter, fields, timeToRead, excerpt },
+    mdx: { body, frontmatter },
   },
   pageContext: { next, previous },
 }) => {

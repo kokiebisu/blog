@@ -4,7 +4,7 @@ const initialState = {
   filterBy: "latest",
 }
 
-const FilterContext = useContext(initialState)
+export const FilterContext = useContext(initialState)
 
 const FILTER_BY_LATEST = "FILTER_BY_LATEST"
 const FILTER_BY_KEYWORD = "FILTER_BY_KEYWORD"
