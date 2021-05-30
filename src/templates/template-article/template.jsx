@@ -5,61 +5,53 @@ import { Tag } from "@components/atoms/tag"
 import PropTypes from "prop-types"
 
 export const DetailedArticleTemplate = ({
-  last_publication_date,
   title,
-  image,
+  date,
   body,
-  tags,
+  previous,
+  next,
+  coverImg,
+  keywords,
+  photographer,
 }) => {
-  const optimizedImage = getImage(image)
+  const optimizedImage = getImage(coverImg)
 
   return (
     <Layout headerType="general">
       <main>
         <div className="mt-16 flex flex-col items-center">
           <div className="mb-3">
-            <p className="dark:text-gray-100">
-              Published {last_publication_date}
-            </p>
+            <p className="dark:text-gray-100 text-sm">Published {date}</p>
           </div>
           <div className="mb-6">
             <h2 className="dark:text-white">{title}</h2>
           </div>
           <div className="flex mb-8">
-            {tags
-              ? tags.map(
-                  (
-                    {
-                      keywords: {
-                        tag: {
-                          document: {
-                            data: {
-                              color,
-                              name: { text },
-                            },
-                          },
-                        },
-                      },
-                    },
-                    index
-                  ) => (
-                    <div key={index} className="mx-1">
-                      <Tag label={text} color={color} />
-                    </div>
-                  )
-                )
+            {keywords
+              ? keywords.map((keyword, index) => (
+                  <div key={index} className="mx-1">
+                    <Tag label={keyword} color="blue" />
+                  </div>
+                ))
               : null}
           </div>
         </div>
-        <div className="flex justify-center h-70">
+        <div className="flex justify-center h-96">
           <GatsbyImage image={optimizedImage} alt="article" />
         </div>
-        <div className="px-6 my-24 md:flex mx-auto">
-          <div
-            className="w-full dark:text-white"
-            dangerouslySetInnerHTML={{ __html: body.html }}
-          />
-          <div className="max-w-md w-full h-24 pl-16">hello</div>
+        <div className="mt-8 flex justify-center">
+          {photographer ? (
+            <p className="text-xs dark:text-gray-300 text-gray-500">
+              Photograph by {photographer}
+            </p>
+          ) : null}
+        </div>
+        <div className="flex justify-center my-16">
+          <div className="w-full max-w-2xl">{body}</div>
+        </div>
+        <div className="mx-auto w-full flex max-w-lg justify-between my-12">
+          <div>{previous}</div>
+          <div>{next}</div>
         </div>
       </main>
     </Layout>

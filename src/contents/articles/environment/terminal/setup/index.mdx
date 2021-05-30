@@ -1,0 +1,116 @@
+---
+title: Terminal/Command Lineの復習
+date: 2021-05-29
+category: environment
+published: true
+coverImg: cover-img.jpg
+photographer: Lisanto 李奕良
+keywords: ["Visual Studio", "セットアップ"]
+---
+
+### はじめに
+
+ターミナルではコマンドを送った際に何も起こらず次の行に移動すればコマンドは問題なく処理されてという意味になります。
+
+通常だと右クリックでフォルダを作りますがここではあえてターミナルを使い作ってみましょう
+
+<br />
+
+![Step 1](step1.png)
+
+<br />
+
+ターミナル内で自分が現在どこにいるのか確認しましょう
+
+```bash
+pwd
+```
+
+<br />
+
+![Step 2](step2.png)
+
+<br />
+
+~ → /Users/＜貴方のユーザー名＞
+
+次はデスクトップにフォルダを作りましょう
+
+![Step 3](step3.png)
+
+```bash
+cd Desktop
+```
+
+### cd (移動したいフォルダ名)
+
+こちらは change directory の略称です
+
+#### directory とは？
+
+フォルダの別名です
+
+change -> 変える
+directory -> フォルダ
+
+注意点！実際にその階層にあるフォルダにしか移動できません！
+
+### 階層とは？
+
+フォルダをうまくまとめるためにコンピュータは階層構造をとっています
+
+![Step 4](step4.png)
+
+### 今いる階層に何があるのか確認する方法
+
+```bash
+ls
+```
+
+List の略
+その階層にある directory(フォルダ）やファイルを表示してくれます
+
+なのでたとえとして
+
+Applications のフォルダに〜フォルダから移動できますが
+
+```bash
+cd Applications OK
+```
+
+階層には存在しない Hello というフォルダには移動できません
+
+```bash
+cd Hello だめ！
+```
+
+### フォルダ・ファイルを作ってみましょう
+
+フォルダ
+
+```bash
+mkdir （フォルダ名）
+```
+
+ファイル
+
+```bash
+touch （ファイル名）
+```
+
+### なぜ便利か？
+
+1. 一気に複数作れてしまう
+
+```bash
+mkdir (フォルダ名）（フォルダ名）（フォルダ名）
+touch (フォルダ名）（フォルダ名）（フォルダ名）
+```
+
+2. どんなファイル形式でも簡単に作れてします
+
+```bash
+touch hello.html styles.css
+```
+
+これだけで二つの全く異なるファイルを一瞬で作ることができます

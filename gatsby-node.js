@@ -1,51 +1,16 @@
 const path = require("path")
-const readingTime = require("reading-time")
+const { createFilePath } = require("gatsby-source-filesystem")
 
-/**
- * Adds a `ReadingTime` GraphQL type to represent data from the `reading-time` library.
- */
-exports.createSchemaCustomization = gatsbyContext => {
-  const { actions, schema } = gatsbyContext
-  const { createTypes } = actions
-
-  const ReadingTime = schema.buildObjectType({
-    name: "ReadingTime",
-    fields: {
-      text: "String!",
-      minutes: "Int!",
-      time: "Int!",
-      words: "Int!",
-    },
-  })
-
-  createTypes([ReadingTime])
-}
-
-/**
- * Adds a `readingTime` field to `PrismicBlogPost`.
- *
- * NOTE: This field will only be processed during build-time. During a
- * client-side Prismic preview, `readingTime` be the non-preview value.
- */
-exports.createResolvers = gatsbyContext => {
-  const { createResolvers } = gatsbyContext
-
-  const resolvers = {
-    PrismicArticle: {
-      readingTime: {
-        type: "ReadingTime",
-        resolve: source => {
-          if (source.data?.body?.text) {
-            return readingTime(source.data?.body?.text)
-          } else {
-            return null
-          }
-        },
-      },
-    },
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `Mdx`) {
+    const value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
   }
-
-  createResolvers(resolvers)
 }
 
 /**
@@ -54,61 +19,53 @@ exports.createResolvers = gatsbyContext => {
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
+  const articleTemplate = path.resolve(
+    "src/templates/template-article/index.jsx"
+  )
+
   try {
     const res = await graphql(`
       query {
-        allPrismicArticle {
+        allMdx(
+          sort: { fields: frontmatter___date, order: DESC }
+          filter: { frontmatter: { published: { eq: true } } }
+        ) {
           edges {
             node {
-              id
-              uid
-              data {
-                body {
-                  html
-                }
-                title {
-                  text
-                }
-                image {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(
-                        placeholder: BLURRED
-                        width: 980
-                        formats: WEBP
-                      )
-                    }
-                  }
-                }
-              }
-              type
-              last_publication_date(fromNow: true)
-              readingTime {
-                text
-                words
+              fields {
+                slug
               }
             }
           }
         }
       }
     `)
-    if (res.errors) {
-      console.error(res.errors)
-    }
 
-    const articleTemplate = path.resolve(
-      "./src/templates/template-article/index.jsx"
-    )
+    const articles = res.data.allMdx.edges
 
-    res.data.allPrismicArticle.edges.forEach(({ node }) => {
-      createPage({
-        component: articleTemplate,
-        path: `/blog/${node.uid}`,
-        context: {
-          article: node,
+    articles.forEach(
+      (
+        {
+          node: {
+            fields: { slug },
+          },
         },
-      })
-    })
+        index
+      ) => {
+        const previous =
+          index === articles.length - 1 ? null : articles[index + 1]
+        const next = index === 0 ? null : articles[index - 1]
+        createPage({
+          path: slug,
+          component: articleTemplate,
+          context: {
+            slug,
+            previous,
+            next,
+          },
+        })
+      }
+    )
   } catch (err) {
     console.error(err)
   }

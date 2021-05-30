@@ -7,8 +7,9 @@ module.exports = {
       },
     },
     fontFamily: {
-      neue: ["Neue Round"],
+      noto: ["Noto Sans"],
       nikkyo: ["Nikkyo Sans"],
+      baby: ["Baby"],
     },
   },
   variants: {

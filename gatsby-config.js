@@ -1,12 +1,23 @@
 require("dotenv").config()
 
+const siteMetadata = {
+  title: "ここブロッ！",
+  author: "Kenichi Okiebisu",
+  description: "Kenichi's blog",
+  keywords: ["ソフトウェアエンジニア", "カナダ"],
+  siteUrl: "https://www.kocoblo.com",
+}
+
 module.exports = {
-  siteMetadata: {
-    title: "ここブロッ！",
-    author: "Kenichi Okiebisu",
-    siteUrl: "https://www.kocoblo.com",
-  },
+  siteMetadata,
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `article`,
+        path: `${__dirname}/src/contents/articles`,
+      },
+    },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     {
@@ -17,19 +28,25 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-prismic",
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
-        accessToken: process.env.PRISMIC_API_KEY,
-        linkResolver: ({ node, key, value }) => article => `/${article.uid}`,
-        schemas: {
-          article: require("./src/model/article.json"),
-          tag: require("./src/model/tag.json"),
-        },
-        shouldDownloadImage: ({ node, key, value }) => {
-          // Return true to download the image or false to skip.
-          return true
-        },
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+            },
+          },
+        ],
       },
     },
     {
@@ -53,7 +70,22 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-dark-mode",
     "gatsby-plugin-offline",
-    "gatsby-plugin-scroll-reveal",
+    {
+      resolve: `gatsby-plugin-scroll-reveal`,
+      options: {
+        threshold: 0.1, // Percentage of an element's area that needs to be visible to launch animation
+        once: true, // Defines if animation needs to be launched once
+        disable: false, // Flag for disabling animations
+
+        // Advanced Options
+        selector: "[data-sal]", // Selector of the elements to be animated
+        animateClassName: "sal-animate", // Class name which triggers animation
+        disabledClassName: "sal-disabled", // Class name which defines the disabled state
+        rootMargin: "0% 50%", // Corresponds to root's bounding box margin
+        enterEventName: "sal:in", // Enter event name
+        exitEventName: "sal:out", // Exit event name
+      },
+    },
     {
       resolve: "gatsby-plugin-algolia",
       options: {
@@ -72,6 +104,35 @@ module.exports = {
         bucketName: "kocoblo.com",
       },
     },
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          // without options
+          "gatsby-remark-normalize-paths",
+          // or
+          // with options
+          {
+            resolve: "gatsby-remark-normalize-paths",
+            options: {
+              pathFields: ["keyword"],
+            },
+          },
+        ],
+      },
+    },
+    // {
+    //   resolve: "gatsby-plugin-manifest",
+    //   options: {
+    //     name: "A learning, teaching and writing software engineer",
+    //     short_name: "Kocoblo",
+    //     start_url: "/",
+    //     background_color: "#fff",
+    //     theme_color: "#525dce",
+    //     display: "standalone",
+    //     // icon: 'assets/logo.png',
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-eslint-v2",
       options: {

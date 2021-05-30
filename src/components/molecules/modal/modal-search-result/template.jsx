@@ -13,7 +13,7 @@ import PropTypes from "prop-types"
 
 const PageHit = ({ hit }) => {
   return (
-    <Link to={hit.uid}>
+    <Link to={hit.slug}>
       <div className="p-3 hover:bg-gray-200 dark:hover:bg-gray-500">
         <div className="flex items-center">
           <div className="mr-4">

@@ -1,24 +1,30 @@
 @font-face {
-  font-family: "Neue Round";
-  src: url("../../static/light.woff2");
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: "Neue Round";
-  src: url("../../static/medium.woff2");
+  font-family: "Noto Sans";
+  src: url("../../static/notosans-regular.otf");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "Neue Round";
-  src: url("../../static/bold.woff2");
+  font-family: "Noto Sans";
+  src: url("../../static/notosans-medium.otf");
   font-weight: 700;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../../static/notosans-bold.otf");
+  font-weight: 900;
 }
 
 @font-face {
   font-family: "Nikkyo Sans";
   src: url("../../static/nikkyo-sans.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Baby";
+  src: url("../../static/babymarker.ttf");
   font-weight: 500;
 }
 
@@ -32,7 +38,7 @@
   }
 
   body {
-    @apply font-neue text-gray-600;
+    @apply font-noto text-gray-600;
   }
 
   h1 {
@@ -55,8 +61,44 @@
     @apply text-gray-700 text-base font-bold leading-7;
   }
 
-  p {
-    @apply text-gray-700 text-sm font-light leading-6;
+  blockquote {
+    font-size: 1.4em;
+    width: 70%;
+    margin: 50px auto;
+    font-family: Open Sans;
+    font-style: italic;
+    color: #555555;
+    padding: 1.2em 30px 1.2em 75px;
+    line-height: 1.6;
+    position: relative;
+
+    @apply dark:bg-gray-700 border-l-8 dark:border-green-300 border-green-600;
+  }
+
+  blockquote p {
+    @apply text-gray-700 text-base font-bold leading-7 font-noto dark:text-gray-200;
+  }
+
+  blockquote::before {
+    font-family: Arial;
+    content: "\201C";
+    font-size: 4em;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    @apply dark:text-green-300 text-green-600;
+  }
+
+  blockquote::after {
+    content: "";
+  }
+
+  blockquote span {
+    display: block;
+    color: #333333;
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 1em;
   }
 }
 

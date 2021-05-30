@@ -5,7 +5,9 @@
   },
   "parser": "babel-eslint",
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "react/prop-types": "off",
+    "react/display-name": "off"
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"]
 }

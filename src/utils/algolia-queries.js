@@ -1,35 +1,32 @@
 const indexName = `Article`
 
 const articleQuery = `{
-  allPrismicArticle {
-    edges {
-      node {
-        id
-        uid
-        data {
-          body {
-            html
-          }
-          title {
-            text
-          }
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, width: 980, formats: WEBP)
+    allMdx(
+        sort: { fields: frontmatter___date, order: DESC }
+        filter: { frontmatter: { published: { eq: true } } }
+      ) {
+        edges {
+          node {
+            id
+            frontmatter {
+              category
+              date(fromNow: true)
+              title
+              coverImg {
+                childImageSharp {
+                  gatsbyImageData(placeholder: BLURRED, width: 980)
+                }
               }
             }
+            excerpt(pruneLength: 200)
+            fields {
+              slug
+            }
+            timeToRead
           }
         }
-        type
-        last_publication_date(fromNow: true)
-        readingTime {
-          text
-          words
-        }
-      }
     }
-  }
+  
 }
 `
 
@@ -37,18 +34,15 @@ const queries = [
   {
     query: articleQuery,
     transformer: ({ data }) =>
-      data.allPrismicArticle.edges.map(
-        ({
-          node: {
-            id,
-            data: { title, body },
-            ...rest
-          },
-        }) => {
+      data.allMdx.edges.map(
+        ({ node: { id, frontmatter, excerpt, fields, ...rest } }) => {
           return {
             objectID: id,
-            title: title.text,
-            body: body.html,
+            title: frontmatter.title,
+            category: frontmatter.category,
+            date: frontmatter.date,
+            excerpt,
+            slug: fields.slug,
             ...rest,
           }
         }

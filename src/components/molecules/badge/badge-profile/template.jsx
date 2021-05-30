@@ -13,10 +13,10 @@ export const ProfileBadgeTemplate = ({ image, name, title }) => {
       </div>
       <div className="ml-3">
         <div>
-          <h5>{name}</h5>
+          <h5 className="dark:text-white">{name}</h5>
         </div>
         <div>
-          <p>{title}</p>
+          <p className="dark:text-gray-200 text-sm">{title}</p>
         </div>
       </div>
     </div>
