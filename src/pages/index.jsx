@@ -70,7 +70,7 @@ const HomePage = () => {
         </div>
         <div className="flex my-16">
           <div className="mr-4">
-            <Link to="/blog">
+            <Link to="/latest">
               <div
                 ref={blogAnimationContainer}
                 className="flex flex-col justify-center items-center rounded-md w-40 h-40 shadow-md hover:shadow-lg transition ease-in-out duration-300 dark:bg-gray-600"
