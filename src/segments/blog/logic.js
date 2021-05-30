@@ -14,22 +14,25 @@ export const useBlog = () => {
       ) {
         edges {
           node {
-            frontmatter {
-              category
-              date(fromNow: true)
-              title
-              coverImg {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, width: 980)
-                }
-              }
-              keywords
-            }
-            excerpt(pruneLength: 200)
+            excerpt(pruneLength: 10)
+            body
+            timeToRead
             fields {
               slug
             }
-            timeToRead
+            featuredImg {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            frontmatter {
+              category
+              title
+              keywords
+              date(fromNow: true)
+              photographer
+              published
+            }
           }
         }
       }
@@ -39,16 +42,17 @@ export const useBlog = () => {
   let formattedArticles = edges.map(
     ({
       node: {
-        frontmatter: { coverImg, date, title, category, keywords },
+        frontmatter: { date, title, category, keywords },
         timeToRead,
         fields: { slug },
         excerpt,
+        featuredImg,
       },
     }) => {
       return {
         excerpt,
         slug,
-        coverImg,
+        coverImg: featuredImg,
         publishedDate: date,
         title,
         timeToRead,
@@ -65,13 +69,15 @@ export const useBlog = () => {
           article.keywords.includes(filterState.filterBy)
         )
 
-  const size = formattedArticles.length > 12 ? 12 : formattedArticles.length
+  const mostRecentArticle = formattedArticles.splice(0, 1)
 
-  const mostRecentArticle = formattedArticles.slice(0, 1)
   const recentArticles =
-    size > 1 && size <= 4 ? formattedArticles.slice(1, size) : null
+    formattedArticles.length > 4
+      ? formattedArticles.splice(0, 4)
+      : formattedArticles
   const articles =
-    size > 4 && size <= 12 ? formattedArticles.slice(5, size) : null
-
+    formattedArticles.length > 4
+      ? formattedArticles.splice(0, 6)
+      : formattedArticles
   return { mostRecentArticle, recentArticles, articles }
 }

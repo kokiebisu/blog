@@ -1,8 +1,43 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
+const { createRemoteFileNode } = require("gatsby-source-filesystem")
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type Mdx implements Node {
+      frontmatter: Frontmatter
+      featuredImg: File @link(from: "featuredImg___NODE")
+    }
+    type Frontmatter {
+      title: String!
+      coverImg: String
+    }
+  `)
+}
+
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode, createNodeField },
+  store,
+  cache,
+  createNodeId,
+  getNode,
+}) => {
+  if (node.internal.type === "Mdx" && node.frontmatter.coverImg !== null) {
+    let fileNode = await createRemoteFileNode({
+      url: node.frontmatter.coverImg, // string that points to the URL of the image
+      parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+      createNode, // helper function in gatsby-node to generate the node
+      createNodeId, // helper function in gatsby-node to generate the node id
+      cache, // Gatsby's cache
+      store, // Gatsby's Redux store
+    })
+    // if the file was created, attach the new node to the parent node
+    if (fileNode) {
+      node.featuredImg___NODE = fileNode.id
+    }
+  }
   if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode })
     createNodeField({
@@ -32,8 +67,24 @@ module.exports.createPages = async ({ graphql, actions }) => {
         ) {
           edges {
             node {
+              excerpt(pruneLength: 10)
+              body
+              timeToRead
               fields {
                 slug
+              }
+              featuredImg {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              frontmatter {
+                category
+                title
+                keywords
+                date(fromNow: true)
+                photographer
+                published
               }
             }
           }

@@ -12,11 +12,9 @@ const articleQuery = `{
               category
               date(fromNow: true)
               title
-              coverImg {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, width: 980)
-                }
-              }
+              published
+              keywords
+              photographer
             }
             excerpt(pruneLength: 200)
             fields {

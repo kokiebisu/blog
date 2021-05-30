@@ -37,8 +37,6 @@ export const FilterProvider = ({ children }) => {
     })
   }
 
-  console.log("filterState", state.filterBy)
-
   return (
     <FilterContext.Provider
       value={{ filterByLatest, filterByKeyword, filterState: state }}
