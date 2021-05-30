@@ -1,0 +1,265 @@
+---
+title: 重いタスクの処理
+date: 2021-05-29
+category: Javascript
+published: true
+coverImg: cover-img.jpg
+photographer: Bekky Bekks
+keywords: ["HowTo", "NodeJS"]
+---
+
+> どれだけ時間がかかるか実際にやってみないとわからないタスクなどが存在します。（例えばネットにリクエストを送るなどのタスクは回線状況などで速くなったり遅くなったりします。）このようなタスクを処理する方法として 2 種類のアプローチがあります
+
+## 例
+
+- ネットワーク処理
+- ファイルにアクセスする
+- 他のコンピュータと繋がる
+
+Javascript
+
+## 1 callback を使う
+
+```bash
+const fs = require('fs');
+
+fs.readFile('text.txt', **() => {
+		作業が終わったらここの中を処理する
+}**)
+fs.readFile('text.txt', function() {
+
+})
+```
+
+赤枠で囲った部分を関数に追加してあげることによって裏で作業をするように指示することができます
+
+```jsx
+const fs = require('fs');
+
+fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
+	if (err) {
+		console.log('error happened!');
+	}
+	console.log(`Breed`, ${data});
+	//この受け取った結果を使ってさらにコールバックを使うこともできる
+	fs.writeFile(`${__dirname}/dog-new.txt`, data, err => {
+		console.log('The text was successfully written');
+	})
+})
+```
+
+だたしこのやり方は**お勧めできない。**
+
+### なぜ？
+
+> コールバック地獄になりやすいため
+
+> それぞれエラーのオブジェクトを返すのに一つ一つこまめに対応しなければならない
+
+コールバックの中にコールバックの中にコールバック
+
+```jsx
+const fs = require("fs")
+
+fs.readFile("start.txt", "utf-8", (err, data) => {
+  fs.readFile(`${data}.txt`, "utf-8", (err, data2) => {
+    fs.readFile("append.txt", "utf-8", (err, data3) => {
+      fs.writeFile("final.txt", `${data2} ${data3}`, "utf-8", err => {
+        if (err) {
+          throw new Error("ERROR!")
+        }
+        console.log("ファイルの書き込みに成功しました！")
+      })
+    })
+  })
+})
+```
+
+非常に見辛い。この例では１０行ほどだが、それ以上になる可能性は全然ある
+
+これらの見辛さを克服していくために新しく導入されたのが Promise/then の組み合わせや Promise/async,await の組み合わせです
+
+## Promise
+
+> Promise とはまだ値が確定していない状態を表すオブジェクトのこと。例えば宝くじや結果をあとで受け取るための引換券のようなもの。長い処理の後に返されるオブジェクトなどは最初の段階では未定にしておくことで今後値が明確になることを前提に使っていくことができる
+
+Promise は３つの要素で成り立っている
+
+1. 処理
+2. 処理がうまくいった場合に返されるもの
+3. 処理が失敗した場合に返されるもの
+
+```jsx
+const readFilePromise = file => {
+	// Promiseのオブジェクトがすぐに返されるがまだ中身は今後の処理の結果次第
+	return new Promise((resolve, reject) => {
+		fs.readFile(file, (err, data) => {
+			if (err) reject('ファイルが見つかりませんでした')
+			resolve(data)
+		}
+	}
+}
+```
+
+```jsx
+const writeFilePromise = (file, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, data, err => {
+      if (err) reject(err)
+      resolve("success!")
+    })
+  })
+}
+```
+
+## then
+
+```jsx
+readFilePromise(`./hello.txt`)
+  .then(data => {
+    //　うまくいったとき
+  })
+  .catch(err => {
+    // エラーが起こったとき
+  })
+```
+
+先ほどのコードを書き直してみます
+
+```jsx
+const fs = require('fs');
+
+fs.readFilePromise(`${__dirname}/dog.txt`)
+.then(data => {
+	// Promiseを返します
+	return writeFilePro('dog-new.text', data)
+}
+// writeFileProのPromiseが成功すれば
+.then(() => {
+	console.log(data); // ログに残すだけなのでreturnする必要はない
+})
+.catch(() => {
+	console.log(err.message);
+})
+```
+
+## メリット
+
+> 階層上になってないので流れがわかりやすい。（今までだけ関数の中にまた関数があったため非常にわかりづらかった）
+
+## async/await
+
+> 最近導入された新しいアプローチ。then よりわかりやすく書けるように改良されたもの
+
+```jsx
+// この関数は非同期で行われると予め宣言する
+const asyncAwait = async () => {
+  // tryは非同期とは関係ないが、catchと対になるので使う
+  try {
+    // readFilePromiseの処理をまってその結果をdataにいれる
+    const data = await fs.readFilePromise("hello.txt")
+    await fs.writeFilePromise("helloNew.txt", data) // 返り値がないので変数いらない
+    return "Promiseを返します"
+  } catch (err) {
+    console.log(err)
+    throw err
+  }
+}
+```
+
+一見すると１行１行で止まっているように見えるが、裏ではしっかりと非同期で行われている。あくまでデベロッパーにわかりやすいように文法上この形をとっているだけ。
+
+## 注意
+
+必ず関数で包んで上げないといけません！
+
+## ちゃんと非同期か確認してみましょう
+
+```jsx
+console.log("最初")
+const result = asyncAwait()
+console.log(result)
+console.log("最後")
+```
+
+結果
+
+```
+最初
+Promise<pending>
+最後
+<結果>
+```
+
+このように表示されるはずです。なぜなら asyncAwait の関数が呼ばれた際にはこの処理は裏に送られるからです。非同期なので Promise を渡されるだけで次の行に進んでいきます
+
+もし result の結果を前提にあとの行を読み込みたいとき
+
+```jsx
+console.log("最初")
+asyncAwait()
+  .then(result => {
+    console.log(result)
+    console.log("最後")
+  })
+  .catch(err => console.log(err))
+```
+
+結果：うまくいった場合
+
+```jsx
+最初 < 結果 > 最後
+```
+
+結果：失敗した場合
+
+```jsx
+最初
+<エラー>
+```
+
+### async/await で書きたい場合
+
+関数で包んであげないといけない。今回はアロー関数を使っていきます
+
+```jsx
+console.log('最初');
+(async() => {
+	try {
+		const data = await asyncAwait();
+		console.log(data);
+		console.log('最後');
+	} catch err {
+		console.log(err);
+	}
+})()
+```
+
+## 複数の非同期のタスクを同時に行いたいとき
+
+```jsx
+const function = async() => {
+	try {
+		const request = await readFilePro('hello.text');
+		const request2 = await readFilePro('dog.text');
+		const request3 = await readFilePro('cat.text');
+	} catch err {
+		console.log(err)
+	}
+}
+```
+
+> このように書くこともできますが、こうするとそれぞれのリクエストがまったくお互い無関係人もかかわらず、必ず前の行のリクエストを待たなくてはいけません。
+
+```jsx
+const function = async () => {
+  try {
+    const request = readFilePro("hello.txt") // Promiseをあえて受け取ってとりあえず次に進ませる
+    const request2 = readFilePro("dog.txt") // Promiseをあえて受け取ってとりあえず次に進ませる
+    const request3 = readFilePro("cat.txt") // Promiseをあえて受け取ってとりあえず次に進ませる
+    const all = await Promise.all([request, request2, request3]) //　ここで全ての処理が実際に同時に行われる
+  } catch (err) {
+    console.log(err)
+  }
+}
+```

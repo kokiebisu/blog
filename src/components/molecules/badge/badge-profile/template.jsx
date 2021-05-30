@@ -16,7 +16,7 @@ export const ProfileBadgeTemplate = ({ image, name, title }) => {
           <h5 className="dark:text-white">{name}</h5>
         </div>
         <div>
-          <p className="dark:text-gray-200">{title}</p>
+          <p className="dark:text-gray-200 text-sm">{title}</p>
         </div>
       </div>
     </div>

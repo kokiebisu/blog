@@ -57,10 +57,9 @@ export const useBlog = () => {
 
   const mostRecentArticle = formattedArticles.slice(0, 1)
   const recentArticles =
-    formattedArticles.length > 1 ? formattedArticles.slice(1, 3) : null
+    formattedArticles.length > 1 ? formattedArticles.slice(1, 5) : null
   const articles =
-    formattedArticles.length > 5 ? formattedArticles.slice(6, 8) : null
+    formattedArticles.length > 4 ? formattedArticles.slice(5, 9) : null
 
-  console.log("most", mostRecentArticle)
   return { mostRecentArticle, recentArticles, articles }
 }
