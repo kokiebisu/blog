@@ -1,24 +1,13 @@
 import React from "react"
-import useLockBodyScroll from "../../../../hooks/use-lock-body-scroll"
-import { Button } from "@components/atoms/button"
-import { keywords } from "../../../../meta/keywords"
+import { useFilterModal } from "./logic"
+import { FilterModalTemplate } from "./template"
 
 export const FilterModal = () => {
-  useLockBodyScroll()
+  const { modalRef, ...data } = useFilterModal()
+
   return (
-    <div className="max-w-3xl py-5 px-8 mx-8 rounded-2xl bg-white shadow-xl dark:bg-gray-600">
-      <div className="my-8">
-        <h1 className="font-extrabold dark:text-gray-200">フィルター</h1>
-      </div>
-      <div className="flex flex-wrap my-8 overflow-y-auto">
-        {keywords.map((keyword, index) => {
-          return (
-            <div key={index} className="mr-2 mb-3">
-              <Button variant="filter" keyword={keyword} />
-            </div>
-          )
-        })}
-      </div>
+    <div ref={modalRef}>
+      <FilterModalTemplate {...data} />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { ModalProvider } from "./src/context/modal"
+import { ModalProvider, FilterProvider } from "./src/context"
 import { MDXProvider } from "@mdx-js/react"
 import "./src/styles/global.css"
 import "./src/styles/prism.css"
@@ -20,6 +20,8 @@ export const wrapRootElement = ({ element }) => (
       ),
     }}
   >
-    <ModalProvider>{element}</ModalProvider>{" "}
+    <ModalProvider>
+      <FilterProvider>{element} </FilterProvider>
+    </ModalProvider>
   </MDXProvider>
 )

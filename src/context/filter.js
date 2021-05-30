@@ -1,15 +1,14 @@
-import React, { useContext, useReducer } from "react"
+import React, { createContext, useReducer } from "react"
 
-const initialState = {
+export const FilterContext = createContext({
   filterBy: "latest",
-}
-
-export const FilterContext = useContext(initialState)
+})
 
 const FILTER_BY_LATEST = "FILTER_BY_LATEST"
 const FILTER_BY_KEYWORD = "FILTER_BY_KEYWORD"
 
 const reducer = (_, action) => {
+  console.log("action", action)
   switch (action.type) {
     case FILTER_BY_LATEST:
       return { filterBy: "latest" }
@@ -21,7 +20,9 @@ const reducer = (_, action) => {
 }
 
 export const FilterProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, {
+    filterBy: "latest",
+  })
 
   const filterByLatest = () => {
     dispatch({
@@ -35,6 +36,8 @@ export const FilterProvider = ({ children }) => {
       payload: keyword,
     })
   }
+
+  console.log("filterState", state.filterBy)
 
   return (
     <FilterContext.Provider

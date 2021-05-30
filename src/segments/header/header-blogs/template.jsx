@@ -1,21 +1,20 @@
-import React, { useRef } from "react"
+import React from "react"
 import { Search } from "@components/organisms/search"
 import PropTypes from "prop-types"
 import { Button } from "@components/atoms/button"
 import { motion } from "framer-motion"
-import { useContext } from "react"
-import { ModalContext } from "../../../context/modal"
 import { Modal } from "../../../components/molecules/modal"
-import useOnClickOutside from "../../../hooks/use-click-outside"
 
 const searchIndices = [{ name: `Article`, title: `Articles` }]
 
-export const BlogsHeaderTemplate = ({ handleRedirectToHome, toggleTheme }) => {
-  const { openModal, closeModal, modalState } = useContext(ModalContext)
-  const modalRef = useRef()
-  useOnClickOutside(modalRef, () => {
-    closeModal()
-  })
+export const BlogsHeaderTemplate = ({
+  handleRedirectToHome,
+  toggleTheme,
+  openModal,
+  modalShouldAppear,
+  modalRef,
+  searchedKeyword,
+}) => {
   return (
     <header className="no-select pt-6">
       <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
@@ -63,10 +62,12 @@ export const BlogsHeaderTemplate = ({ handleRedirectToHome, toggleTheme }) => {
           </motion.button>
         </div>
         <div className="pl-4">
-          <h3 className="text-5xl text-gray-800 dark:text-white">Tag</h3>
+          <h3 className="text-5xl text-gray-800 dark:text-white">
+            {searchedKeyword}
+          </h3>
         </div>
       </div>
-      {modalState.modalAppear ? (
+      {modalShouldAppear ? (
         <motion.div
           initial={{ backgroundColor: "transparent" }}
           animate={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
