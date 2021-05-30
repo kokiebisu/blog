@@ -59,7 +59,7 @@ export const useBlog = () => {
   const recentArticles =
     formattedArticles.length > 1 ? formattedArticles.slice(1, 5) : null
   const articles =
-    formattedArticles.length > 4 ? formattedArticles.slice(5, 9) : null
+    formattedArticles.length > 4 ? formattedArticles.slice(5, 12) : null
 
   return { mostRecentArticle, recentArticles, articles }
 }
