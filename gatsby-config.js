@@ -69,7 +69,14 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-postcss",
     "gatsby-plugin-dark-mode",
-    "gatsby-plugin-offline",
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ["**/*.{js,jpg,png,html,css}"],
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-scroll-reveal`,
       options: {
@@ -121,18 +128,12 @@ module.exports = {
         ],
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-manifest",
-    //   options: {
-    //     name: "A learning, teaching and writing software engineer",
-    //     short_name: "Kocoblo",
-    //     start_url: "/",
-    //     background_color: "#fff",
-    //     theme_color: "#525dce",
-    //     display: "standalone",
-    //     // icon: 'assets/logo.png',
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        cache_busting_mode: "none",
+      },
+    },
     {
       resolve: "gatsby-plugin-eslint-v2",
       options: {
