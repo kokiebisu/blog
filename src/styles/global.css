@@ -11,9 +11,9 @@
 }
 
 @font-face {
-  font-family: "Noto Sans";
-  src: url("../../static/notosans-bold.otf");
-  font-weight: 900;
+  font-family: "Inter Var";
+  src: url("../../static/inter-var-latin.woff2");
+  font-weight: 700;
 }
 
 @font-face {
@@ -46,7 +46,8 @@
   }
 
   h2 {
-    @apply text-gray-900 text-2xl font-bold;
+    font-family: "Inter Var";
+    font-weight: 700;
   }
 
   h3 {

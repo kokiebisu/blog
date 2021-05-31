@@ -1,6 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { SunnyIcon, MoonIcon } from "../../../../../static/svg"
+import { Icon } from "@components/icons"
 
 export const ModeButton = ({ onClick }) => {
   return (
@@ -13,11 +13,11 @@ export const ModeButton = ({ onClick }) => {
       {typeof window !== "undefined" &&
       localStorage.getItem("theme") === "dark" ? (
         <div className="p-2">
-          <MoonIcon size={16} fill="white" />
+          <Icon variant="sunny" size={16} fill="white" />
         </div>
       ) : (
         <div className="p-2">
-          <SunnyIcon size={16} fill="gray" />
+          <Icon variant="moon" size={16} fill="gray" />
         </div>
       )}
     </motion.button>

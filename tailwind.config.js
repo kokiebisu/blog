@@ -10,6 +10,7 @@ module.exports = {
       noto: ["Noto Sans"],
       nikkyo: ["Nikkyo Sans"],
       baby: ["Baby"],
+      inter: ["Inter Var Latin"],
     },
   },
   variants: {
