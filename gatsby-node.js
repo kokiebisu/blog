@@ -67,7 +67,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         ) {
           edges {
             node {
-              excerpt(pruneLength: 10)
+              excerpt(pruneLength: 100)
               body
               timeToRead
               fields {

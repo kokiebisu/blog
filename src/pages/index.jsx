@@ -34,41 +34,33 @@ const HomePage = () => {
   return (
     <Layout>
       <Head title="Home" />
-      <main className="mt-24">
-        <div className="my-4">
-          <h1 className="text-gray-600 dark:text-white">
-            はじめまして。
+      <main className="mt-16">
+        <div style={{ width: "60vw" }} className="my-4">
+          <h1 className="text-md md:text-2xl text-gray-600 dark:text-white">
+            はじめまして
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="relative top-2 font-baby text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300"
+              className="mx-2 relative top-2 font-baby text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300"
             >
               Ken
             </motion.span>
             です。
           </h1>
         </div>
-        <div>
+        <div className="hidden md:block" style={{ width: "65vw" }}>
           <h2 className="text-gray-600 dark:text-gray-300">
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-green-600 dark:from-blue-100 dark:to-green-200"
+              className="text-md md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-green-600 dark:from-blue-100 dark:to-green-200"
             >
               カナダ
             </motion.span>
-            で
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-3xl font-extrabold text-white dark:text-gray-800 bg-gradient-to-br from-purple-400 to-red-600 dark:from-purple-300 dark:to-red-400"
-            >
-              ソフトウェア
-            </motion.span>
-            を作っています。
+            でソフトウェアを作っています。
           </h2>
         </div>
-        <div className="flex my-16">
+        <div className="flex my-16 md:justify-start">
           <div className="mr-4">
             <Link to="/latest">
               <div

@@ -11,7 +11,7 @@ export const GeneralHeaderTemplate = ({
 }) => {
   return (
     <header className="no-select pt-6">
-      <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
+      <div className="md:flex items-center justify-between mt-6 mb-8 lg:mb-3">
         <div>
           <button
             onClick={handleRedirectToHome}
@@ -20,7 +20,7 @@ export const GeneralHeaderTemplate = ({
             ここブロッ！
           </button>
         </div>
-        <div className="flex items-center">
+        <div className="mt-4 md:mt-0 flex items-center justify-between md:justify-start">
           <div className="flex items-center mx-1">
             <Button
               variant="mode"
