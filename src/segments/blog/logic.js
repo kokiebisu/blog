@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useMemo } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { FilterContext } from "../../context/filter"
 
@@ -65,8 +65,11 @@ export const useBlog = () => {
   formattedArticles =
     filterState.filterBy === "latest"
       ? formattedArticles
-      : formattedArticles.filter(article =>
-          article.keywords.includes(filterState.filterBy)
+      : useMemo(
+          formattedArticles.filter(article =>
+            article.keywords.includes(filterState.filterBy)
+          ),
+          [filterState.filterBy]
         )
 
   const mostRecentArticle = formattedArticles.splice(0, 1)
