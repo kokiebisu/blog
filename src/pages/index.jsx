@@ -6,12 +6,10 @@ import { Icon } from "@components/icons"
 import lottie from "lottie-web"
 import articleLight from "../../static/animation/article-light.json"
 import { motion } from "framer-motion"
-import { useEmailProvider } from "../hooks/use-email-provider"
 
 const HomePage = () => {
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
-  const { sendEmail } = useEmailProvider()
   let blogAnimationContainer = createRef()
   let blogAnimationElement = createRef()
 
@@ -35,8 +33,6 @@ const HomePage = () => {
       anim.destroy()
     }
   }, [])
-
-  const handleSendForm = () => sendEmail(email, message)
 
   return (
     <Layout>
@@ -101,7 +97,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="w-74">
-              <form onSubmit={handleSendForm} className="block mr-1">
+              <form onSubmit={() => alert("oops")} className="block mr-1">
                 <div className="mb-3">
                   <div className="border rounded-lg flex items-center">
                     <div className="px-2 top-1/2 relative">
@@ -111,7 +107,7 @@ const HomePage = () => {
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="user@gmail.com"
-                      className="border-transparent py-2 outline-none rounded-lg"
+                      className="bg-transparent border-transparent py-2 outline-none rounded-lg"
                       type="text"
                     />
                   </div>
@@ -122,7 +118,7 @@ const HomePage = () => {
                       value={message}
                       onChange={e => setMessage(e.target.value)}
                       placeholder="Message here"
-                      className="border-transparent outline-none "
+                      className="w-full bg-transparent border-transparent outline-none "
                       type="text"
                     />
                   </div>
