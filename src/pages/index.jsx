@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from "react"
+import React, { useState, createRef, useEffect } from "react"
 import { Layout } from "@layouts"
 import { Head } from "@providers/head"
 import { Link } from "gatsby"
@@ -6,8 +6,12 @@ import { Icon } from "@components/icons"
 import lottie from "lottie-web"
 import articleLight from "../../static/animation/article-light.json"
 import { motion } from "framer-motion"
+import { useEmailProvider } from "../hooks/use-email-provider"
 
 const HomePage = () => {
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const { sendEmail } = useEmailProvider()
   let blogAnimationContainer = createRef()
   let blogAnimationElement = createRef()
 
@@ -31,6 +35,8 @@ const HomePage = () => {
       anim.destroy()
     }
   }, [])
+
+  const handleSendForm = () => sendEmail(email, message)
 
   return (
     <Layout>
@@ -95,13 +101,15 @@ const HomePage = () => {
               </div>
             </div>
             <div className="w-74">
-              <form className="block mr-1">
+              <form onSubmit={handleSendForm} className="block mr-1">
                 <div className="mb-3">
                   <div className="border rounded-lg flex items-center">
                     <div className="px-2 top-1/2 relative">
                       <Icon variant="mail" width={18} height={16} />
                     </div>
                     <input
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                       placeholder="user@gmail.com"
                       className="border-transparent py-2 outline-none rounded-lg"
                       type="text"
@@ -111,6 +119,8 @@ const HomePage = () => {
                 <div className="my-3">
                   <div className="border rounded-lg p-2">
                     <textarea
+                      value={message}
+                      onChange={e => setMessage(e.target.value)}
                       placeholder="Message here"
                       className="border-transparent outline-none "
                       type="text"
