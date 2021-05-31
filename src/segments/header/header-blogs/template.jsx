@@ -51,7 +51,9 @@ export const BlogsHeaderTemplate = ({
             className="relative py-2 px-5 rounded-md border-gray-400 border shadow-md"
           >
             <div>
-              <h4 className="dark:text-white text-sm">フィルター</h4>
+              <h4 className="dark:text-white text-sm whitespace-nowrap">
+                フィルター
+              </h4>
             </div>
             <div className="absolute -top-1 -right-1">
               <span className="relative flex h-3 w-3">
