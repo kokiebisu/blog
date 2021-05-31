@@ -57,7 +57,7 @@ export default DetailedArticle
 export const query = graphql`
   query PostsBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      excerpt(pruneLength: 10)
+      excerpt(pruneLength: 100)
       body
       timeToRead
       fields {

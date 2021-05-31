@@ -17,7 +17,7 @@ export const BlogsHeaderTemplate = ({
 }) => {
   return (
     <header className="no-select pt-6">
-      <div className="flex items-center justify-between mt-6 mb-8 lg:mb-3">
+      <div className="md:flex items-center justify-between mt-6 mb-8 lg:mb-3">
         <div>
           <button
             onClick={handleRedirectToHome}
@@ -26,7 +26,7 @@ export const BlogsHeaderTemplate = ({
             ここブロッ！
           </button>
         </div>
-        <div className="flex items-center">
+        <div className="mt-4 flex items-center justify-between md:justify-start">
           <div className="flex items-center mx-1">
             <Button
               variant="mode"
@@ -62,7 +62,7 @@ export const BlogsHeaderTemplate = ({
           </motion.button>
         </div>
         <div className="pl-4">
-          <h3 className="text-5xl text-gray-500 dark:text-gray-100">
+          <h3 className="text-3xl text-gray-500 dark:text-gray-100">
             {searchedKeyword}
           </h3>
         </div>

@@ -16,7 +16,7 @@ const articleQuery = `{
               keywords
               photographer
             }
-            excerpt(pruneLength: 200)
+            excerpt(pruneLength: 100)
             fields {
               slug
             }

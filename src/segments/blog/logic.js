@@ -14,7 +14,7 @@ export const useBlog = () => {
       ) {
         edges {
           node {
-            excerpt(pruneLength: 10)
+            excerpt(pruneLength: 100)
             body
             timeToRead
             fields {
