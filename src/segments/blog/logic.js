@@ -15,7 +15,6 @@ export const useBlog = () => {
         edges {
           node {
             excerpt(pruneLength: 100)
-            body
             timeToRead
             fields {
               slug
@@ -39,19 +38,21 @@ export const useBlog = () => {
     }
   `)
 
+  console.log("edges", edges)
+
   let formattedArticles = edges.map(
     ({
       node: {
         frontmatter: { date, title, category, keywords },
         timeToRead,
-        fields: { slug },
+        fields,
         excerpt,
         featuredImg,
       },
     }) => {
       return {
         excerpt,
-        slug,
+        slug: fields.slug,
         coverImg: featuredImg,
         publishedDate: date,
         title,
