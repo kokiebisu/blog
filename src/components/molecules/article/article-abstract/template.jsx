@@ -76,7 +76,7 @@ AbstractArticleTemplate.propTypes = {
   date: PropTypes.string,
   title: PropTypes.string,
   body: PropTypes.string,
-  timeToRead: PropTypes.string,
-  publishedDate: PropTypes.stirng,
+  timeToRead: PropTypes.number,
+  publishedDate: PropTypes.string,
   tags: PropTypes.array,
 }

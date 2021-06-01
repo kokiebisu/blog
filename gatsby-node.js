@@ -11,7 +11,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
     type Frontmatter {
       title: String!
-      coverImg: String
+      coverImg: String!
     }
   `)
 }

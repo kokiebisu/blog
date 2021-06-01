@@ -87,7 +87,7 @@ PlainArticleTemplate.propTypes = {
   publishedDate: PropTypes.string,
   title: PropTypes.string,
   body: PropTypes.string,
-  image: PropTypes.string,
-  timeToRead: PropTypes.string,
+  image: PropTypes.object,
+  timeToRead: PropTypes.number,
   tags: PropTypes.array,
 }

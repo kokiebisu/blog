@@ -130,7 +130,7 @@ export const BlogSegmentTemplate = ({
 }
 
 BlogSegmentTemplate.propTypes = {
-  mostRecentArticle: PropTypes.object,
+  mostRecentArticle: PropTypes.array,
   recentArticles: PropTypes.array,
   articles: PropTypes.array,
 }
