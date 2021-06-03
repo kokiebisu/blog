@@ -1,0 +1,43 @@
+---
+title: 48 - Rotate Image
+date: 2020-06-02
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/02/commonjs-vs-esmodule/cover-img.jpg
+photographer: JuniperPhoton
+keywords: ["2D Array", "Medium"]
+---
+
+```js
+var rotate = function (matrix) {
+  let left = 0
+  let right = matrix.length - 1
+
+  while (right > left) {
+    for (let i = 0; i <= right - 1; i++) {
+      let top = left
+      let bottom = right
+      const temp = matrix[top][left + i]
+      matrix[top][left + i] = matrix[bottom - i][left]
+      matrix[bottom - i][left] = matrix[bottom][right - i]
+      matrix[bottom][right - i] = matrix[top + i][right]
+      matrix[top + i][right] = temp
+    }
+    right--
+    left++
+  }
+  return matrix
+}
+```
+
+確認
+
+```js
+console.log(
+  rotate([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ])
+)
+```
