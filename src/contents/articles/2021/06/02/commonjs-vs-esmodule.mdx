@@ -1,0 +1,28 @@
+---
+title: CommonJSとESModuleの違いとは？
+date: 2020-06-02
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/02/cover-img.jpg
+photographer: Jon Tyson
+keywords: ["Visual Studio", "セットアップ"]
+---
+
+もともと CommonJS の方が古い。Javascript を管理している団体（ECMA）はモジュールという概念を当時導入していなかった。
+このため、プログラムのメンテナンスはとてもきつかった。
+
+そこで NodeJS が CommonJS というモジュールの導入の仕方を取り入れた。(require 文で他のモジュールを使えるようにしたりする)
+
+その後, ECMA がこの考え方を取り入れ、独自で開発したのが ESModule(import 文を使う)。
+
+つまり
+
+NodeJS
+
+- 基本 CommonJS
+- 近年 ESModule の使用を検討している
+
+Browser
+
+- ESModule 一本
+- CommonJS などをブラウザで使うときは、一度 Webpack や Rollup を使って、ブラウザでも読み込める文法に変換しないといけなかった

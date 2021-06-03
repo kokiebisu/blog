@@ -1,0 +1,71 @@
+---
+title: NodeJSとは？
+date: 2021-05-14
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/05/14/what-is-nodejs/cover-img.jpg
+photographer: Gabriel Rojas
+keywords: ["環境", "コンセプト"]
+---
+
+> Nodejs とは Javascript をブラウザの外で走らせるのに必要な環境です。Google の V8 と呼ばれるエンジンの上に作られています
+
+あの Google Chrome も実は V8 エンジンを採用しています！
+
+Javascript は本来ブラウザの中でしか走らせることができませんでした。。
+
+ブラウザのコンテンツをリッチに動かすことを目的として発展した JavaScript をサーバー側（php などのように）でも使えるようにしたいとの需要から作られたのが**NodeJs**です。
+
+## イメージ
+
+![Step 1](https://kocoblo-static.s3.amazonaws.com/javascript/what-is-nodejs/step1.jpg)
+
+イメージとしては Javascript が読み込める専用のコンテナのようなものです！
+
+## V8 Engine とは？
+
+実際に Javascript のコードを読み込んでプログラムを動かす根幹にあたるものです。
+
+## メリット
+
+- Javascript でサーバーを立ち上げることができる
+- Javascript で全てフロントとバックエンドの両方を捌くことができる
+- Chrome の核となる V8 エンジンを使っているおかげで高速でかつ大規模な開発が実現可能になる
+
+## 優れている点
+
+- 他のフレームワークと比べても軽量
+- 高速
+- データの送受信などの思い処理に強い
+- Javascript で開発が完結するため、開発をより効率よく進めていくことができる
+- オープンソース（無料で使える）パッケージ（ツール）が多く提供されている
+- パッケージなどがとてもわかりやすく管理されている（NPM など, Yarn など)
+- コミュニティーがとても活発 → 活発であるほど存命する
+
+> なぜ Nodejs が上記の利点を持っているのかを説明するに当たって３つの特徴があります
+
+1. シングルスレッドを使っている
+2. イベントループでタスクを管理している
+3. Non-blocking I/O モデルを使っている
+
+[シングルスレッドとは？](https://www.notion.so/e656512e8673477ba40b50c8e08f2409)
+
+[Blocking vs Non Blocking](https://www.notion.so/Blocking-vs-Non-Blocking-6baccb4ea0df4326b8735da9b56de516)
+
+## 実際どんなところで使えるか？
+
+- チャットアプリ
+- 動画視聴（Youtube)
+- データベースを絡む Web アプリケーション
+
+## どんな場面では向かないのか？
+
+1. サーバー側で非常に重い処理を求められるアプリケーションなど
+
+(イメージの加工、ビデオ編集、ファイル形式の変換など）
+
+こういうときには**Ruby on rails, Php, Python**などがおすすめです！
+
+→ 決して Nodejs では作れないわけではないですが、ツールは適材適所で使っていくのが良いでしょう！
+
+## 現在多くの会社に採用されています

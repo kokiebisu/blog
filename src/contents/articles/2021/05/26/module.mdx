@@ -1,0 +1,47 @@
+---
+title: モジュールとは
+date: 2021-05-26
+category: environment
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/05/26/module/cover-img.jpg
+photographer: Eddie Zhang
+keywords: ["NodeJS", "Javascript"]
+---
+
+NodeJS は Javascript で書かれていてサーバーを立ち上げたりできる。
+ブラウザでは Javascript が使われているので、実質 Javascript だけで UI とサーバーを全て作れてしまう
+
+###　メリット
+
+- フロントエンドエンジニアとバックエンドエンジニアの意思疎通をよくする
+  これによりフロントエンドエンジニアもバックエンドをしり全体像を把握しやすくなる
+
+つまり Javascript を制することができればなんでも作れます
+
+### NodeJS は何が特別か？
+
+- Event driven approach -　オブジェクト指向型と関数型のどちらの書き方でも大丈夫なハイブリッド
+- シングルスレッドでありながら、とても効率よく非同期処理を行う
+  これによりパフォーマンスの改善や拡張性が上がりました
+
+Mutexes -> Queues
+Threads -> Callbacks
+Synchronizatio -> Causality
+
+今まで Mutexes, Threads などは低級言語レベルで工夫されてきたが、それらをより使いやすい形として Nodejs に取り組んでいる
+
+### NodeJS で綺麗なコードを書いていくためには
+
+NodeJS では核となる機能は最小限にとどめています。Node.js Code に含まれているのが
+
+- Node.js runtime (Javascript をブラウザの外で読み込むプログラム)
+- built-in modules (fs などのパッケージ)
+
+つまりこれら以外はコミュニティーに任せている。これを userspace とよび、これにより、より多くの人たちがプロジェクトに貢献することができ、コミュニティーを拡張できるようにしてきました。
+これにより書くとなる Node.js core はメンテナンスがしやすいだけでなく、新規のユーザーを迎え入れる文化を作りやすくしてきました。
+
+### NodeJS の構成
+
+- libuv は C++で作られているので、C++とそれに当たる Javascript をマッピングするプログラム
+- V8 (Javascript のエンジン。他にもたくさんあるが V8 の登場で Javascript の処理能力が劇的に上がった)
+- NodeJS の API を支える Javascript module

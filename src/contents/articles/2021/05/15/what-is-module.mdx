@@ -1,0 +1,67 @@
+---
+title: モジュールとは？
+date: 2021-05-15
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/05/15/what-is-module/cover-img.jpg
+photographer: Fuu J
+keywords: ["Javascript", "コンセプト"]
+---
+
+> Javascript のファイルのことをモジュールといいます
+
+## モジュールの種類
+
+### Core モジュール
+
+Nodejs に予め備わっているモジュール。ファイルを読み込むためのモジュールやサーバーを立ち上げるためのモジュールなど Nodejs そのものに深く関わってくるモジュールが含まれます。Nodejs をインストールした瞬間から使えます。
+
+```bash
+const fs = require('fs');
+```
+
+### 自分たちのモジュール
+
+こちらは自分たちが作ったファイルなどのことを指します。基本的には他の種類と違って、パスなどを通して読み込んでいきます
+
+```bash
+const myModule = require('./myModule');
+```
+
+### 第３パーティモジュール
+
+Third party modules と呼ばれますが、一般的には Nodejs の基本的な機能としては備わっていないが、新しく外部から加えたモジュールのことを指します。これらは NPM(Node Package Manager)で管理されていて、事前にインストールする必要があります。
+
+```bash
+const thirdParty = require('./thirdParty');
+```
+
+## import
+
+> 外部から取り込み、ファイルの中で使っていくこと
+
+```jsx
+const something = require("something")
+```
+
+## export
+
+> 外部のファイルでも使えるようにする
+
+```jsx
+module.exports = {
+  name: "hello",
+}
+```
+
+関数をエキスポートすることもできる
+
+```jsx
+module.exports = function () {
+  return "こんにちは！"
+}
+```
+
+### パッケージとモジュールの違いとは？
+
+> パッケージとは似たような機能をもったモジュールをまとめたものです。いわゆるモジュールの集合体だと考えて貰えば大丈夫です。基本外部のツール(npm で管理されているもの）は一つのモジュールに止まらず、パッケージにまとまっています。これらは package.json に記述されていきます。

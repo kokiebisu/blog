@@ -1,0 +1,21 @@
+---
+title: Gatsbyでブログを立ち上げみて思ったこと
+date: 2021-05-24
+category: environment
+published: false
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/05/24/using-gatsby/cover-img.jpg
+photographer: Chase Baker
+keywords: ["Gatsby", "セットアップ"]
+---
+
+### メリット
+
+- デプロイしたサイトがとても滑らかで爆速（Wordpress などに比べて）
+
+###　デメリット
+
+- `gatsby develop`で開発している際にサイトのキャッシュを毎回保存するため、リロードに時間がかかる。毎回時間がかかりすぎて、強制リフレッシュをすると、キャッシュの不一致でエラーが表示されてしまい、不快になった
+- gatsby では Static Query しかない。つまり、ビルド時の Query が固定されてしまうため、状況に応じて違った Query を送ることができない。
+  例えば。。。
+  ブログをフィルタリングしたい時に、選んだカテゴリーにマッチした記事のみをもう一度 Query することができない。なので現在は代わりに、一度全ての記事を取得し、必要に応じて配列に filter をしている。
+- PWA のプラグインなどが用意されているが、Safari などの特定のブラウザなどではサイトがクラッシュする。（これは Gatsby 以前の問題かもしれないですが。。。）

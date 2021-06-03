@@ -1,0 +1,52 @@
+---
+title: NodeJSとブラウザでのJavascriptの違い
+date: 2020-06-01
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2020/06/01/node-vs-browser/cover-img.jpg
+photographer: Chase Yi
+keywords: ["Visual Studio", "セットアップ"]
+---
+
+NodeJS
+
+- OS の全ての機能を利用できる
+- パソコンに置いている全てのファイルにアクセスできる(fs モジュール)
+- HTTPS のサーバーを立ち上げることができる(http, https モジュール)
+- 暗号化することができる(crypto) -　プログラムのプロセスの情報を入手できる（そのプロセスに割り当てられている環境変数やそのプログラムに渡された
+  Command line arguments など）
+
+ブラウザ
+
+- OS の一部の機能しか使えないが、より使いやすい API が提供されている
+
+###　ブラウザの難点
+ブラウザやユーザーが使っているデバイスによってそこで使われている Javascript のバージョンが違う。
+これにより、一部の Javascript の文法がまだブラウザに未導入だったり、すでに廃止されていたりする。
+
+####　解決案
+これを背景に最新のブラウザに見たいようの Javascript の構文をブラウザが対応している文法に変換するトランスパイラーが盛んに使われるようになった。
+
+Polyfill
+
+- 新しい文法のコードを古いブラウザでも対応できるように変換したコードのこと
+
+### Nodejs の利点
+
+NodeJS はバージョンにばらつきがない。なぜなら自分があらかじめインストールする NodeJS のバージョンがわかっているから。
+しかも NodeJS のバージョンはその時の最新の V8 を使っている場合が多いので常に最新の NodeJS のバージョンを使っていれば最新の Javascript の
+文法が使えるということ。
+
+-> NodeJS だとトランスパイルの作業が不要なので楽
+
+しかしパッケージをオープンソースしたいのであれば、当然他の人が使う Nodejs のバージョンは低いかもしれないので、理想は package.json に最低限の NodeJS のバージョンを明記しておくこと
+
+```js
+{
+  "name": "some-package",
+  ...,
+  "engines": {
+      "node": 10 // ここ
+  }
+}
+```

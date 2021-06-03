@@ -1,0 +1,113 @@
+---
+title: Non Blocking I/Oとは
+date: 2021-05-27
+category: environment
+published: false
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/05/27/non-blocking-io/cover-img.jpg
+photographer: Tanya Pro
+keywords: ["NodeJS", "Javascript"]
+---
+
+I\O is one of the slowest opterations a computer can do
+
+Access Time
+RAM -> Nanoseconds
+Disk/Network -> Milliseconds
+
+Transfer Rate
+RAM -> GB/s
+Disk/Network -> MB/s ~ GB/s
+
+Although not CPU heavy, it is usually slow with delays.
+
+### Blocking I/O
+
+How it used to be for I/O operations
+Whenever, the user tries to access the disk, the thread will be blocked for further execution until the I/O operation complets
+
+```js
+// blocks the thread. Can take up to milliseconds for worst case.
+data = socket.read()
+// prints it. instant
+print(data)
+```
+
+With a Block I/O mechanism, the only way to accept multiple I/O operations is to create another thread or process.
+However, threads shares system resources and it consumes a lot of memory.
+Threads may also pass the data down to databases after the reading and during that time, the thread will still keep blocking requests (idle time).
+This means there will be many threads that are running but end up just sitting there doing nothing waiting for the operation to end.
+
+### Non Blocking I/O
+
+What modern architectures use to solve the threads from being idle.
+When the thread receives a request, it immediately replies back to the requester. If no data,
+the response will be a NOT_YET constant (not the exact name).
+
+We can just go to the next lines of code and keep pinging the thread if data is still available.
+
+#### Busy waiting
+
+Pattern where the requester actively polls the resource (thread) within a loop until some data is being returned.
+
+```js
+// this is in non-blocking mode
+resources = [socketA, socktB, fileA]
+while (!resources.isEmpty()) {
+  for (resource of resources) {
+    // non-blocking
+    // tries to access and will immediately get a response
+    data = resource.read()
+    if (data === NOT_YET) {
+      // no data to be read yet
+      // just skip this resource and read the next
+      continue
+    } else {
+      // response includes the data so just consume according to the user's needs
+      useData(data)
+    }
+  }
+}
+```
+
+Looks good but not efficient enough.
+This is not super CPU inefficient. Uses a lot of wasted CPU since most of the cases,
+resouces will return NOT_YET
+
+### Sytnchronous event demultiplexing
+
+Modern architecture has native mechanism to handle resouces in a non-blocking way concurrently.
+
+#### Multiplexing?
+
+Combine a group of signals into one to solve the problem of having limited capacity over mediums.
+
+#### Demultiplexing
+
+Splitting the merged signal back into their original signals (multiple)
+
+```js
+watchedList.add(socketA, FOR_READ)
+watchedList.add(fileB, FOR_READ)
+// watches if either socketA, fileB resources are ready
+// when it is, then it gets assigned to the events variable
+// this triggers to go into the while loop
+
+// demultiplexer.watch is synchronous and it will block until either socketA, fileB is ready is ready to be read (resource allocation for the reading)
+while ((events = demultiplexer.watch(watchedList))) {
+  for (event of events) {
+    // it is guranteed that the resources are all allocated at this point of time
+    // (to be clear, resources were ready at the point where it entered the while loop)
+    data = event.resource.read()
+    if (data === RESOURCE_CLOSED) {
+      // no more resources will be used
+      demultiplexer.unwatch(event.resource)
+    } else {
+      useData()
+    }
+  }
+}
+```
+
+### Benefits to continue using single thread
+
+- Easy to use. Maintaining multiple threads can avoid many hardcore problems (race conditions, etc)

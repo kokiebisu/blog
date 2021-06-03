@@ -1,0 +1,59 @@
+---
+title: Javascriptをブラウザの外で使ってみよう
+date: 2021-05-16
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/05/16/run-out-of-browser/cover-img.jpg
+photographer: Manson Yim
+keywords: ["HowTo", "NodeJS"]
+---
+
+ターミナルを開いてみましょう
+
+![Step 1](https://kocoblo-static.s3.amazonaws.com/javascript/run-out-of-browser/step1.png)
+
+```bash
+node
+```
+
+node といコマンドを打つことによって node の以前インストールした nodejs の環境の中に入ることができます
+
+![Step 2](https://kocoblo-static.s3.amazonaws.com/javascript/run-out-of-browser/step2.png)
+
+node 単体のコマンドを打つことで**repl**という状態になります。これは**インタラクティブモード**とよばれ、プログラムが書かれたファイルを読み込むというよりもここに入力したものが読み込まれるようになるものです。
+
+![Step 3](https://kocoblo-static.s3.amazonaws.com/javascript/run-out-of-browser/step3.png)
+
+このモードの中では Javascript のコードが認識され読み込まれます。const が読み込まれたのが分かるとおり nodejs（最新のバージョンだと）ES6 の文法にも対応しています
+
+変数の中身を次の行で出力をするのはあくまで repl の性質上のものです！普段は変数の中身を確認するには console.log で変数を確認していかなくてはいけません！
+
+![Step 4](https://kocoblo-static.s3.amazonaws.com/javascript/run-out-of-browser/step4.png)
+
+## repl モードを止めるには
+
+```bash
+.exit
+```
+
+**Control キー＋ c キー(2 回押す）**
+
+**Control キー＋ d キー（2 回押す）**
+
+上記のいずれかで repl から抜けることができます。
+
+Nodejs の古いバージョンによっては**exit**(ピリオドなし）でもうまくいく場合があります。
+
+## 自分の変数がすでに存在しているか確認する方法
+
+場合によっては変数が reserved word(変数名として使ってはいけないワード）に指定されているかもしれません。全ての reserved word を表示させる方法を紹介します
+
+**タブキーを２度連続**で押してみましょう。うまくいけばズラーっと単語が並ぶはずです
+
+![Step 5](https://kocoblo-static.s3.amazonaws.com/javascript/run-out-of-browser/step5.png)
+
+これら全て reserved word です。覚える必要はないですが一度自分で一通りみておくことをお勧めします。
+
+## 結論
+
+> Nodejs を使ってブラウザの外で（パソコン上で）Javascript を使うことができました！この環境を今後サーバーを作るときに活かしていきましょう！
