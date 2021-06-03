@@ -15,7 +15,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `article`,
-        path: `${__dirname}/src/contents/articles`,
+        path: `${__dirname}/contents/articles`,
       },
     },
     `gatsby-plugin-sitemap`,
@@ -62,6 +62,9 @@ module.exports = {
           "@templates": "src/templates",
           "@graphql": "src/graphql",
           "@hooks": "src/hooks",
+          "@context": "src/context",
+          "@meta": "src/meta",
+          "@utils": "src/utils",
         },
         extensions: ["js", "jsx"],
       },
