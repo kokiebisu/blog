@@ -1,0 +1,59 @@
+---
+title: 344 - Reverse String
+date: 2020-06-04
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/leetcode-344/cover-img.jpg
+photographer: Oleg Lekhnitsky
+---
+
+### Approach 1 (Without allocating extra space)
+
+```js
+var reverseString = function (s) {
+  const middle =
+    s % 2 === 0 ? Math.floor(s.length / 2) : Math.floor(s.length / 2) - 1
+
+  for (let i = 0; i <= middle; i++) {
+    const temp = s[s.length - 1 - i]
+    s[s.length - 1 - i] = s[i]
+    s[i] = temp
+  }
+}
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+```
+
+### Approach 2 (Follow Up)
+
+```js
+var reverseString = function (s) {
+  s = s.reverse()
+}
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+```
+
+### Approach 3
+
+```js
+var reverseString = function (s) {
+  s = s.reduce((acc, num) => [num, ...acc], [])
+}
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+```
+
+### Approach 4
+
+```js
+var reverseString = function (s) {
+  var result = []
+  for (let i = s.length - 1; i >= 0; i--) {
+    result.push(s[i])
+  }
+  s = result
+}
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+```

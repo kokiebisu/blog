@@ -1,0 +1,50 @@
+---
+title: Why do we need modules?
+date: 2020-06-03
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/03/why-need-modules/cover-img.jpg
+photographer: Jon Tyson
+keywords: ["モジュール", "Medium"]
+---
+
+### モジュールのメリット
+
+1. コードの役割を明確にでき、さらには細かく整理できる
+2. 公開したくないコードなどは内側に秘めて、使う API だけを公開することができるようになる。(Encapsulation)
+3. 他のところで再利用できるようになる
+4. 新しいモジュールを作る際、良いモジュール構成だと、その上にコードを描きやすい。Dependency としてメンテしやすい。
+
+昔 Javascript は(Browser only だった頃)モジュールという概念がなかった。
+代わりに使われていたのが、
+
+```html
+<script src="file1.js"></script>
+<script src="file2.js"></script>
+```
+
+このように複数のファイルを使っていくときは、script 要素を並べて、管理していた。
+昔は単純なサイトがほとんどだったのでこれでよかった。
+しかし、近年では React, Vue などを用いた、複雑なウェブアプリが主流となっているので、管理がかなりしづらくなった。
+
+そこで, Javascript のコミュニティーは AMD(asynchornous module definition)と呼ばれるモジュールの初期型を作った。
+その後 UMD(Universal Module Definition)も作られた。
+
+その後、Nodejs が台頭した時、script 要素に依存しないため、新たに filesystem と連動したモジュールシステムを開発した。
+これを Commonjs という。
+
+CommonJS は当時、filesystem と連動していたの NodeJS 専用のものだったが、近年では CommonJS のモジュールシステムをブラウザでも利用できるようにする Webpack などが注目を浴びていた。
+
+2015 年に、ES2015 が出た時に、Ecma のコミュニティーから Javascript 公式のモジュールシステムが登場した。これを ESModule とよび、ブラウザのニーズと Nodejs の文法の書き方などを参考にしている。最新の NodeJS は ESModule と CommonJS の両方の文法を採用している。
+
+### 違い
+
+####　モジュールのインポート
+
+```js
+// CommonJS
+const module = require("./path")
+
+// ESModule
+import module from "./path"
+```

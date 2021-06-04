@@ -1,0 +1,117 @@
+---
+title: 48 - Rotate Image
+date: 2020-06-03
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/03/commonjs-mock/cover-img.jpg
+photographer: Kalle Saarinen
+keywords: ["2D Array", "Medium"]
+---
+
+```js
+function require(moduleName) {
+  // use(es) the internal require() machinery to look up the
+  // location of a module, but rather than loading the module,
+  // just return(s) the resolved filename
+  const fullPath = require.resolve()
+
+  if (require.cache[fullPath]) {
+    return require.cache[id].exports
+  }
+
+  const module = {
+    id: fullPath,
+    exports: {},
+  }
+
+  require.cache[fullPath] = module
+
+  loadModule(fullPath, module, require)
+
+  return module.exports
+}
+
+function loadModule(path, module, require) {
+  const sourceCode = `(function(module, exports, require){
+        ${fs.readFileSync(path, "utf-8")}
+    })(module, module.exports, require)`
+  eval(sourceCode)
+}
+
+require.cache = {}
+```
+
+### module.exports vs exports
+
+```js
+const hello = require("./path")
+```
+
+From the example above, we know that the require function returns the module.exports (which is an object containing all the variable properties to be publicly used.)
+
+```js
+exports.hello = {
+  yo: "what",
+}
+```
+
+This means we are basically attaching the hello property to the object to be returned from require
+
+```
+{
+    ...module.exports properties,
+    hello: 'yo' <- just adding a new property
+}
+```
+
+```js
+module.exports = {
+  yo: "yo",
+}
+```
+
+We are reassigning the module.exports object to be returned.
+This is totally rewriting the module.exports object entirely. Therefore the properties will not be added on to the original module.exports return
+
+### Use case
+
+Originally, module.exports returns a object literal. However, if you want to make module.exports equivalent to a instance or a function, use module.exports
+
+```js
+module.exports = () => {
+    console.log("yoyo")
+}
+
+class Person {
+    constructor(firstName) {
+        this.firstname = firstName
+    }
+    ...
+}
+
+module.exports = new Person("jim")
+```
+
+### Why does NodeJS provide synchronous api alternatives?
+
+You would often see api calls that offer both the async and synchronous ways to handle.
+For example,
+
+```js
+readFile("filename", "utf-8") // this is asynchronous
+readFileSync("filename", "utf-8") // this is synchronous
+```
+
+This is because the require function is synchronous. It has to be guaranteed that it read everything before it proceeds to the actual code
+
+```js
+// this is synchronous
+const hello = require("./path")
+
+// by the time it enters this code, it is guaranteed, ./path is all being handled with
+console.log("handled")
+```
+
+#### Why can't we lazy load the module?
+
+If the next code relies on the result from the require statement, it is not guaranteed that the result of require is available at the specific moment.

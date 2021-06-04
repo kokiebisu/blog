@@ -1,0 +1,62 @@
+---
+title: モジュールの種類
+date: 2020-06-03
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/03/revealing-module-pattern/cover-img.jpg
+photographer: Sergey Sechko
+keywords: ["モジュール", "Medium"]
+---
+
+### ファイルモジュール
+
+自分が書いたファイルのことを指します。主な書き方として、relative と absolute があります。
+
+```js
+// relative
+require("../my/file.js")
+
+// absolute
+require("/my/file.js")
+```
+
+### コアモジュール
+
+Nodejs があらかじめ提供してくれる API を含んだファイルのこと
+
+```js
+require("fs") //　他にもcryptoなどがある
+```
+
+### パッケージモジュール
+
+npm などを使い第３者が書いたモジュールのこと
+
+```js
+require("express")
+```
+
+#### モジュールの読み込まれかた
+
+require でファイルを読み込む際には resolving algorithm を用いて、一致したバージョンのモジュールを探してくれる
+
+1 まずファイル名の前に/また./があるか確認。もしあればファイルモジュールなので指定されたパス通りに佐賀登ってファイルを見つける
+
+２ もし/または./がなければ、次はコアモジュールであるかを確認する
+
+3 もしコアモジュール出ない場合は、パッケージモジュールになるので node_modules の中に入り、ファイル名を一致しているフォルダを探す。
+
+4 ファイルを見つけた際は, その中に index.js があるか確認する。なければ package.json を読み込み、entry point が指定されているかどうか確認する。
+
+5 entry point がなければ、エラー。あればそのファイルを探して、読み込む
+
+!!ここで注目して欲しいのは、パッケージモジュールを読み込もうとする際には、必ず自分のいる階層の node_modules を探しにいく。
+これにより、同じ dependency, 違ったバージョンの衝突を回避している
+
+```js
+// hello.js
+const something = require("package") // ./node_modules/packageを探す
+
+// node_modules/packageA/hello.js
+const something2 = require("another-package") // node_modules/packageA/node_modules/another-packageを探す
+```

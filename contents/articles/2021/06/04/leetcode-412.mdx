@@ -1,0 +1,34 @@
+---
+title: 412 - Fizz Buzz
+date: 2020-06-04
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/leetcode-412/cover-img.jpg
+photographer: Scott Webb
+---
+
+```js
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function (n) {
+  var result = []
+
+  var generate = number => {
+    if (number % 5 === 0 && number % 3 === 0) {
+      result.push("FizzBuzz")
+    } else if (number % 5 === 0) {
+      result.push("Buzz")
+    } else if (number % 3 === 0) {
+      result.push("Fizz")
+    } else {
+      result.push(number)
+    }
+  }
+  for (let i = 0; i < n; i++) {
+    generate(i)
+  }
+  return result
+}
+```

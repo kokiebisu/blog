@@ -1,0 +1,56 @@
+---
+title: Revealing module patternとは何か？
+date: 2020-06-03
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/03/revealing-module-pattern/cover-img.jpg
+photographer: Hao Rui
+keywords: ["モジュール", "Medium"]
+---
+
+モジュールシステムを考える時、その含まれる関数またはクラスのスコープが大事になってくる。
+例えば、この関数は外部の人にも使ってもらいたのが、あくまで、他の関数の補助的な役割を果たすだけなので、公開する必要がないのかなど。
+
+ある特定の関数を非公開にすることを information hiding,または Encapsulation と呼ぶがこれを Javascript において可能にするのが Revealing module pattern だ。
+
+```js
+// Revealing Module pattern
+const randomModule = (function () {
+  const hiddenCat = "meow"
+  const hiddenDog = "woof"
+
+  return {
+    publicCat: "public meow!",
+    publicDog: "public woof!",
+  }
+})() // ()を見た瞬間に関数を呼ぶ
+console.log(randomModule.hiddenCard) // undefined
+console.log(randomModule.hiddenDog) // undefined
+
+console.log(randomModule.publicCat) // public meow!
+console.log(randomModule.publicDog) // public woof!
+```
+
+上記のように関数を宣言し、それをその場ですぐ呼ぶ関数を IIFE (Immediately Invoked Function Expression)という
+→ あくまで目的は変数など非公開するものとしないものとで区別するため
+
+### なぜ分ける必要があるのか？
+
+ブラウザで呼ばれる script 要素は全て global scope で呼ばれる。つまり、script で宣言される関数などは全て global variable としてみなされる。これは上書きが容易となるので非常に危険な状態です。
+例えば、この関数は外部の人にも使ってもらいたのが、あくまで、他の関数の補助的な役割を果たすだけなので、公開する必要がないのかなど。
+
+```html
+<script src="jquery.min.js"></script>
+// jQueryという変数をglobalにくっつける
+<script>
+  jQuery = "hello" // jQueryが上書きされてしまう
+</script>
+<script>
+  jQuery("#id").click(() => {
+    // "hello"に上書きされてしまっているのでエラーが出てしまう
+    console.log("do something")
+  })
+</script>
+```
+
+CommonJS は Revealing Module Pattern にとても影響されている
