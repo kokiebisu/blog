@@ -1,0 +1,42 @@
+---
+title: Difference between Default Exports and Named Exports in ESM
+date: 2020-06-05
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/05/how-to-import-using-esm/cover-img.jpg
+photographer: Mister M
+---
+
+### Module identifiers(Specifiers)
+
+Ways to import modules using the ESM syntax
+
+### Relative Specifiers
+
+```js
+import module from "./logger.js"
+```
+
+### Absolute Specifiers
+
+```js
+import module from "file:///opt/nodejs/config.js"
+
+import module from "/config.js" // be careful prefixing with / doesn't work with Nodejs + ESM
+```
+
+#### Bare Specifier
+
+```js
+import module from "http"
+```
+
+Checks the core modules -> node_modules folder
+
+#### Deep Import Specifiers
+
+```js
+import module from "fastify/lib/logger.js"
+```
+
+Specify a path within the node_modules folder

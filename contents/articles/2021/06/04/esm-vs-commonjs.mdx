@@ -1,0 +1,42 @@
+---
+title: ESM Module vs CommonJS
+date: 2020-06-04
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/esm-vs-commonjs/cover-img.jpg
+photographer: Jason Garcia
+---
+
+### ESModules
+
+- Can only be imported at the top
+- Cannot not be dynamically imported
+- Cannot assign a dynamic name to the imported module
+- Since ESModules know all the imports at compile time, it can tree shake all unused imports
+- Support for cyclic dependencies
+- Can load modules asynchronous
+- When we import a module in Nodejs, we always have to specify the file extension '.js'
+
+### CommonJS
+
+- Can be imported anywhere in the code
+
+```js
+const hello = "Greetings"
+console.log(hello)
+require("./module")
+```
+
+- Can be imported based on the condition
+
+```js
+const selected = "Person"
+let object = null
+if (selected === "Person") {
+  object = require("./person")
+} else if (select === "Bird") {
+  object = require("./bird")
+}
+```
+
+- Don't have to write the file extension '.js' for Nodejs

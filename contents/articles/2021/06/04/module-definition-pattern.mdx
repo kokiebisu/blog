@@ -1,0 +1,110 @@
+---
+title: Best Practices to export modules
+date: 2020-06-04
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/module-definition-pattern/cover-img.jpg
+photographer: Alexander Sergienko
+---
+
+### Pattern 1: Exporting a primary data type/object/arrays
+
+We should follow the ==named exports pattern==.
+Attach the exporting propties to the exports object
+
+```js
+exports.person = "Ben"
+exports.dog = {
+  name: "John",
+  age: 5,
+}
+exports.names = ["Dan", "David", "Ariel"]
+```
+
+### Pattern 2: Exporting a function
+
+We should follow the ==substack pattern==.
+Node modules is heavily leaned towards the single responsibility principle.
+Therefore the best practice will be to have seperate files containing a single function being exported.
+We can also reassign module.exports to the function
+
+```js
+// utils/greetings
+
+module.exports = () => {
+  console.log("Hi There!")
+}
+```
+
+The benefit is that it gives a very simple entry point.
+
+We can also extend the capability of the module by attaching the object property
+
+```js
+// /utils
+module.exports = () => {
+  console.log("This is the main responsibility")
+}
+
+module.exports.sub = () => {
+  console.log("This is the sub responsibility")
+}
+```
+
+```js
+const utils = require("/utils")
+
+utils() // Calls the main responsibility
+utils.sub() // Calls the sub responsibilty
+```
+
+### Pattern 3: Exporting a class
+
+Classes are only syntactic sugar to functions in javascript. Therefore, it should be treated the same as
+how functions are being exported above. We should only be exporting one class ideally to
+follow the single responsibility principle.
+
+```js
+// models/person
+class Person {
+  constructor(firstName) {
+    this.firstName = firstName
+  }
+
+  greeting() {
+    console.log(`${this.firstName} said hi`)
+  }
+}
+
+module.exports = Person
+```
+
+```js
+// main.js
+const Person = require("./models/person")
+const john = new Person("John")
+john.greeting()
+```
+
+The benefits are that it is way more syntactically cleaner to extends the module with additional helpers
+The drawback is that you will be exposing everything that is included in the class. If you have helpers/private functions it may
+not be the best option.
+
+### Exporting an instance
+
+The usecase of this is when you don't want to expose the whole class to the public but but still want to export the capabilties with classes in the backbone.
+
+```js
+class Person {
+  constructor() {
+    this.firstName = firstName
+  }
+  greeting() {
+    console.log(`${this.firstName} said hi`)
+  }
+}
+
+module.exports = new Person("John")
+```
+
+!! Since the instance will be cached, all modules that use this will have the exact same instance (property wise and reference wise)

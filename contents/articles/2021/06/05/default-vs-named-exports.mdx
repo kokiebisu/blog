@@ -1,0 +1,18 @@
+---
+title: Difference between Default Exports and Named Exports in ESM
+date: 2020-06-05
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/05/default-vs-named-exports/cover-img.jpg
+photographer: Pat Joseph
+---
+
+### Named imports
+
+- Since the name of the import is defined at compile time, it enables automatic imports, auto complete and refactoring tools
+
+### Default import
+
+- Covenient if you are creating a third party module. The consumer of your module doesn't have to know the exact name of the export. It also
+  provides a clear entry point for the functionality.
+- Difficult to enable tree shaking because it provides a single exposing all the functionality. When we import this default object, most module bundles will consider the entire object being used and they won't be able to eliminate any unused code from the exported functionality.

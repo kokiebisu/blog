@@ -1,0 +1,63 @@
+---
+title: Monkey Patching
+date: 2020-06-04
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/monkey-patching/cover-img.jpg
+photographer: Julio César Bosch
+---
+
+> The act of modifying what other modules exports/global variables
+
+!! Not a good practice but useful for tests to be specific!
+
+Why?
+Modules should be self-contained. It should not have influence to anything outside of itself.
+
+```js
+// /greetings
+module.exports = () => {
+  console.log("Hello! Greetings in English!")
+}
+```
+
+```js
+// /monkey-patch.js
+
+// retrieves the cache and modifies it
+require('./greetings') = {
+    console.log('Bounjour!? Greetings modified to French!')
+}
+```
+
+```js
+// /main.js
+require("./greetings")
+const greetings = require("./monkey-patch")
+greetings() // Will be modified to french
+```
+
+Use Case
+When we want to test integrations with core modules/third party modules,
+we can mock it by overwriting the original capability to the expected response
+
+```js
+// monkey-patch.js
+require("http").get = () => {
+  return '{"status": "success", statusCode: 200}'
+}
+```
+
+```js
+// requests.js
+const http = require("http")
+
+response = http.get("www.google.com")
+```
+
+```js
+require("./requests")
+require("./monkey-patch")
+
+http.get("/")
+```

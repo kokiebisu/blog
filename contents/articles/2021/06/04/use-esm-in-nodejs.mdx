@@ -1,0 +1,35 @@
+---
+title: How to use ESModules in Nodejs
+date: 2020-06-04
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/use-esm-in-nodejs/cover-img.jpg
+photographer: Fernando Paredes Murillo
+---
+
+In default, when you run the command
+
+```js
+node main.js
+```
+
+nodejs will assume main.js will have the commonjs syntax. It will throw an error if it doesn't align.
+
+There are 2 ways to solve
+
+### Declare on a file base
+
+Simple name the file with the file extension .mjs
+
+### Declare on a project base
+
+In the package.json file, create a type property with the 'module' value attached
+
+```js
+// package.json
+{
+    "name": "project1",
+    ...,
+    "type": "module"
+}
+```
