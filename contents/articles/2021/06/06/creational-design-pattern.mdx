@@ -1,0 +1,272 @@
+---
+title: Creational Design Pattern
+date: 2021-06-06
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/06/dependency-graph/cover-img.jpg
+photographer: Gadiel Lazcano
+---
+
+Patterns that try to create scalable ways to create objects
+
+Consists of the following:
+
+1. Factory Pattern
+   -> Allows hiding the implementation of the creation of the objects
+   -> This helps creating object runtime enabling flexibility of implementing
+
+2. Revealing Constructor Pattern
+   -> Enables exposing the private object properties and methods during the object's creation
+
+3. Builder Pattern
+   -> Simplifies the creation of complex objects
+
+4. Singleton Pattern/Dependncy Injection
+   -> Enables wiring up the modules within the application
+
+### Factory Pattern
+
+Enables us decouple the implementation logic with the API surface.
+Limits the options to the user enabling a clear point of entry.
+
+```js
+class Car {
+  constructor(name) {
+    this.name = name
+  }
+
+  drive() {
+    console.log("The Car is moving!")
+  }
+}
+
+const createCar = name => {
+  return new Car(name)
+}
+
+const car = createCar("RX-7")
+```
+
+The reason why we don't want to directly use 'new' keyword is because,
+you would limit yourself to instantiating that specific class.
+
+Let's say we want to abstract this class even further...
+
+```js
+class Car {
+  constructor(name) {
+    this.name = name
+  }
+
+  drive() {
+    console.log("Driving a car")
+  }
+}
+
+class Bike {
+  constructor(name) {
+    this.name = name
+  }
+
+  drive() {
+    console.log("Driving a Bike")
+  }
+}
+
+// We would have to write this logic every time.
+// We can optimize this by calling a function that
+// enwraps all this logic and decide within itself
+// from which class to instantiate
+let obj
+const name = "Some name"
+const objectType = "car"
+if (objectType === "car") {
+  obj = new Car(name)
+} else {
+  obj = new Bike(name)
+}
+```
+
+Can be optimized to this...
+
+```js
+class Car {
+  constructor(name) {
+    this.name = name
+  }
+
+  drive() {
+    console.log("Driving a car")
+  }
+}
+
+class Bike {
+  constructor(name) {
+    this.name = name
+  }
+
+  drive() {
+    console.log("Driving a Bike")
+  }
+}
+
+function createVehicle(name, vehicleType) {
+  if (vehicleType === "CAR") {
+    return new Car(name)
+  } else {
+    return new Bike(name)
+  }
+}
+
+const newVehicle = createVehicle("RX-7", "CAR")
+```
+
+Example:
+We want to create a factory for images that has logic to
+figure out which class to instantiate based on the file extension
+
+```js
+const createImage = name => {
+  if (name.match(/\.jpe?g$/)) {
+    return new ImageJpeg(name)
+  } else if (name.match(/\.gif%/)) {
+    return new ImageGif(name)
+  } else if (name.match(/\.png$/)) {
+    return new ImagePng(name)
+  } else {
+    throw new Error("Unsupported Format")
+  }
+}
+```
+
+We can also use factories for encapsulation private properties using closures.
+
+```js
+function createCar(name) {
+  const private = {}
+  const car = {
+    setName(name) {
+      if (!name) {
+        throw new Error("Name must be included")
+      }
+      private.name = name
+    },
+    getName() {
+      return private.name
+    },
+  }
+  car.setName(name)
+  return car
+}
+```
+
+Here we are returning two things:
+
+1. Car object which takes the role of a accessor to the private properties
+2. Private variable which can't be manipulated from the outside. Only by using the car object
+
+#### Practical Example
+
+Switching based on the environment provided
+
+```js
+class Debugger {
+  constructor(filepath) {
+    this.filepath = filepath
+  }
+
+  debug() {
+    // Does the actual debugging for the filepath
+  }
+}
+
+class MockDebugger {
+  constructor(filepath) {
+    this.filepath = filepath
+  }
+
+  debug() {
+    console.log(`Mocks the debug of ${this.filepath}`)
+  }
+}
+
+const createProfiler = name => {
+  if (process.env.NODE_ENV === "production") {
+    return new Debugger(name)
+  }
+  return new MockDebugger(name)
+}
+```
+
+### Builder Pattern
+
+Have you ever had a case where you have a lot of constructor arguments required for a class?
+
+```js
+class Person {
+    constructor(age, name, hairColor, hairLength, eyeColor, height, nationality, salary, occupation, company, ...) {
+        this.age = age;
+        ...
+    }
+}
+```
+
+Problem:
+
+1. Difficult to keep track of the arguments and to know the order of it
+2. Can't tell if is wrong at runtime
+3. Require good documentation to understand since arguments are not categorized
+
+This can be converted to the following:
+
+```js
+class Person {
+  // By using destructuring, we don't have to think about the argument order
+  attachBasicInfo({ age, name, height, nationality }) {
+    this.age = age
+    this.name = name
+    this.height = height
+    this.nationality = nationality
+  }
+  attachHairInfo({ hairColor, hairLength }) {
+    this.hairColor = hairColor
+    this.hairLength = hairLength
+  }
+  attachJobInfo({ salary, occupation, company }) {
+    this.salary = salary
+    this.occupation = occupation
+    this.company = company
+  }
+  createPerson() {
+    return new Person({
+      ...(this.age && { age: this.age }),
+      ...(this.name && { name: this.name }),
+      ...(this.height && { name: this.height }),
+      ...(this.nationality && { name: this.nationality }),
+      // continues on
+    })
+  }
+}
+
+const person = new Person()
+  .attachBasicInfo({
+    age: 25,
+    name: "Ben",
+    height: 164,
+    nationality: "Canada",
+  })
+  .attachHairInfo({
+    hairColor: "black",
+    hairLength: "long",
+  })
+  .attachJobInfo({
+    salary: 60000,
+    occupation: "Developer",
+    company: "Google",
+  })
+  .createPerson()
+```
+
+The whole point is to use helper methods to assist building the instance on a per category basis
+This whole process helps breaking down a complex constructor into multiple steps that are more readable and
+easier to follow the logic.

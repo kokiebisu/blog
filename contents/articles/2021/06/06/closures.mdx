@@ -1,0 +1,57 @@
+---
+title: What are Closures?
+date: 2021-06-06
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/06/closures/cover-img.jpg
+photographer: Gadiel Lazcano
+---
+
+> Encapsulating a function inside a function
+
+Something like this...
+
+```js
+function function1() {
+    ...
+    return function2() {
+        ...
+    }
+}
+```
+
+### Why use Closures?
+
+Closures can help save memory & CPU efficient when we repeatedly want to perform heavy tasks
+
+Example:
+
+Let's say we want to create an array containing data of users by reading and parsing from JSON.
+
+```js
+function readingAndParsing(filename, nationality) {
+  const data = readFileSync(filename, "utf-8")
+  return data.filter(el => el.nationality === nationality)
+}
+
+const usCitizen = readingAndParsing(filename, "USA")
+const canadianCitizen = readingAndParsing(filename, "CA")
+```
+
+In this code, we are readingAndParsing the data meaning, once we create read and create the data, we destroy it right after and then recreate it again.
+This is not efficient. We want to be able to just create one array and keep it in the memory to be referenced whenever it is being called from multiple sources.
+
+If we convert the above to using Closures...
+
+```js
+function readingAndParsing(filename) {
+  const data = readFileSync(filename, "utf-8")
+  return function filterByNationality(nationality) {
+    return data.filter(el => el.nationality === nationality)
+  }
+}
+
+const filterFunc = readingAndParsing("filename.json")
+const usCitizen = filterFunc("USA")
+const canadianCitizen = filterFunc("CA")
+```

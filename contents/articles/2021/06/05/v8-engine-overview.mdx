@@ -1,0 +1,27 @@
+---
+title: V8 Engineとは？
+date: 2021-06-06
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/05/v8-engine-overview/cover-img.jpg
+photographer:
+keywords: ["コンセプト", "Javascript"]
+---
+
+Javascript を学んでいると V8 Engine というキーワードをよく耳にすると思います。
+そこで V8 Engine とはなんなのかを紹介していけたらと思います。
+
+結論から言ってしまうと Javascript を読み込んでそのコードを実行するためのものです。
+
+V8 Engine の役割は大まかに２つ：
+１　コード内で使われている変数などを記録する(Memory Heap)
+２　関数などが呼ばれる順序を記録する(Call Stack)
+
+ここでわかるのは V8 Engine はプログラムを起動するのに必要な要素を記録し、管理するための動力源となっているのがわかると思います。
+
+### Memory Leak とは？
+
+使われていない変数などが回収されずにそのまま Memory Heap に残ってしまっている状態。
+addEventListener などがよく Memory Leak の原因になったりします。
+
+V8 Engine は Nodejs でもブラウザの方でも使われています。

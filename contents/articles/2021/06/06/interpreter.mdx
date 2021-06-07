@@ -1,0 +1,59 @@
+---
+title: What is a Dependency Graph
+date: 2021-06-06
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/06/dependency-graph/cover-img.jpg
+photographer: zero take
+---
+
+> A tool that prepares the Javascript code to be run on the browser/local
+
+### Steps of preparation for Node interpreter when reading ESM
+
+1. Node interpreter starts up and looks for the entry point file
+2. Construction Phase
+   - Finds all import statements
+   - Loads up all the modules being used <- Unnecessary modules will be tree shaken here
+3. Instantiation Phase
+   - Get reference for all exports from modules (keeps a reference but with no content = undefined)
+   - Track all the import, export relations
+4. Evaluation phase
+   - Finally runs and all the exported entities are filled with actual content
+
+Node reading ESModules
+-> No code is executed until the dependency graph is created
+-> Executing code is at the last step
+
+!!Doesn't allow lazy loading because dependency graphs must be created beforehand!
+
+Node reading CommonJS
+-> Executes the code while simultaneously creating the dependency graph
+
+!! Makes it possible to do lazy loading
+
+### Read-only live bindings
+
+Imported modules can only be read and not modified from other modules
+
+```js
+// ./fizz.js
+export let message = "fizz"
+export function addBuzz() {
+  message += "buzz"
+}
+```
+
+```js
+// ./main.js
+import { message, addBuzz } from "./fizz.mjs"
+console.log(message) // 'fizz'
+message += "buzz" // Error! 'buzz' can only be added from where it was exported
+addBuzz()
+console.log(message) // 'fizzbuzz'
+```
+
+The imported variables are binded to the original source.
+
+Commonjs will take a shallow copy from what was exported enabling to modify the imported source.
+This also doesn't affect the module from which was exported.

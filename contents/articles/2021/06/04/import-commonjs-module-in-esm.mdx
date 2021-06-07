@@ -1,0 +1,24 @@
+---
+title: How to import commonjs modules in ESModules
+date: 2021-06-06
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/04/import-commonjs-module-in-esm/cover-img.jpg
+photographer:
+---
+
+### Using 'import' keyword
+
+```js
+import packageMain from "common-js-package"
+```
+
+### Using require keyword
+
+```js
+import { createRequire } from "module"
+const require = createRequire(import.meta.url)
+
+// sibling-module.js is a CommonJS module.
+const siblingModule = require("./sibling-module")
+```

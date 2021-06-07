@@ -16,6 +16,26 @@ photographer: Jason Garcia
 - Support for cyclic dependencies
 - Can load modules asynchronous
 - When we import a module in Nodejs, we always have to specify the file extension '.js'
+- Will add strict mode automatically (erros when there is unused variables, use of 'with' keyword)
+- Cannot use **filename and **dirname to get the current filepath and directory it is under.
+
+```js
+import { fileURLToPath } from "url"
+import { dirname } from "path"
+// Will give the filepath like the following
+// file:///path/to/current/module.js
+const __filename = fileURLToPath(import.meta.url)
+// Based on the above, it is under the current folder so it will return
+// current
+const __dirname = dirname(__filename)
+```
+
+- The reference of 'this' keyword in global scope is 'undefined'
+
+```js
+// main.mjs
+console.log(this) // undefined
+```
 
 ### CommonJS
 
@@ -28,6 +48,15 @@ require("./module")
 ```
 
 - Can be imported based on the condition
+- Cannot import JSON files directly (For example when we want to reference package.json metadata)
+  We have to do so by using createRequire
+
+```js
+import { createRequire } from "module"
+const require = createRequire(import.meta.url)
+
+const projectName = require("./package.json").name
+```
 
 ```js
 const selected = "Person"
@@ -40,3 +69,9 @@ if (selected === "Person") {
 ```
 
 - Don't have to write the file extension '.js' for Nodejs
+- Keyword 'this' in global scope is equal to 'exports' keyword
+
+```js
+// ./main.cjs
+console.log(this === exports) // true
+```

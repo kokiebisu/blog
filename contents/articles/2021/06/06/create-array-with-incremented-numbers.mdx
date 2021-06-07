@@ -1,0 +1,43 @@
+---
+title: ０〜５までの数字を並べて配列を１行で書く方法
+date: 2021-06-06
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/06/create-array-incremented-numbers/cover-img.jpg
+photographer: Jon Tyson
+---
+
+作りたいものが以下だったとします
+
+```
+input = [1, 2, 3, 4, 5]
+```
+
+一番簡単な書き方は以下のようになると思います
+
+```js
+function generateArray() {
+  const result = []
+  for (let i = 1; i <= 5; i++) {
+    result.push(i)
+  }
+  return result
+}
+```
+
+しかし今回はもう少し洗練されたコードを紹介します。
+それがこちら
+
+```js
+function generateArray() {
+  return Array.from({ length: 5 }, i => i)
+}
+```
+
+なんと１行で簡潔してしまうんです！
+
+###　懸念点
+こちらのコード、一見とても簡潔で綺麗に見えますが、考えないといけないこととして：
+１　パフォーマンスを求めるなら for ループの方が若干上です
+２　どんなにコードが綺麗でもそれをチームが共有できなければ生産性は上がりません。コメントなどで何をしているのか
+を軽く残しておくといいかもしれません
