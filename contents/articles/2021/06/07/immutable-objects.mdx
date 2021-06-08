@@ -1,0 +1,54 @@
+---
+title: Immutable Object
+date: 2021-06-07
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/07/leetcode-14/cover-img.jpg
+photographer:
+keywords: ["Javascript"]
+---
+
+### What is it?
+
+Objects where the properties cannot be modified after being created.
+
+### Background
+
+Object properties are usually mutable.
+
+```js
+// We are using const here!
+const object = {
+  name: "Ben",
+}
+
+// This works because object properties are mutable in nature
+object.name = "Ken"
+
+// Direct reassigning will not work
+object = anotherObject
+```
+
+### Benefit of having immutable objects?
+
+- We can guarantee that the consumer will never change the code even if it
+  is being used where you don't have full control.
+  We encourage the user to follow a single pattern to modify the object:
+  - Copy the object and modify it there
+- Detecting changes will be easier because it will always be copied (meaning if will have a different reference)
+
+```js
+const stateA = {
+    name: 'Ben'
+}
+// this will have a difference reference to A
+const stateB = {
+    ...stateA
+}
+const stateB['name'] = 'Den'
+
+// Can detect if there was any modifications
+if (stateA !== stateB) {
+
+}
+```

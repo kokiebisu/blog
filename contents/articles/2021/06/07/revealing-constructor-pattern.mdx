@@ -1,0 +1,54 @@
+---
+title: 14 - Longest Common Prefix
+date: 2021-06-07
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/07/revealing-constructor-pattern/cover-img.jpg
+photographer:
+keywords: ["Leetcode", "Algorithms"]
+---
+
+### What is it for?
+
+Used to reveal some private properties only at the creation of the object.
+
+Why do we need this?
+-> Allows an object's internals to be manipulated only during its creation phase
+
+!! It is based on the assumption that the revealed functionalities
+cannot be accessed only it is created
+
+```js
+export class ImmutableBuffer {
+    constructor(size, creation) {
+        const buffer = Buffer.alloc(size)
+        const modifiers = {}
+        for (const prop of buffer) {
+            if (buffer !== 'function') continue;
+            if (['swap', 'write', 'fill'].some(method => prop.startsWith(method))) {
+                // We know here that the prop is a modifying function
+                // We will move this to the modifiers to be exposed only on creation
+                modifiers[prop] = buffer[prop].bind(buffer)
+            }) else {
+                // We know that the prop is not a modifying function
+                // We can add it to the instance (reading function)
+                this[prop] = buffer[prop].bind(buffer)
+            }
+        }
+        // We call this to expose any customizability with all the modifying functions
+        // included
+        creation(modifiers)
+    }
+}
+```
+
+### Real Life Use Cases
+
+Promises
+
+```js
+// (resolve, reject) => {} is a creation callback seen above
+return new Promise((resolve, reject) => {
+  //...
+})
+```

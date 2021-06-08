@@ -1,0 +1,46 @@
+---
+title: 14 - Longest Common Prefix
+date: 2021-06-07
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/07/leetcode-14/cover-img.jpg
+photographer:
+keywords: ["Leetcode", "Algorithms"]
+---
+
+```js
+const longestCommonPrefix = function (strs) {
+  let result = ""
+  // if there is an empty array
+  if (!strs.length) {
+    return result
+  }
+
+  if (
+    !strs.every(el => {
+      return el !== ""
+    })
+  ) {
+    return result
+  }
+
+  if (strs.length === 1) {
+    return strs.join("")
+  }
+
+  // Check if there are any common prefixes.
+  // Checking the first index
+  for (let i = 0; i < strs[0].length; i++) {
+    if (strs.every(el => el[i] === strs[0][i])) {
+      result += strs[0][i]
+    } else {
+      break
+    }
+  }
+
+  return result
+}
+```
+
+Time Complexity O(n^3) Not good:(
+Space Complexity O(n)
