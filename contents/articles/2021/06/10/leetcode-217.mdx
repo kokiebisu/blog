@@ -1,0 +1,54 @@
+---
+title: 217 - Contains Duplicate
+date: 2021-06-10
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/10/leetcode-217/cover-img.jpg
+photographer:
+keywords: ["Leetcode", "Algorithms"]
+---
+
+### Straightforward Approach
+
+```js
+var containsDuplicate = function (nums) {
+  // object to store the frequency
+  const map = {}
+
+  // iterate over tha array
+  // if the number doesn't exist in the hashmap,
+  // add it as the key with value 1
+
+  // if it does exist, return true
+  for (let i = 0; i < nums.length; i++) {
+    if (map[nums[i]]) {
+      return true
+    }
+    map[nums[i]] = 1
+  }
+  // after for loop return false
+  return false
+}
+```
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+### One Liner Approach
+
+```js
+var containsDuplicate = function (nums) {
+  return Array.from(new Set(nums)).sort().join("") !== nums.sort().join("")
+}
+```
+
+### Best Answer
+
+```js
+var containsDuplicate = function (nums) {
+  // If there were duplicates in nums and it was removed, then it should reduce the size of the array by the
+  // number of duplicates
+  // This means the it will have different sizes
+  return new Set(nums).size !== nums.length
+}
+```
