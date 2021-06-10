@@ -1,0 +1,33 @@
+---
+title: 122 - Best Time to Buy and Sell Stock
+date: 2021-06-09
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/09/leetcode-122/cover-img.jpg
+photographer:
+keywords: ["Leetcode", "Algorithms"]
+---
+
+```js
+var maxProfit = function (prices) {
+  let profit = 0
+
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i + 1] > prices[i]) {
+      profit += prices[i + 1] - prices[i]
+    }
+  }
+  return profit
+}
+```
+
+Time Complexity: O(n)
+
+- The sentence is making it look harder than it actually is.
+- We don't have to use subtracting at all in this problem. It kinda makes you feel like you have to use it because you want to reduce the loss to gain the max profit
+
+### Paraphrasing the problem
+
+-> Add when the element of the next index is higher than the current one
+-> Profit can be calculated by prices[i+1] - prices[i] (assuming the prices[i+1]>prices[i])
+-> Increment by the profit gained

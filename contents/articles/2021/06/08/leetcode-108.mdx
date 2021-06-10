@@ -1,0 +1,36 @@
+---
+title: Immutable Object
+date: 2021-06-08
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/08/leetcode-14/cover-img.jpg
+photographer: Lucas Benjamin
+keywords: ["Javascript"]
+---
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+var sortedArrayToBST = function (nums) {
+  if (!nums.length) {
+    return null
+  }
+  const middle = Math.floor(nums.length / 2)
+  const root = new TreeNode(nums[middle], null, null)
+
+  root.left = sortedArrayToBST(nums.slice(0, middle))
+  root.right = sortedArrayToBST(nums.slice(middle + 1, nums.length))
+
+  return root
+}
+```

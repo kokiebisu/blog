@@ -1,0 +1,117 @@
+---
+title: Proxy Pattern
+date: 2021-06-08
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/09/proxy/cover-img.jpg
+photographer:
+keywords: ["Javascript"]
+---
+
+> A pattern that controls access to the class based on the priviledge
+
+All the transactions goes through the proxy and it is the proxy that will call the actual transaction from the subject.
+
+### Benefit
+
+- Can enhance the behavior of the subject under certain conditions (admin, guest)
+- Do preprocessing and postprocessing for actions
+- If the result is the same everytime, caching
+- Logging the result of all the transactions that occured
+- Lazy initialization: When a lot of processing is required to the get the object into shape, it can initialize it later
+
+```js
+class DatabaseService {
+    constructor() {
+        // initialize database
+    }
+
+    create(data) {
+        console.log(`Created data in database`)
+    }
+
+    read() {
+        console.log('Read data from database')
+    }
+
+    update() {
+        console.log('Updated data from database')
+    }
+
+    delete() {
+        console.log('Delete data from database')
+    }
+}
+
+class DatabaseProxy {
+    constructor(service) {
+        this.service = service;
+    }
+
+    create(data, user) {
+        if (user.privilege === 'guest') {
+            throw new Error('You have no access');
+        }
+        this.service.create();
+    }
+
+    ...
+}
+
+const service = new DatabaseService();
+const proxy = new DatabaseProxy();
+
+const john = {
+    name: 'John',
+    privilege: 'guest'
+}
+
+const data = {
+    email: 'john@gmail.com'
+}
+
+try {
+    proxy.create(data, john)
+} catch (err) {
+    throw err
+}
+```
+
+### Monkey Patching
+
+The pattern in which you completely override the method implementation of the subject.
+This can be dangerous though so you want to narrow down the use createPost
+
+```js
+class Greeting {
+  constructor() {}
+
+  hello() {
+    console.log("Hello world")
+  }
+}
+
+function patchGreeting(greeting) {
+  const greetingOrig = greeting.hello
+  // If you change the method implementation here,
+  // it will affect all the future method calls
+  // all greetings after the patch will return 'Bonjour'
+  greeting.hello = () => {
+    console.log("Bonjour")
+  }
+  return greeting
+}
+
+const greeting = new Greeting()
+const newGreeting = patchGreeting(greeting)
+const randomGreeting = new Greeting()
+randomGreeting.hello()
+```
+
+Monkey patching is useful in specific use cases but generally not recommended due to the unexpected side effect which may occur.
+
+### Proxy object
+
+- Also known as "Object Augmentation"
+- New feature
+- Can intersect methods and their argument and do some preprocessing/postprocessing

@@ -8,12 +8,15 @@ photographer: Pat Joseph
 keywords: ["ES Modules", "Module System"]
 ---
 
-### Named imports
+### Named export
 
 - Since the name of the import is defined at compile time, it enables automatic imports, auto complete and refactoring tools
 
-### Default import
+### Default export
 
 - Covenient if you are creating a third party module. The consumer of your module doesn't have to know the exact name of the export. It also
   provides a clear entry point for the functionality.
 - Difficult to enable tree shaking because it provides a single exposing all the functionality. When we import this default object, most module bundles will consider the entire object being used and they won't be able to eliminate any unused code from the exported functionality.
+
+~~Both exports are cached the first time it is read. Therefore, other modules will reference the cached module.exports variable the next time
+Module is cashed by the full path as the lookup key so there may be rare cases which it doesn't use the same cache

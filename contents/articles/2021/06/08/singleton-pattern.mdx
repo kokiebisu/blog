@@ -1,0 +1,143 @@
+---
+title: Singleton Pattern
+date: 2021-06-08
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/08/singleton-pattern/cover-img.jpg
+photographer: Rei Kim
+keywords: ["Javascript", "Design Pattern"]
+---
+
+Enfore to only have one instance to be shared across modules.
+
+### Benefit
+
+- Sharing the same state/inner info across modules
+- Reduce resouce usage (memory heap since we are reference from single source + CommonJS Module System caching of exports)
+- Synchronize access to a resources
+
+### However, in Nodejs...
+
+Singleton patterns are not commonly used in Nodejs.
+-> We can't follow the singleton pattern in strict terms due to how the module system works.
+
+However there are some specific use cases worth mentioning
+
+### Database instance
+
+Database instances contain information about the database it is connected to.
+We don't have to create a new database instance every single time when we want to
+do some transactions.
+
+```js
+// Using node-postgres as an example
+// ./db
+const { Pool } = require("pg")
+
+const pool = new Pool({
+  host: "localhost",
+  user: "database-user",
+  max: 20,
+  idleTimeoutMillis: 3000,
+  connectionTimeoutMillis: 2000,
+})
+
+export default pool
+```
+
+```js
+// ./main.js
+import pool from "./db"
+```
+
+Here, we can share the same instance across different modules with the same
+inner configuration.
+
+### Pitfall
+
+#### Caching Difficulties
+
+Nodejs caches the module, making sure not to execute its code on every import.
+Sounds as if all the modules will use the same instance but its not.
+There is a limitation that the module has to be under the same package (same package.json at root).
+This is because of the nodejs module system caching mechanism. It caches created using the key property as the location path.
+
+```js
+// /package.json
+{
+    "name": "mydb",
+    "version": "2.0.0",
+    "type": "module",
+    "main": "dbInstance.js",
+}
+```
+
+Package A
+Depending on my-db version 1
+
+```js
+{
+    "name": "package-a",
+    "version": "2.0.0",
+    "type": "module",
+    "main": "dbInstance.js",
+    "depedencies": {
+        "my-db": "1.0.0",
+    }
+}
+```
+
+```js
+import pool from "my-db"
+
+export function createInstance() {
+  return pool
+}
+```
+
+Package B
+Depending on my-db version 2
+
+```js
+{
+    "name": "package-b",
+    "version": "2.0.0",
+    "type": "module",
+    "main": "dbInstance.js",
+    "depedencies": {
+        "my-db": "2.0.0",
+    }
+}
+```
+
+```js
+import pool from "my-db"
+
+export function createInstance() {
+  return pool
+}
+```
+
+Since we have two different major versions of mydb, it will not hoist.
+We will have two seperate copies of mydb.
+
+If we try to import these two results, since they are cached as seperate units, the instances will not be identical (reference wise) breaking the singleton pattern in strict terms.
+They have the same inner configuration but will not be cashed by the module system.
+
+```js
+import { createInstance as a } from "package-a"
+import { createInstance as b } from "package-b"
+
+const isSame = a() === b()
+console.log(isSame) // -> false
+```
+
+If both package-a and package-b has the same major versions (Ex. 2.00 and 2.05), then the package manager would install the mydb
+package into the top-level node_modules. This allows having my-db right under the root node_modules directory.
+This means that mydb and root will all be coming from the same package so it will be cached properly.
+
+#### Creates tight coupling
+
+Leveraging singleton pattern creates a organized easy to read code but it does not guarantee
+maintainability.
+-> We can use the Dependency Injection Pattern to solve this

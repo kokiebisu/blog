@@ -1,0 +1,30 @@
+---
+title: 242 - Valid Anagram
+date: 2021-06-09
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/09/leetcode-242/cover-img.jpg
+photographer:
+keywords: ["Leetcode", "Algorithms"]
+---
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function (s, t) {
+  return s.split("").sort().join("") === t.split("").sort().join("")
+}
+```
+
+Time Complexity: O(nlog(n))
+
+What I Learned:
+Sorting the characters in a word in alphabetical order
+
+```js
+const string = "hello"
+console.log(string.sort()) // We don't need the sort((a, b) => a-b) here
+```
