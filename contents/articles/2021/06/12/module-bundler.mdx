@@ -1,0 +1,124 @@
+---
+title: Module Bundler
+date: 2021-06-12
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/12/module-bundler/cover-img.jpg
+photographer:
+keywords: ["Javascript"]
+---
+
+Reduces the amount of javascript files to be fetched on the browser.
+
+Characteristics
+
+- Transpiler
+  -> Conversts modern javascript syntax to ES5 (The oldest, most commonly used browser version)
+- Optimize assets
+
+Consists mainly of 2 steps
+
+1. Dependency Resolution
+2. Packing
+
+### Dependency Resolution
+
+```js
+// entry.js
+import { calculator } from "./calculator"
+import { display } from "./display"
+display(calculator("2+2/4"))
+```
+
+```js
+// display.js
+export function display() {
+    ...
+}
+```
+
+```js
+// calculator.js
+import { parser } from "./parser"
+import { resolver } from "./resolver"
+export function calculator(expr) {
+  return resolver(parser(expr))
+}
+```
+
+```js
+// parser.js
+export function parser (expr) {
+    ...
+}
+```
+
+```js
+// resolver.js
+export function resolver(tokens) {
+    ...
+}
+```
+
+1. entry.js -> calculator.js -> parser.js -> resolver.js -> display.js
+
+It is being scanned in a depth-first-search manner.
+
+#### Dependency Graph
+
+Created during the dependency resolution. A collection of nodes (with the info of the dependency) ordered by the imports.
+
+#### Module Map
+
+Created during the dependency resolution. It holds the filepath as key and the source code as value.
+
+```js
+{
+    'app.js': () => {},
+    ...,
+    'calculator.js': () => {
+        const {parser} = __webpack_require__('parser.js')
+        const {resolver} = __webpack_require__('resolver.js')
+        __webpack_exports__.calculator = function(expr) {
+            return resolver(parser(expr))
+        }
+    }
+}
+```
+
+Looks like a CommonJS but be careful that this is not CommonJS.
+CommonJS cannot be interpretted by the browser.
+
+### Packing
+
+The final phase to bundling.
+Converts the module map created to an executable.
+
+```js
+// IIFE that receives the module map
+;(moduleMap => {
+  // A custom requirefunction that receives the module name and execute
+  // it from modules map
+  const require = name => {
+    const module = { exports: {} }
+    // Function is invoked. By passing the module object initialized above,
+    // we are attaching whatever result gained to it.
+    // The factory function can also import other modules recursively
+    // because we are passing the require function
+    modulesMap[name](module, require)
+    // returns the exports object with all the code populated inside
+    return module.exports
+  }
+  // require the entry point of our dependency graph.
+  // It bootstraps the entire application and executes itself in the end.
+  require("app.js")
+
+  // Passing the module map object to the IIFE
+})({
+  "app.js": (module, require) => {},
+  "calculator.js": (module, require) => {},
+  "display.js": (module, require) => {},
+  "parser.js": (module, require) => {},
+  "resolver.js": (module, require) => {},
+})
+```

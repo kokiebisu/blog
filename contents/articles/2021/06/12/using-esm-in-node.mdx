@@ -1,0 +1,27 @@
+---
+title: Universal Javascript
+date: 2021-06-12
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/12/universal-javascript/cover-img.jpg
+photographer:
+keywords: ["Module System"]
+---
+
+```js
+// package.json
+{
+    name: 'project',
+    type: 'module'
+}
+```
+
+### Browser (webpack)
+
+When using Webpack, we want to keep the commonjs module system within the config
+
+webpack.config.js -> webpack.config.cjs
+
+```js
+import { moduleA } from "./moduleA.js" // must provide js file extension
+```

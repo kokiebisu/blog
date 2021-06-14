@@ -1,0 +1,101 @@
+---
+title: Code Branching
+date: 2021-06-12
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/12/universal-javascript/cover-img.jpg
+photographer:
+keywords: ["Module System"]
+---
+
+There are multiple ways to branch out code based on the environment the module is running under.
+
+- Run-time Code Branching
+- Build-time Code Branching
+- Module Swapping
+
+### Run-time Code Branching
+
+```js
+function hello() {
+  if (window !== "undefined" && window.document) {
+    return "Hello Browser!!"
+  }
+  return "Hello NodeJS!!"
+}
+```
+
+difficulties
+
+- A lot of unreachable code since the other half will definitely be unused
+- Can reduce readability
+- Due to how ESModules work, we have to add the import statements at the top of the file. I will include both modules in the final bundle
+  !! Bundles have no sure way of knowing the value of a runtime variable at build time.
+
+### Build-time Code Branching
+
+```js
+import nunjucks from "nunjucks"
+
+export function sayHello(name) {
+  if (typeof __BROWSER__ !== "undefined") {
+    const template = `<h1>Hello {{ name }}</h1>`
+    return nunjucks.renderString(template, { name })
+  }
+  return "Hello"
+}
+```
+
+Webpack plugins can be used to add extra processing and also remove unused code
+
+```js
+// webpack.config.cjs
+const TerserPlugin = require('terser-webpack-plugin')
+module.exports = {
+    mode: 'production',
+    plugins: [
+        // pirce of code that will be evaluated by webpack at build time
+        // used to replace the currently matched snippet of code
+        // can also be used to pass in environment variables
+        new webpack.DefinePlugin({
+            __BROWSER__ = true
+        })
+    ],
+    // once it does the processing above, it will minimize the resulting code
+    optimization: {
+        minimize: true,
+        // terser is capable of removing dead code as part of its minimzation algorithm
+        minimizer: [new TerserPlugin()]
+    }
+}
+```
+
+Challenges
+
+- Too many if statements resulting in poor readability if overused
+
+### Module Swapping
+
+Have two seperate implementations of the functionality in seperate modules.
+
+```js
+// app.js
+import { sayHello } from "./src/sayhello"
+```
+
+```js
+// src/sayhello/index-browser.js
+import nunjucks from "nunjucks"
+const template = `<h1>Hello {{ name }}</h1>`
+export function sayHello(name) {
+  return nunjucks.renderString(template, { name })
+}
+```
+
+```js
+// src/sayhello/index.js
+import chalk from "chalk"
+export function sayHello(name) {
+  return `Hello ${chalk.green(name)}`
+}
+```

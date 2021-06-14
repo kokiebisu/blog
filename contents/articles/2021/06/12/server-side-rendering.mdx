@@ -1,0 +1,30 @@
+---
+title: Server Side Rendering
+date: 2021-06-12
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/12/server-side-rendering/cover-img.jpg
+photographer:
+keywords: ["React"]
+---
+
+Display the page directly from Node.js 2. When the page is loaded on the browser, React will perform a process called hydration
+
+### hydration
+
+Adding all the frontend-nly side effects like:
+
+- click handlers
+- animations
+- additional asynchronous data fetching
+- dynamic routing
+
+Basically, making a markup interactive
+
+### Advantage
+
+- Better SEO
+  Page markup is prerendered by the server so search engines can go through the markup.
+  The search engines don't have to simulate a browser environment and wait for the page to be fully loaded to understand the context.
+- Better Performance
+  The content is available and ready on the browser. The page can be load the frontend sideeffects while the user checks the page.

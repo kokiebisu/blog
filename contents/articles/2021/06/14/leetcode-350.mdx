@@ -1,0 +1,47 @@
+Brute Force Approach
+
+```js
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function (nums1, nums2) {
+  const result = []
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      result.push(nums1[i])
+      const j = nums2.indexOf(nums1[i])
+      nums2 = [...nums2.slice(0, j), ...nums2.slice(j + 1, nums2.length)]
+    }
+  }
+  return result
+}
+```
+
+Time Complexity: O(n^2)
+Space Complexity: O(n)
+
+Optimal Approach (Two Pointers)
+
+```js
+var intersect = function (nums1, nums2) {
+  nums1 = nums1.sort((a, b) => a - b)
+  nums2 = nums2.sort((a, b) => a - b)
+  let pointer1 = 0
+  let pointer2 = 0
+  const result = []
+  while (pointer1 < nums1.length && pointer2 < nums2.length) {
+    if (nums1[pointer1] === nums2[pointer2]) {
+      result.push(nums1[pointer1])
+      pointer1++
+      nums2.shift()
+    } else if (nums1[pointer1] > nums2[pointer2]) {
+      pointer2++
+    } else {
+      pointer1++
+    }
+  }
+  return result
+}
+```

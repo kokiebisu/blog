@@ -1,0 +1,59 @@
+---
+title: Universal Javascript
+date: 2021-06-12
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/12/universal-javascript/cover-img.jpg
+photographer:
+keywords: ["Module System"]
+---
+
+The ability to simplify code reuse across different environments in the same project.
+Also referred to as Isomorphic Javascript
+
+However there are the difficulties.
+
+NodeJS doesn't have DOMs.
+Browsers don't import modules using the filesystem and doesn't contain interfaces to access the operating system.
+
+In terms versioning, (understanding which syntaxes work and are not implemented), Nodejs has the upper hand.
+Since we know beforehand which versions Nodejs will use.
+For the browsers, some users may still be using an older browser and we can't tell.
+
+Some key considerations:
+
+- Is Async/Await implemented?
+
+### The differences in NodeJS and the browser
+
+Nodejs
+
+- Can directly execute js files and import while executing
+
+Browser
+
+- Reads the index.html file. If it has javascript files (in the form of script elements), it will start reading the javascript file.
+- On every import statement (or another script tag), the browser will send a new request (which is time consuming).
+- Example:
+
+```html
+<body>
+<script src="app.js">
+</body>
+```
+
+```js
+import moduleA from "./moduleA"
+import moduleB from "./moduleB"
+import moduleC from "./moduleC"
+
+console.log("hello world")
+```
+
+In this case, the browser will have to import 5 files in total.
+Module Bundlers can solve this.
+
+Ideally,
+
+NodeJS -> Execution
+Browser -> Build -> Execution

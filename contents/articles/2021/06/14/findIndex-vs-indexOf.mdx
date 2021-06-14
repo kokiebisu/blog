@@ -1,0 +1,35 @@
+findIndex、indexOf どちらも配列の中から指定条件を満たした要素を取り出すために使います。しかし、違いはその対象にあります
+
+### indexOf
+
+Primitives と呼ばれる
+
+- 文字列型
+- 数字型
+- 真偽型
+
+などを見つけるために使います。そのため、探している値をそのまま渡してあげれば大丈夫です
+
+```js
+const array = [1, 2, 3]
+const result = array.indexOf(3)
+console.log(result) // 3は配列の二番目（０から初めて）となるので答えは２
+```
+
+### findIndex
+
+Non-primitives、すなわち一つ以上の値を含んだデータ型（ここではオブジェクト型）の中の値を探すために使います。そのため、単純に
+値を引数として渡すことはできません。
+
+```js
+const array = [{ name: "Ben" }, { name: "David" }]
+const result = array.findIndex(el => el.name === "Ben")
+```
+
+### findIndex vs filter
+
+一見条件を絞って値を返すという意味では似ていますが
+findIndex は最初に該当する値のみを返します。ここでさらに注目すべきは
+そのまま値を返していることです。
+filter 関数は条件を満たす値を全てかき集め、それを配列に詰め込んで配列として返します。
+ですので本質的に違うといえます。
