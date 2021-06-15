@@ -1,0 +1,21 @@
+---
+title: 268
+date: 2021-06-13
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/13/leetcode-268/cover-img.jpg
+photographer: Sam Fry
+keywords: ["Module System"]
+---
+
+var missingNumber = function (nums) {
+// sort the array
+
+nums = nums.sort((a, b) => a - b)
+
+for (let i = 0; i <= nums.length; i++) {
+if (i !== nums[i]) {
+return i
+}
+}
+}
