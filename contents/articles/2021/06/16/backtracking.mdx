@@ -1,0 +1,30 @@
+---
+title: バックトラッキングとは？
+date: 2021-06-16
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/16/backtracking/cover-img.jpg
+photographer: Kadir Celep
+keywords: ["Recursion"]
+---
+
+Should I call the function itself or create a function within and call that instead?
+
+```js
+var outer = function() {
+    // May something like frequency of the appearance of a number
+    const map = {} // If you want to keep a reference outside which tracks progress, create a function within
+    function inner() {
+        ...
+    }
+}
+```
+
+If you don't have to keep track, just call itself
+
+```js
+var test = function(n) {
+    ...
+    test(n)
+}
+```

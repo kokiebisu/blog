@@ -1,0 +1,58 @@
+---
+title: 28 - Implement strStr()
+date: 2021-06-19
+category: leetcode
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/19/leetcode-28/cover-img.jpg
+photographer: Niketh Vellanki
+keywords: ["indexOf"]
+---
+
+Brute Force
+
+```js
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function (haystack, needle) {
+  if (!needle.length) {
+    return 0
+  }
+  if (hastack.length < needle.length) {
+    return -1
+  }
+  for (let i = 0; i < haystack.length; i++) {
+    let flag = false
+    if (haystack[i] === needle[0]) {
+      for (let j = 0; j < needle.length; j++) {
+        if (haystack[i + j] !== needle[j]) {
+          flag = true
+          break
+        }
+      }
+      if (!flag) {
+        return i
+      }
+    }
+  }
+  return -1
+}
+```
+
+Using Built-in Method (indexOf)
+
+```js
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function (haystack, needle) {
+  if (!needle) {
+    return 0
+  }
+  return haystack.indexOf(needle) || -1
+}
+```

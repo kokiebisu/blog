@@ -1,0 +1,50 @@
+---
+title: 202 - Happy Number
+date: 2021-06-16
+category: leetcode
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/16/leetcode-202/cover-img.jpg
+photographer: Jimmy Dean
+keywords: ["Recursion"]
+---
+
+n
+happy -> true
+
+- Positive integer
+  Sum of squares of digits
+  Repeat until === 1 -> then happy
+
+Constraints
+Will it always be just two digits (like example)?
+-> No
+
+Key Issue
+
+> How can we tell if we are in a infinite loop?
+
+-> If we record a map with all the numbs that appeared and if it collides with whatever number it has in map
+
+```js
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function (n) {
+  const map = {}
+  function inner(num) {
+    for (let i = 0; i < nums.length; i++) {
+      sum += Math.pow(num[num.length - 1 - i], 2)
+    }
+    if (sum === 1) {
+      return true
+    } else if (map[sum]) {
+      return false
+    } else {
+      map[sum] = true
+      inner(sum)
+    }
+  }
+  inner(n)
+}
+```

@@ -1,0 +1,29 @@
+---
+title: 26 - Remove Duplicates from Sorted Array
+date: 2021-06-17
+category: leetcode
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/17/leetcode-26/cover-img.jpg
+photographer: Todd Quackenbush
+keywords: ["Recursion"]
+---
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function (nums) {
+  let i = 0
+  let j = 1
+  while (j <= nums.length - 1) {
+    if (nums[i] !== nums[j]) {
+      i++
+      nums[i] = nums[j]
+    } else {
+      j++
+    }
+  }
+  return i + 1
+}
+```

@@ -1,0 +1,50 @@
+---
+title: 88 - Merge Sorted Array
+date: 2021-06-18
+category: leetcode
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/18/leetcode-88/cover-img.jpg
+photographer: Specna Arms
+keywords: ["Recursion"]
+---
+
+First Try
+
+```js
+var merge = function (nums1, m, nums2, n) {
+  const temp = []
+  let pointerB = 0
+  let pointerC = 0
+  for (let i = 0; i < m; i++) {
+    if (pointerB < nums2.length && nums1[i] >= nums2[pointerB]) {
+      if (temp.length && temp[0] < nums2[pointerB]) {
+        temp.push(nums1[i])
+        nums1[i] = temp.shift()
+      } else {
+        temp.push(nums1[i])
+        nums1[i] = nums2[pointerB]
+        pointerB++
+      }
+    } else if (temp.length && temp[0] < nums1[i]) {
+      temp.push(nums1[i])
+      nums1[i] = temp.shift()
+    }
+  }
+
+  for (let j = m; j < m + n; j++) {
+    if (nums2[pointerB] === undefined) {
+      nums1[j] = temp[pointerC]
+      pointerC++
+    } else if (temp[pointerC] === undefined) {
+      nums1[j] = nums2[pointerB]
+      pointerB++
+    } else if (nums2[pointerB] <= temp[pointerC]) {
+      nums1[j] = nums2[pointerB]
+      pointerB++
+    } else {
+      nums1[j] = temp[pointerC]
+      pointerC++
+    }
+  }
+}
+```

@@ -1,0 +1,53 @@
+---
+title: 326 - Power of Three
+date: 2021-06-15
+category: leetcode
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/15/leetcode-326/cover-img.jpg
+photographer: Nick Fewings
+keywords: ["Leetcode"]
+---
+
+Brute Force
+
+```js
+var isPowerOfThree = function (n) {
+  let i = 0
+  while (n <= Math.pow(3, i)) {
+    if (n === Math.pow(3, i)) {
+      return true
+    }
+    i++
+  }
+  return false
+}
+```
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+Speed: 33%
+
+Optimal Solution
+
+```js
+var isPowerOfThree = function (n) {
+  // When we convert to base 3,
+  // all numbers that are power of 3
+  // will be a power of 10
+  // Ex. 3 -> 10
+  // Ex. 9 -> 100
+  const inBase3 = n.toString(3)
+
+  // Power of 10 has the following characteristics:
+  // 1. Starts with 1
+  // 2. Ends with consecutive number of 0s
+  const regex = new RegExp(/^10*$/)
+
+  // Evaluate using a regex expression
+  return regex.test(inBase3)
+}
+```
+
+Time Complexity: O(1)
+Space Complexity: O(1)
+Speed: 97%

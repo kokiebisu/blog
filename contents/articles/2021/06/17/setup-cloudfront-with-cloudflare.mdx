@@ -1,0 +1,38 @@
+---
+title: Setup cloudfront with cloudflare
+date: 2021-06-17
+category: javascript
+published: true
+coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/16/202-leetcode/cover-img.jpg
+photographer: Hudai Gayiran
+keywords: ["Leetcode"]
+---
+
+Domain is registered on Cloudflare
+
+The website itself is being hosted on Cloudfront
+
+### Cloud Distribution
+
+```.cloudfront.net
+
+In default, Cloudfront provides
+- Certificate
+- Publicly accessible url (~~.cloudfront.net)
+
+Not readable though...
+
+### Steps to attach distribution to your custom Domain (readable):
+1. Get a certicate registered in Amazon Certificate Manager
+2. Add the certificate and custom domain to the distribution
+3. Make DNS point to Cloudflare
+```
+
+証明書を ACM に申請する
+証明書をもらうがこれには DNS で認証するという条件がつけられている
+DNS で認証すると設定した場合にはドメインにくっついてくるる CNAME を使って認証する
+この CNAME は ACM によって、'DNS で認証'と設定したらもらえる(key と value の組み合わせで)
+
+Go to the domain, in this case its Cloudflare and add the record.
+Make sure that it is only used for DNS resolution and not proxied.
+(Cloudflare distribution's role is to pass the domain to the distribution)

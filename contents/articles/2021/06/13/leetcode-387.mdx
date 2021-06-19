@@ -1,18 +1,18 @@
 ---
 title: 387
 date: 2021-06-13
-category: javascript
+category: leetcode
 published: true
 coverImg: https://kocoblo-static.s3.amazonaws.com/2021/06/13/leetcode-268/cover-img.jpg
 photographer: Sam Fry
 keywords: ["Module System"]
 ---
 
-/\*\*
+Brute Force
 
+```js
 - @param {string} s
 - @return {number}
-  \*/
   var firstUniqChar = function (s) {
   let stack = []
   const map = {}
@@ -32,4 +32,5 @@ keywords: ["Module System"]
   return stack[0]["index"]
   }
 
-console.log(firstUniqChar("aabb"))
+
+```
