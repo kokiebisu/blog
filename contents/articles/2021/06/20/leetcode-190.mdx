@@ -1,0 +1,35 @@
+First Approach
+
+```js
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+var reverseBits = function (n) {
+  const reversed = `${"0".repeat(32 - n.toString(2).length)}${n.toString(2)}`
+    .split("")
+    .reverse()
+    .join("")
+  let num = 0
+  for (let i = 0; i < 32; i++) {
+    if (parseInt(reversed[reversed.length - 1 - i])) {
+      num += Math.pow(2, i)
+    }
+  }
+  return num
+}
+```
+
+One Liner
+
+```js
+var reverseBits = function (n) {
+  return parseInt(
+    `${"0".repeat(32 - n.toString(2).length)}${n.toString(2)}`
+      .split("")
+      .reverse()
+      .join(""),
+    2
+  )
+}
+```

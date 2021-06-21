@@ -1,0 +1,7 @@
+インスタンスを似た用途同士でまとめる存在。
+
+よく採用されるのが Public と Private subnet で分ける。
+Public Subnet には public ip をもつインスタンスを集める。
+
+- Load Balancer などのインスタンス
+  ほとんどのインスタンスは Private subnet に入ってくるので、そこまで Cidr の範囲は広くなくてもいい
