@@ -1,0 +1,60 @@
+Brute Force
+
+```js
+var groupAnagrams = function (strs) {
+  const result = []
+
+  function generate(arr) {
+    if (!arr.length) {
+      return result
+    }
+    const temp = []
+    const rest = []
+
+    const sorted = arr[0].split("").sort().join("")
+
+    while (arr.length) {
+      const word = arr.shift()
+
+      if (sorted === word.split("").sort().join("")) {
+        temp.push(word)
+      } else rest.push(word)
+    }
+    result.push(temp)
+
+    return generate(rest)
+  }
+
+  return generate(strs)
+}
+```
+
+Optimal Approach
+
+```js
+var groupAnagrams = function (strs) {
+  const hash = {}
+  for (let i = 0; i < strs.length; i++) {
+    const sort = strs[i].split("").sort().join("")
+    if (hash[sort]) hash[sort].push(strs[i])
+    else hash[sort] = [strs[i]]
+  }
+  return Object.keys(hash).map(key => hash[key])
+}
+```
+
+Using Maps can improved the speed even further
+
+```js
+var groupAnagrams = function (strs) {
+  const hash = new Map()
+  for (let i = 0; i < strs.length; i++) {
+    const sort = strs[i].split("").sort().join("")
+    if (hash.has(sort)) hash.get(sort).push(strs[i])
+    else hash.set(sort, [strs[i]])
+  }
+  const result = []
+  hash.forEach(value => result.push(value))
+  return result
+}
+```

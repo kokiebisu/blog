@@ -1,0 +1,81 @@
+Object
+
+### Only accepts string as keys
+
+When you pass anything other than string as key, it will convert it to a string
+
+```js
+const key = 1 // type number
+const value = "one"
+
+const anotherKey = true
+const anotherValue = "true"
+const hashmap = {}
+
+hashmap[key] = value
+hashmap[1] // cannot be accepted. must pass hashmap['1']
+hashmap[anotherKey] = value
+hashmap[true] // cannot be accepted. must pass hashmap['true']
+```
+
+Map Benefit
+
+### Accept Objects as keys (use WeakMap)
+
+```js
+const company = { name: "Uber", category: "Tech" }
+
+// you can use arrays but not search efficient as you have to loop over
+const kindOfMap = [[company, { relationship: ["Google", "Facebook"] }]]
+
+// Weakmap
+const map = new WeakMap()
+
+map.set(company, { relationship: ["Google", "Facebook"] }) // allows garbage collection of unused object keys
+map.get(company)
+```
+
+### Don't have to worry about restricted keywards being object keys
+
+```js
+const object = {
+  toString: "string",
+}
+
+console.log(object.toString()) // toString is not a function error because we overrided
+```
+
+Considering the use case
+When you are in control of the property names that is fine.
+But if you are asking the user to fill out the keys for you
+then there may be a chance that it collides with a reserved word
+
+### Iterable
+
+```js
+const obj = { name: 'ken' }
+const map = new Map()
+
+// we are forcefully iterating. not efficient
+Object.keys(obj).forEach(() => /* do something*/ )
+
+// we can directly use the for loop here which makes it very efficient
+for (const [key, value] of map) {
+    // do something
+}
+
+```
+
+### Ease of getting the size
+
+Getting the size of the object is not easy
+
+```js
+const obj = {
+  name: "ken",
+}
+Object.keys(obj).length // a lot of work being put
+
+const map = new Map([[name, "ken"]])
+map.size // very easy
+```
