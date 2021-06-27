@@ -1,8 +1,9 @@
 name: S3 Deployment on Schedule
 on:
-  schedule:
-    - cron: "0 0 * * *"
-# [push]
+  [push]
+  # schedule:
+  #   - cron: "0 0 * * *"
+
 jobs:
   run:
     runs-on: ubuntu-latest
