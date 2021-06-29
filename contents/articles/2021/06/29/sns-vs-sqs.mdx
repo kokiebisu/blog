@@ -1,0 +1,37 @@
+---
+title: AWS　SNSとSQSの違いについて
+date: 2021-06-29
+category: aws
+published: true
+coverImg: https://images.unsplash.com/photo-1488841585398-132c573f7aa2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80
+photographer:
+keywords: ["security", "serverless"]
+---
+
+SNS (Simple Notification Service)
+
+- PubSub の仕組みをとっています。
+  つまり Publisher 情報を発信する存在がいて（これを Topic といいます）、
+  Subscriber と言うその発信された情報を受け取る存在がいます。
+
+ここで注目すべきは一つの Publisher に対して複数の Subscriber がいてもいいという点です
+（10,000 までの Subscriber に対応できます）
+
+Publisher が Subscriber に向けて発信するシグナルを message といいます。
+
+SQS (Simple Queue Service)
+Subscriber の一種です。
+Publisher から受け取ったメッセージを保存して、順番に時間をかけて処理していくためのサービス
+
+特筆すべきなのは、SQS から情報を引っ張ってくるときには Queue に情報を引っ張りたいと言わないといけない点です（これを
+polling といいます）。
+SNS の場合情報を受け取る側はタイミングを選べませんが、SQS から情報をとってくるときには受け取る側が好きなタイミングで polling を
+することができます
+
+### 使用例
+
+[!Figure 1](https://kocoblo-static.s3.amazonaws.com/2021/06/29/sns-vs-sqs/figure1.png)
+
+そもそもなぜこのように全てサービスごとに役割を分割するのか？
+仮に全て決済サービスの中で、メール送信、解析が行われていたとする。仮に途中で不具合になり失敗したとして、もう一度全ての流れを踏まないといけない。
+例えば、解析がうまくいって、Email が失敗したとする。この際にも解析をもう一度行わないといけない。そうなると解析データの重複などが起ったりする。

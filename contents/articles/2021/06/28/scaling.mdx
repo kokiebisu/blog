@@ -1,0 +1,83 @@
+Traditional scaling
+-> Increase threads
+
+Nodejs
+-> Single threaded non-blocking architecture so can't increase threads
+-> Increases number of processes instead
+-> Maximum processes will be the number of CPUs it contains (vertical scaling)
+
+```js
+import express from "express"
+import { cpus } from "os"
+import cluster from "cluster"
+
+if (cluster.isMaster) {
+  const availableCpus = cpus()
+  console.log(`Clustering to ${availableCpus.length} processes`)
+  console.log(availableCpus)
+  availableCpus.forEach(() => cluster.fork())
+  cluster.on("exit", (worker, code) => {
+    // code !== 0 - Checks if it crashed unexpectedly
+    // worker.exitedAfterDisconnect - Was the worker killed by the master explicitly using kill() or disconnect()
+    if (code !== 0 && !worker.exitedAfterDisconnect) {
+      console.log(`Worker ${worker.process.pid} crashed. Staring new one...`)
+    }
+    cluster.fork()
+  })
+  // SIGUSR
+  process.on("SIGUSR2", async () => {
+    const workers = Object.values(cluster.workers)
+    for (const worker of workers) {
+      console.log(`Stopping worker: ${worker.process.pid}`)
+      // gracefully shutdown
+      worker.disconnect()
+      await once(worker, "exit")
+      if (!worker.exitedAfterDisconnect) continue
+      const newWorker = cluster.fork()
+      await once(newWorker, "listening")
+    }
+  })
+} else {
+  // simulating crash
+  setTimeout(() => {
+    throw new Error("Oooops")
+  }, Math.ceil(Math.random() * 3 * 1000))
+  const { pid } = process
+  const server = express()
+
+  server.get("/", (req, res) => {
+    res.send(`${pid} yo!`)
+  })
+  server.listen(8080, () => console.log(`${pid} server listening`))
+}
+```
+
+### Zero downtime restart
+
+Whenever we try to update some code, we will encounter a slight moment when the servers are down.
+This is not acceptable in a production environment. There has to be a way to smoothly transition to
+the updated code without any downtimes.
+
+### Passing sessions across multiple instances
+
+Storing sessions while scaling horizontally can be very difficult
+-> We have instances A and B.
+-> User logs in and the session is stored in instance A
+-> There is no guarantee the users will be routed to instance A next time where it stores the session
+-> If the user is routed to B, session will not exist for the user
+
+#### Solutions
+
+1. In-memory database (Redix)
+   Since memory is shared across multiple processes,
+   we can store the data there and processes can reference the same redis database
+
+2. Sticky Load Balancing
+   Attaching a session store directly to the load balancer
+   Steps
+   When the load balancer receives a rquest, it creates a mapping with one instance selected
+   by the load balancing algorithm. Next time the load balancer receives a request, it will read the session id stored in the cookie and route it to the
+   specified instance
+
+However, both these techniques have huge drawbacks and ideally we don't want to have stateful communications at all.
+We can just include the state in the request itself.
