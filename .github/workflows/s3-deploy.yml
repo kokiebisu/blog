@@ -19,6 +19,9 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Upload Lambda(form)
+        run: yarn upload:form
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

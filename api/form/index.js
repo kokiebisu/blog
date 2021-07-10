@@ -10,73 +10,38 @@ const buildContent = ({ content }) => {
 }
 
 exports.handler = async (event, context, callback) => {
-  console.log(event)
-  console.log(JSON.stringify(event))
-  // try {
-  //   if (req.method !== "POST") {
-  //     res.json({
-  //       message: "Try a POST!",
-  //     });
-  //   }
+  try {
+    if (event.method !== "POST") {
+      callback(null, { status: "fail", message: "Try a POST!" })
+    }
 
-  //   if (req.body) {
-  //     const inJson = JSON.parse(req.body);
+    if (event.body) {
+      const { email, content } = event.body
 
-  //     const {
-  //       email,
-  //       content,
-  //     } = inJson.values;
+      const data = {
+        to: email,
+        from: {
+          email: process.env.SENDGRID_AUTHORIZED_EMAIL,
+        }, // Use the email address or domain you verified above
+        subject: "連絡がありました！",
+        text: content,
+        html: buildContent({ content }),
+      }
+      try {
+        await sendgrid.send(data)
+      } catch (err) {
+        return callback(err, null)
+      }
 
-  //     const adminMsg = {
-  //       to: process.env.SENDGRID_AUTHORIZED_EMAIL,
-  //       from: {
-  //         email: email,
-  //       }, // Use the email address or domain you verified above
-  //       subject: "連絡がありました！",
-  //       text: content,
-  //       html: buildContent({
-  //         content
-  //       }),
-  //     };
-
-  //     try {
-  //       await sendgrid.send(adminMsg);
-  //     } catch (err) {
-  //       console.error(error);
-  //       if (error.response) {
-  //         return res.status(500).json({
-  //           error: error.response,
-  //         });
-  //       }
-  //     }
-
-  //     try {
-  //       await sendgrid.send(userMsg);
-  //     } catch (err) {
-  //       console.error(error);
-  //       if (error.response) {
-  //         return res.status(500).json({
-  //           error: error.response,
-  //         });
-  //       }
-  //     }
-
-  //     res.status(200).json({
-  //       message: "Email successfully sent!",
-  //     });
-  //   }
-  // } catch (err) {
-  //   return res.status(500).json({
-  //     message: "There was an error",
-  //     error: err,
-  //   });
-  // }
-  var response = {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
-    },
-    body: "<p>Hello world! Is this working? Testing...</p>",
+      callback(null, {
+        status: "success",
+        message: "Email successfully sent!",
+      })
+    }
+  } catch (err) {
+    callback(err, {
+      status: "fail",
+      message: "There was an error",
+    })
   }
-  callback(null, response)
 }

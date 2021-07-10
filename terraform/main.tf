@@ -17,7 +17,7 @@ resource "aws_lambda_function" "form" {
   s3_bucket = "kocoblo-api"
   s3_key    = "form.zip"
 
-  handler = "form.handler"
+  handler = "index.handler"
   runtime = "nodejs10.x"
 
   role = aws_iam_role.kocoblo_lambda.arn
@@ -27,6 +27,7 @@ resource "aws_lambda_function" "form" {
   environment {
     variables = {
       SENDGRID_API_KEY = var.SENDGRID_API_KEY
+      SENDGRID_AUTHORIZED_EMAIL = var.SENDGRID_AUTHORIZED_EMAIL
     }
   }
 }
