@@ -26,9 +26,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Create Infrastructure
+
       - name: Upload Lambda(form)
-        working-directory: ./app
-        run: yarn upload:form
+        run: aws s3 sync ./lambda s3://kocoblo-lambda --exclude=.DS_Store
 
       - name: Deploy to S3 Bucket
         run: aws s3 sync ./public s3://kocoblo.com
