@@ -7,7 +7,6 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "strapi": "cd content && strapi develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -16,9 +15,7 @@
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
     "deploy": "gatsby-plugin-s3 deploy",
-    "upload:form": "yarn zip:form && yarn upload:lambda && yarn terraform:apply",
-    "zip:form": "cd api && zip -r ../lambda/form.zip form/*",
-    "upload:lambda": "aws s3 sync lambda s3://kocoblo-api --profile=personal --exclude=.DS_Store",
+    "upload:form": "aws s3 sync lambda s3://kocoblo-api --profile=personal --exclude=.DS_Store && yarn terraform:apply",
     "terraform:apply": "cd terraform && terraform apply -auto-approve"
   },
   "dependencies": {
@@ -49,7 +46,6 @@
     "gatsby-remark-normalize-paths": "^1.1.0",
     "gatsby-remark-prismjs": "^5.3.0",
     "gatsby-source-filesystem": "^3.6.0",
-    "gatsby-source-prismic": "^3.3.6",
     "gatsby-transformer-remark": "^4.3.0",
     "gatsby-transformer-sharp": "^3.5.0",
     "hamburger-react": "^2.4.0",
