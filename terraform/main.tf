@@ -14,7 +14,7 @@ provider "aws" {
 resource "aws_lambda_function" "form" {
   function_name = "SendGridForm"
 
-  s3_bucket = "kocoblo-api"
+  s3_bucket = "kocoblo-lambda"
   s3_key    = "form.zip"
 
   handler = "index.handler"
@@ -59,6 +59,6 @@ data "archive_file" "form" {
 }
 
 resource "aws_api_gateway_rest_api" "api" {
-  name = "api"
+  name = "kocoblo-api-gateway"
   description = "Container for all of the other API Gateway objects"
 }
