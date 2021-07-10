@@ -15,7 +15,7 @@
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
     "deploy": "gatsby-plugin-s3 deploy",
-    "upload:form": "aws s3 sync lambda s3://kocoblo-lambda --exclude=.DS_Store",
+    "upload:form": "aws s3 sync ./lambda s3://kocoblo-lambda --exclude=.DS_Store",
     "update:form": "yarn upload:form && yarn terraform:apply",
     "terraform:apply": "cd terraform && terraform apply -auto-approve -var-file=\"secrets.tfvars\""
   },

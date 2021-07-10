@@ -27,6 +27,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Upload Lambda(form)
+        working-directory: ./app
         run: yarn upload:form
 
       - name: Deploy to S3 Bucket
