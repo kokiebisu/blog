@@ -10,6 +10,8 @@ const buildContent = ({ content }) => {
 }
 
 exports.handler = async (event, context, callback) => {
+  console.log(event)
+  console.log(JSON.stringify(event))
   // try {
   //   if (req.method !== "POST") {
   //     res.json({
