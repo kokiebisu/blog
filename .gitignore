@@ -72,3 +72,4 @@ terraform/.terraform
 terraform/*.tfvars
 
 lambda/*
+terraform/terraform.tfstate
