@@ -1,4 +1,3 @@
-require("dotenv").config();
 const sendgrid = require("@sendgrid/mail");
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -77,7 +76,7 @@ exports.handler = async (event, context, callback) => {
     headers: {
       'Content-Type': 'text/html; charset=utf-8'
     },
-    body: '<p>Hello world!</p>'
+    body: '<p>Hello world! Is this working?</p>'
   }
   callback(null, response)
 };

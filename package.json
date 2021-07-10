@@ -16,7 +16,8 @@
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
     "deploy": "gatsby-plugin-s3 deploy",
-    "zip:form": "zip api.zip api/form.js"
+    "zip:form": "zip lambda/form.zip api/form.js",
+    "upload:lambda": "aws s3 sync lambda s3://kocoblo-api --profile=personal"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
