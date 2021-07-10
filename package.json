@@ -7,7 +7,6 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "strapi": "cd content && strapi develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -15,7 +14,10 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
-    "deploy": "gatsby-plugin-s3 deploy"
+    "deploy": "gatsby-plugin-s3 deploy",
+    "upload:form": "aws s3 sync ./lambda s3://kocoblo-lambda --exclude=.DS_Store",
+    "update:form": "yarn upload:form && yarn terraform:apply",
+    "terraform:apply": "cd terraform && terraform apply -auto-approve -var-file=\"secrets.tfvars\""
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
@@ -45,7 +47,6 @@
     "gatsby-remark-normalize-paths": "^1.1.0",
     "gatsby-remark-prismjs": "^5.3.0",
     "gatsby-source-filesystem": "^3.6.0",
-    "gatsby-source-prismic": "^3.3.6",
     "gatsby-transformer-remark": "^4.3.0",
     "gatsby-transformer-sharp": "^3.5.0",
     "hamburger-react": "^2.4.0",
@@ -57,7 +58,8 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-instantsearch-dom": "^6.10.3",
-    "reading-time": "^1.3.0"
+    "reading-time": "^1.3.0",
+    "terraform": "^1.20.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
