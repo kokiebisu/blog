@@ -69,6 +69,6 @@ yarn-error.log
 .yarn-integrity
 
 terraform/.terraform
-terraform/variables.tf
+terraform/*.tfvars
 
 lambda/*
