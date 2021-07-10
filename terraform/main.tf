@@ -57,3 +57,8 @@ data "archive_file" "form" {
   source_dir = "${path.module}/../api/form"
   output_path = "${path.module}/../lambda/form.zip"
 }
+
+resource "aws_api_gateway_rest_api" "api" {
+  name = "api"
+  description = "Container for all of the other API Gateway objects"
+}
