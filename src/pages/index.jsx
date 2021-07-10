@@ -34,6 +34,24 @@ const HomePage = () => {
     }
   }, [])
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    try {
+      const response = await fetch('/api/form', {
+        method: 'POST',
+        body: JSON.stringify({values})
+      })
+      if (response.status === 200) {
+        navigate('/contact/success')
+      } else {
+        console.log('Status not 200')
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <Layout>
       <Head title="Home" />
@@ -97,7 +115,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="w-74">
-              <form onSubmit={() => alert("oops")} className="block mr-1">
+              <form onSubmit={handleSubmit} className="block mr-1">
                 <div className="mb-3">
                   <div className="border rounded-lg flex items-center">
                     <div className="px-2 top-1/2 relative">
