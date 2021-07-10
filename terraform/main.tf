@@ -22,6 +22,8 @@ resource "aws_lambda_function" "form" {
 
   role = aws_iam_role.kocoblo_lambda.arn
 
+  source_code_hash = data.archive_file.form.output_base64sha256
+
   environment {
     variables = {
       SENDGRID_API_KEY = var.SENDGRID_API_KEY
@@ -47,4 +49,10 @@ resource "aws_iam_role" "kocoblo_lambda" {
   ]
 }
 EOF
+}
+
+data "archive_file" "form" {
+  type = "zip"
+  source_dir = "${path.module}/../api/form"
+  output_path = "${path.module}/../lambda/form.zip"
 }

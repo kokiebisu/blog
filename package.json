@@ -16,8 +16,10 @@
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
     "deploy": "gatsby-plugin-s3 deploy",
-    "zip:form": "zip lambda/form.zip api/form.js",
-    "upload:lambda": "aws s3 sync lambda s3://kocoblo-api --profile=personal"
+    "upload:form": "yarn zip:form && yarn upload:lambda && yarn terraform:apply",
+    "zip:form": "cd api && zip -r ../lambda/form.zip form/*",
+    "upload:lambda": "aws s3 sync lambda s3://kocoblo-api --profile=personal --exclude=.DS_Store",
+    "terraform:apply": "cd terraform && terraform apply -auto-approve"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
@@ -59,7 +61,8 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-instantsearch-dom": "^6.10.3",
-    "reading-time": "^1.3.0"
+    "reading-time": "^1.3.0",
+    "terraform": "^1.20.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",

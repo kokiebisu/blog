@@ -1,15 +1,13 @@
-const sendgrid = require("@sendgrid/mail");
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+const sendgrid = require("@sendgrid/mail")
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
 
-const buildContent = ({
-  content,
-}) => {
+const buildContent = ({ content }) => {
   return `
       <div>
         ${content}
       </div>
-  `;
-};
+  `
+}
 
 exports.handler = async (event, context, callback) => {
   // try {
@@ -34,7 +32,7 @@ exports.handler = async (event, context, callback) => {
   //       }, // Use the email address or domain you verified above
   //       subject: "連絡がありました！",
   //       text: content,
-  //       html: buildContent({ 
+  //       html: buildContent({
   //         content
   //       }),
   //     };
@@ -74,11 +72,9 @@ exports.handler = async (event, context, callback) => {
   var response = {
     statusCode: 200,
     headers: {
-      'Content-Type': 'text/html; charset=utf-8'
+      "Content-Type": "text/html; charset=utf-8",
     },
-    body: '<p>Hello world! Is this working?</p>'
+    body: "<p>Hello world! Is this working? Testing...</p>",
   }
   callback(null, response)
-};
-
-module.exports = handler;
+}
