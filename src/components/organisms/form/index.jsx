@@ -2,6 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { Icon } from "../../icons"
 import { motion } from "framer-motion"
+import { navigate } from "gatsby"
 
 export const Form = () => {
   const [values, setValues] = useState({
