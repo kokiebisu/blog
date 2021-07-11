@@ -1,0 +1,42 @@
+
+resource "aws_api_gateway_rest_api" "kocoblo" {
+  name = "kocoblo-api-gateway"
+  description = "Container for all of the other API Gateway objects"
+}
+
+resource "aws_api_gateway_resource" "form" {
+    rest_api_id = aws_api_gateway_rest_api.kocoblo.id
+    parent_id = aws_api_gateway_rest_api.api.root_resource_id
+    path_part = "/form"
+}
+
+resource "aws_api_gateway_method" "form" {
+    rest_api_id = aws_api_gateway_rest_api.kocoblo.id
+    resource_id = aws_api_gateway_resource.form.id
+    http_method = "POST"
+    authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "form" {
+    rest_api_id = aws_api_gateway_rest_api.kocoblo.id
+    resource_id = aws_api_gateway_resource.form.id
+    http_method = "POST"
+    type = "AWS_PROXY"
+    uri = aws_lambda_function.form.invoke_arn
+}
+
+resource "aws_api_gateway_deployment" "kocoblo" {
+    depends_on = [aws_api_gateway_integration.form]
+
+    rest_api_id = aws_api_gateway_rest_api.kocoblo.id
+    stage_name = "prod"
+}
+
+### Allows API Gateway to access Lambda
+resource "aws_lambda_permission" "lambda_permission" {
+    statement_id = "AllowLambdaInvocation"
+    action = "lambda:InvokeFunction"
+    function_name = aws_lambda_function.form.function_name
+    principal = "apigateway.amazonaws.com"
+    source_arn = "${aws_api_gateway_rest_api.kocoblo.execution_arn}/*/POST/"
+}
