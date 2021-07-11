@@ -17,7 +17,7 @@
     "deploy": "gatsby-plugin-s3 deploy",
     "upload:form": "aws s3 sync ./lambda s3://kocoblo-lambda --exclude=.DS_Store",
     "update:form": "yarn upload:form && yarn terraform:apply",
-    "terraform:apply": "cd terraform && terraform apply -auto-approve -var-file=\"secrets.tfvars\""
+    "terraform:apply": "cd terraform && terraform apply -auto-approve -var-file=\"dev.tfvars\""
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
