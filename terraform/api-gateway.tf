@@ -31,6 +31,16 @@ resource "aws_api_gateway_method_response" "form" {
     resource_id = aws_api_gateway_resource.form.id
     http_method = aws_api_gateway_method.form.http_method
     status_code = "200"
+
+    response_parameters = {
+        "method.response.header.Access-Control-Allow-Headers" = true,
+        "method.response.header.Access-Control-Allow-Methods" = true,
+        "method.response.header.Access-Control-Allow-Origin" = true
+    }
+
+      response_models = {
+    "application/json" = "Empty"
+  }
 }
 
 resource "aws_api_gateway_integration_response" "form" {
@@ -38,6 +48,12 @@ resource "aws_api_gateway_integration_response" "form" {
     resource_id = aws_api_gateway_resource.form.id
     http_method = aws_api_gateway_method.form.http_method
     status_code = aws_api_gateway_method_response.form.status_code
+
+    response_parameters = {
+        "method.response.header.Access-Control-Allow-Headers" = "'Content-Type'",
+        "method.response.header.Access-Control-Allow-Methods" = "'GET, POST'",
+        "method.response.header.Access-Control-Allow-Origin" = "'*'"
+    }
 }
 
 resource "aws_api_gateway_deployment" "kocoblo" {
@@ -50,5 +66,5 @@ resource "aws_lambda_permission" "lambda_permission" {
     action = "lambda:InvokeFunction"
     function_name = aws_lambda_function.form.function_name
     principal = "apigateway.amazonaws.com"
-    source_arn = "${aws_api_gateway_rest_api.kocoblo.execution_arn}/*/POST/"
+    source_arn = "${aws_api_gateway_rest_api.kocoblo.execution_arn}/*/POST/form"
 }

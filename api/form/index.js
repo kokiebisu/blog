@@ -34,8 +34,12 @@ exports.handler = async (event, context, callback) => {
       }
 
       callback(null, {
-        status: "success",
+        statusCode: 200,
         message: "Email successfully sent!",
+        headers: {
+          "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+          "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
+        },
       })
     }
   } catch (err) {
