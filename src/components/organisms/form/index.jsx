@@ -21,7 +21,13 @@ export const Form = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ values }),
+          body: JSON.stringify({
+            method: "POST",
+            body: {
+              email: values.email,
+              content: values.content,
+            },
+          }),
         }
       )
       console.log("RESPONSE", response)
