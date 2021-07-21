@@ -19,9 +19,6 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Build Infrastructure for Lambda
-        run: yarn terraform:apply
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
