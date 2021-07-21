@@ -18,18 +18,26 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+resource "aws_s3_bucket" "bucket" {
+  bucket = "kocoblo-lambda"
+}
+
+resource "aws_s3_bucket_object" "lambda_code" {
+  key        = "form.zip"
+  bucket     = aws_s3_bucket.bucket.id
+	source     = data.archive_file.zip.output_path
+	etag       = data.archive_file.zip.output_base64sha256
+}
+
 resource "aws_lambda_function" "form_lambda" {
   function_name = "SendGridForm"
-
-  s3_bucket = "kocoblo-lambda"
-  s3_key    = "form.zip"
+  filename = data.archive_file.zip.output_path
+  source_code_hash = data.archive_file.zip.output_base64sha256
 
   handler = "index.handler"
   runtime = "nodejs10.x"
 
   role = aws_iam_role.lambda_role.arn
-
-  source_code_hash = data.archive_file.zip.output_base64sha256
 
   environment {
     variables = {
@@ -61,6 +69,6 @@ EOF
 
 data "archive_file" "zip" {
   type = "zip"
-  source_dir = "${path.module}/api/form"
-  output_path = "${path.module}/lambda/form.zip"
+  source_dir = "../api/form"
+  output_path = "../lambda/form.zip"
 }
