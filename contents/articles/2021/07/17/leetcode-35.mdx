@@ -1,0 +1,42 @@
+---
+title: 35 - Search Index
+date: 2021-07-17
+category: leetcode
+published: true
+coverImg: https://images.unsplash.com/photo-1597339197333-38b0d5a95867?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1593&q=80
+photographer: Dan-Cristian Paduret
+keywords: ["indexOf"]
+---
+
+```js
+var searchInsert = function (nums, target) {
+  if (nums[nums.length - 1] < target) {
+    return nums.length
+  }
+
+  if (nums[0] > target) {
+    return 0
+  }
+
+  let start = 0
+  let end = nums.length - 1
+  while (end >= start) {
+    const middle = Math.floor((start + end) / 2)
+
+    if (nums[middle] === target) {
+      return middle
+    } else if (nums[middle] > target) {
+      if (nums[middle - 1] < target) {
+        return middle
+      }
+      end = middle
+    }
+    if (nums[middle] < target) {
+      if (nums[middle + 1] > target) {
+        return middle + 1
+      }
+      start = middle
+    }
+  }
+}
+```

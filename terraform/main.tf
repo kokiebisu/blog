@@ -4,25 +4,40 @@ terraform {
       source = "hashicorp/aws"
     }
   }
+
+  backend "remote" {
+    organization = "do-it-simple"
+
+    workspaces {
+      name = "kocoblo"
+    }
+  }
 }
 
 provider "aws" {
-  profile = "personal"
   region  = "us-east-1"
 }
 
-resource "aws_lambda_function" "form" {
-  function_name = "SendGridForm"
+resource "aws_s3_bucket" "bucket" {
+  bucket = "kocoblo-lambda"
+}
 
-  s3_bucket = "kocoblo-lambda"
-  s3_key    = "form.zip"
+resource "aws_s3_bucket_object" "lambda_code" {
+  key        = "form.zip"
+  bucket     = aws_s3_bucket.bucket.id
+	source     = data.archive_file.zip.output_path
+	etag       = data.archive_file.zip.output_base64sha256
+}
+
+resource "aws_lambda_function" "form_lambda" {
+  function_name = "SendGridForm"
+  filename = data.archive_file.zip.output_path
+  source_code_hash = data.archive_file.zip.output_base64sha256
 
   handler = "index.handler"
   runtime = "nodejs10.x"
 
-  role = aws_iam_role.kocoblo_lambda.arn
-
-  source_code_hash = data.archive_file.form.output_base64sha256
+  role = aws_iam_role.lambda_role.arn
 
   environment {
     variables = {
@@ -32,7 +47,7 @@ resource "aws_lambda_function" "form" {
   }
 }
 
-resource "aws_iam_role" "kocoblo_lambda" {
+resource "aws_iam_role" "lambda_role" {
   name = "kocoblo-lambda"
 
   assume_role_policy = <<EOF
@@ -52,13 +67,8 @@ resource "aws_iam_role" "kocoblo_lambda" {
 EOF
 }
 
-data "archive_file" "form" {
+data "archive_file" "zip" {
   type = "zip"
-  source_dir = "${path.module}/../api/form"
-  output_path = "${path.module}/../lambda/form.zip"
-}
-
-resource "aws_api_gateway_rest_api" "api" {
-  name = "kocoblo-api-gateway"
-  description = "Container for all of the other API Gateway objects"
+  source_dir = "../api/form"
+  output_path = "../lambda/form.zip"
 }

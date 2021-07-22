@@ -15,7 +15,7 @@ const DetailedArticle = ({
   return (
     <DetailedArticleTemplate
       title={frontmatter.title}
-      date={frontmatter.date}
+      date={frontmatter.fromNow}
       photographer={frontmatter.photographer}
       previous={
         previous ? (
@@ -72,7 +72,7 @@ export const query = graphql`
         category
         title
         keywords
-        date(fromNow: true)
+        fromNow
         photographer
         published
       }

@@ -11,12 +11,12 @@ const buildContent = ({ content }) => {
 
 exports.handler = async (event, context, callback) => {
   try {
-    if (event.method !== "POST") {
+    if (event.httpMethod !== "POST") {
       callback(null, { status: "fail", message: "Try a POST!" })
     }
 
     if (event.body) {
-      const { email, content } = event.body
+      const { email, content } = JSON.parse(event.body)
 
       const data = {
         to: email,
@@ -34,8 +34,14 @@ exports.handler = async (event, context, callback) => {
       }
 
       callback(null, {
-        status: "success",
-        message: "Email successfully sent!",
+        statusCode: 200,
+        headers: {
+          my_header: "my_value",
+        },
+        body: JSON.stringify({
+          message: "Email successfully sent!",
+        }),
+        isBase64Encoded: false,
       })
     }
   } catch (err) {

@@ -10,7 +10,7 @@ const articleQuery = `{
             id
             frontmatter {
               category
-              date(fromNow: true)
+              fromNow
               title
               published
               keywords
@@ -38,7 +38,7 @@ const queries = [
             objectID: id,
             title: frontmatter.title,
             category: frontmatter.category,
-            date: frontmatter.date,
+            date: frontmatter.fromNow,
             excerpt,
             slug: fields.slug,
             ...rest,

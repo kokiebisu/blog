@@ -1,6 +1,7 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
 const { createRemoteFileNode } = require("gatsby-source-filesystem")
+const moment = require("moment")
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
@@ -12,8 +13,22 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Frontmatter {
       title: String!
       coverImg: String!
+      fromNow: String!
     }
   `)
+}
+
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    Frontmatter: {
+      fromNow: {
+        resolve(source, _args, _context, _info) {
+          return moment(source.date.split("T")[0]).fromNow()
+        },
+      },
+    },
+  }
+  createResolvers(resolvers)
 }
 
 exports.onCreateNode = async ({
@@ -82,7 +97,6 @@ module.exports.createPages = async ({ graphql, actions }) => {
                 category
                 title
                 keywords
-                date(fromNow: true)
                 photographer
                 published
               }

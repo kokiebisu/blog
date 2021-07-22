@@ -8,7 +8,6 @@ const FILTER_BY_LATEST = "FILTER_BY_LATEST"
 const FILTER_BY_KEYWORD = "FILTER_BY_KEYWORD"
 
 const reducer = (_, action) => {
-  console.log("action", action)
   switch (action.type) {
     case FILTER_BY_LATEST:
       return { filterBy: "latest" }
