@@ -28,7 +28,7 @@ export const useBlog = () => {
               category
               title
               keywords
-              date(fromNow: true)
+              fromNow
               photographer
               published
             }
@@ -38,12 +38,10 @@ export const useBlog = () => {
     }
   `)
 
-  console.log("edges", edges)
-
   let formattedArticles = edges.map(
     ({
       node: {
-        frontmatter: { date, title, category, keywords },
+        frontmatter: { fromNow, title, category, keywords },
         timeToRead,
         fields,
         excerpt,
@@ -54,7 +52,7 @@ export const useBlog = () => {
         excerpt,
         slug: fields.slug,
         coverImg: featuredImg,
-        publishedDate: date,
+        publishedDate: fromNow,
         title,
         timeToRead,
         category,
