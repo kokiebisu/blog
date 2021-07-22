@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - terraform
   pull_request:
     branches:
       - terraform
