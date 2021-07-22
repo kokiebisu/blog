@@ -3,8 +3,7 @@ name: "Terraform"
 on:
   push:
     branches:
-      - master
-      - terraform
+      - main
   pull_request:
     branches:
       - terraform
