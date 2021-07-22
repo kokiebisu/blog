@@ -32,6 +32,9 @@ jobs:
       - name: Invalidate Cloudfront CDN
         run: aws cloudfront create-invalidation --distribution-id=${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
 
+      - name: Invalidate Cloudfront CDN (www)
+        run: aws cloudfront create-invalidation --distribution-id=${{ secrets.WWW_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
+
 env:
   GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
   GATSBY_ALGOLIA_ADMIN_API_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}

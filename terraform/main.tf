@@ -31,11 +31,11 @@ resource "aws_s3_bucket_object" "lambda_code" {
 
 resource "aws_lambda_function" "form_lambda" {
   function_name = "SendGridForm"
-  filename = data.archive_file.zip.output_path
-  source_code_hash = data.archive_file.zip.output_base64sha256
+  s3_bucket = "kocoblo-lambda"
+  s3_key = "form.zip"
 
   handler = "index.handler"
-  runtime = "nodejs10.x"
+  runtime = "nodejs14.x"
 
   role = aws_iam_role.lambda_role.arn
 
