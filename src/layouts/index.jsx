@@ -9,29 +9,20 @@ export const Layout = ({ children, headerType = "general" }) => {
     <ThemeToggler>
       {({ theme, toggleTheme }) => (
         <div
-          style={{ minHeight: "100vh" }}
-          className="flex flex-col w-full dark:bg-gray-700 transition ease-in-out"
+          style={{ gridTemplateRows: "auto 1fr auto" }}
+          className={`dark:bg-gray-500 bg-white grid min-h-screen px-8`}
         >
-          <div
-            style={{ maxWidth: 1100, flex: 1 }}
-            className="w-full h-full px-8 md:px-16 flex-col flex mx-auto flex-grow"
-          >
-            <div className="flex-none">
-              <Header
-                variant={headerType}
-                theme={theme}
-                toggleTheme={toggleTheme}
-              />
-            </div>
-            <div className="flex-grow ">{children}</div>
+          <div className="w-full max-w-5xl mx-auto">
+            <Header
+              variant={headerType}
+              theme={theme}
+              toggleTheme={toggleTheme}
+            />
           </div>
-          <div className="flex-none ">
-            <div
-              style={{ maxWidth: 1100 }}
-              className="w-full mx-auto px-8 md:px-16"
-            >
-              <Footer />
-            </div>
+          <div className="w-full max-w-5xl mx-auto">{children}</div>
+
+          <div className="w-full max-w-5xl mx-auto">
+            <Footer />
           </div>
         </div>
       )}

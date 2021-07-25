@@ -34,9 +34,9 @@ const HomePage = () => {
   return (
     <Layout>
       <Head title="Home" />
-      <main className="mt-16">
-        <div className="">
-          <div style={{ width: "60vw" }} className="my-4">
+      <main className="mt-16 md:flex">
+        <div className="md:w-1/2">
+          <div className="my-4">
             <h1 className="text-md md:text-2xl text-gray-600 dark:text-white">
               はじめまして
               <span className="mx-2 relative top-2 font-baby text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300">
@@ -45,7 +45,7 @@ const HomePage = () => {
               です。
             </h1>
           </div>
-          <div className="hidden md:block" style={{ width: "65vw" }}>
+          <div className="hidden md:block">
             <h2 className="text-gray-600 dark:text-gray-300">
               <span className="text-md md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-green-600 dark:from-blue-100 dark:to-green-200">
                 カナダ
@@ -71,7 +71,9 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <Form />
+        <div className="md:w-1/2">
+          <Form />
+        </div>
       </main>
     </Layout>
   )
