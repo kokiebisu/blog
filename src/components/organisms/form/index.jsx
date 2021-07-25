@@ -43,15 +43,15 @@ export const Form = () => {
   }
   return (
     <div className="md:my-0">
-      <div className="mb-16 mt-8 md:flex md:justify-between">
+      <div className="mb-16 mt-8">
         <div className="mb-8 md:mb-0">
-          <div>
-            <h2 className="text-3xl text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600 dark:from-pink-100 dark:to-red-300 text-center md:text-left">
+          <div className="mb-4">
+            <h2 className="text-3xl dark:text-white text-gray-700 text-center md:text-left">
               繋がりませんか？
             </h2>
           </div>
-          <div className="mt-1">
-            <h2 className="text-lg font-semibold text-gray-500 text-center md:text-left">
+          <div className="mt-1 mb-4">
+            <h2 className="text-lg font-semibold dark:text-gray-300 text-gray-500 text-center md:text-left">
               連絡をしていただければお返事します！
             </h2>
           </div>
@@ -69,7 +69,7 @@ export const Form = () => {
                     setValues({ ...values, email: e.target.value })
                   }
                   placeholder="user@gmail.com"
-                  className="bg-transparent border-transparent py-2 outline-none rounded-lg"
+                  className="dark:text-white bg-transparent border-transparent py-2 outline-none rounded-lg"
                   type="text"
                 />
               </div>
@@ -82,7 +82,7 @@ export const Form = () => {
                     setValues({ ...values, content: e.target.value })
                   }
                   placeholder="Message here"
-                  className="w-full bg-transparent border-transparent outline-none "
+                  className="dark:text-white w-full bg-transparent border-transparent outline-none "
                   type="text"
                 />
               </div>

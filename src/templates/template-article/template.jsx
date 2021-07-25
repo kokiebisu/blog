@@ -47,7 +47,7 @@ export const DetailedArticleTemplate = ({
           ) : null}
         </div>
         <div className="flex justify-center my-16">
-          <div className="w-full max-w-2xl">{body}</div>
+          <div className="w-full max-w-4xl">{body}</div>
         </div>
         <div className="mx-auto w-full flex max-w-lg justify-between my-12">
           <div>{previous}</div>
@@ -56,12 +56,4 @@ export const DetailedArticleTemplate = ({
       </main>
     </Layout>
   )
-}
-
-DetailedArticleTemplate.propTypes = {
-  last_publication_date: PropTypes.string,
-  title: PropTypes.string,
-  image: PropTypes.string,
-  body: PropTypes.string,
-  tags: PropTypes.array,
 }
