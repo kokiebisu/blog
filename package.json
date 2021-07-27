@@ -16,7 +16,7 @@
     "build-storybook": "build-storybook",
     "deploy": "gatsby-plugin-s3 deploy",
     "lambda": "yarn upload:form && yarn terraform:apply",
-    "terraform:apply": "cd terraform && terraform apply -auto-approve"
+    "terraform:apply": "cd terraform && terraform apply -auto-approve -var-file=secrets.tfvars"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",

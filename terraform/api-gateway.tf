@@ -38,9 +38,9 @@ resource "aws_api_gateway_method_response" "response" {
         "method.response.header.Access-Control-Allow-Origin" = true
     }
 
-      response_models = {
-    "application/json" = "Empty"
-  }
+    response_models = {
+        "application/json" = "Empty"
+    }
 }
 
 resource "aws_api_gateway_integration_response" "integration_response" {
@@ -61,6 +61,7 @@ resource "aws_api_gateway_deployment" "api_gateway_deployment" {
     rest_api_id = aws_api_gateway_rest_api.api_gateway.id
     stage_name = "prod"
 }
+
 resource "aws_lambda_permission" "lambda_permission" {
     statement_id = "AllowLambdaInvocation"
     action = "lambda:InvokeFunction"

@@ -15,6 +15,7 @@ terraform {
 }
 
 provider "aws" {
+  profile = "personal"
   region  = "us-east-1"
 }
 
@@ -26,8 +27,7 @@ data "archive_file" "zip" {
 
 resource "aws_lambda_function" "form_lambda" {
   function_name = "SendGridForm"
-  s3_bucket = "kocoblo-lambda"
-  s3_key = "form.zip"
+  filename = data.archive_file.zip.output_path
   handler = "index.handler"
   runtime = "nodejs14.x"
   source_code_hash = data.archive_file.zip.output_base64sha256
@@ -69,6 +69,8 @@ resource "aws_s3_bucket" "bucket" {
 resource "aws_s3_bucket_object" "lambda_code" {
   key        = "form.zip"
   bucket     = "kocoblo-lambda"
+  source     = data.archive_file.zip.output_path
+  etag       = data.archive_file.zip.output_base64sha256
 }
 
 
