@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "repository" {
-  name                 = "kocoblo"
+  name                 = "form"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -7,7 +7,7 @@ resource "aws_ecr_repository" "repository" {
   }
 }
 
-data "aws_ecr_image" {
+data "aws_ecr_image" "form_image" {
     repository_name = aws_ecr_repository.repository.name
     tag = "latest"
 }
