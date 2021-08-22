@@ -8,3 +8,8 @@ variable "SENDGRID_AUTHORIZED_EMAIL" {
     description = "Email address the form should send to"
     sensitive = true
 }
+
+variable "site_domain" {
+    type = string
+    default = "kocoblo.com"
+}

@@ -1,5 +1,5 @@
 data "aws_route53_zone" "this" {
-  name         = "kocoblo.com"
+  name         = var.site_domain
   private_zone = false
 }
 
@@ -22,7 +22,7 @@ resource "aws_route53_record" "default" {
 
 resource "aws_route53_record" "api" {
   zone_id = data.aws_route53_zone.this.id
-  name    = "api.kocoblo.com"
+  name    = "api.${var.site_domain}"
   type    = "A"
 
   alias {
