@@ -9,5 +9,5 @@ resource "aws_ecr_repository" "repository" {
 
 data "aws_ecr_image" "form_image" {
     repository_name = aws_ecr_repository.repository.name
-    tag = "latest"
+    image_tag = "latest"
 }
