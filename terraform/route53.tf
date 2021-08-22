@@ -1,23 +1,27 @@
-data "aws_route53_zone" "this" {
+data "aws_route53_zone" "public" {
   name         = var.site_domain
   private_zone = false
 }
 
 resource "aws_route53_record" "default" {
-  for_each = {
-    for option in aws_acm_certificate.certificate.domain_validation_options : option.domain_name => {
-      name   = option.resource_record_name
-      record = option.resource_record_value
-      type   = option.resource_record_type
-    }
-  }
-
   allow_overwrite = true
-  name            = each.value.name
-  records         = [each.value.record]
+  name            = tolist(aws_acm_certificate.myapp.domain_validation_options)[0].resource_record_name
+  records         = [ tolist(aws_acm_certificate.myapp.domain_validation_options)[0].resource_record_value ]
   ttl             = 60
-  type            = each.value.type
-  zone_id         = data.aws_route53_zone.this.zone_id
+  type            = tolist(aws_acm_certificate.myapp.domain_validation_options)[0].resource_record_type
+  zone_id         = data.aws_route53_zone.public.zone_id
+}
+
+resource "aws_route53_record" "plain" {
+  zone_id = data.aws_route53_zone.public.zone_id
+  name = "${var.site_domain}"
+  type = "A"
+
+  alias {
+    name = aws_cloudfront_distribution.plain.domain_name
+    zone_id = aws_cloudfront_distribution.plain.hosted_zone_id
+    evaluate_target_health = true
+  }
 }
 
 # resource "aws_route53_record" "api" {
