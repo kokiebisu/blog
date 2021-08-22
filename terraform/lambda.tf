@@ -8,7 +8,7 @@ resource "aws_lambda_function" "form_lambda" {
 
   role = aws_iam_role.lambda_role.arn
 
-  depends_on = [data.aws_ecr_image]
+  depends_on = [data.aws_ecr_image.form_image]
 
   environment {
     variables = {
