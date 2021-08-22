@@ -1,6 +1,5 @@
 
 resource "aws_lambda_function" "form_lambda" {
-  count = data.aws_ecr_image.form_image.id ? 1 : 0
   function_name = "SendGridForm"
   handler = "index.handler"
   runtime = "nodejs14.x"
