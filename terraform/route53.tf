@@ -5,10 +5,10 @@ data "aws_route53_zone" "public" {
 
 resource "aws_route53_record" "default" {
   allow_overwrite = true
-  name            = tolist(aws_acm_certificate.myapp.domain_validation_options)[0].resource_record_name
-  records         = [ tolist(aws_acm_certificate.myapp.domain_validation_options)[0].resource_record_value ]
+  name            = tolist(aws_acm_certificate.certificate.domain_validation_options)[0].resource_record_name
+  records         = [ tolist(aws_acm_certificate.certificate.domain_validation_options)[0].resource_record_value ]
   ttl             = 60
-  type            = tolist(aws_acm_certificate.myapp.domain_validation_options)[0].resource_record_type
+  type            = tolist(aws_acm_certificate.certificate.domain_validation_options)[0].resource_record_type
   zone_id         = data.aws_route53_zone.public.zone_id
 }
 
