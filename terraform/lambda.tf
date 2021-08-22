@@ -4,7 +4,7 @@ resource "aws_lambda_function" "form_lambda" {
   function_name = "SendGridForm"
   handler = "index.handler"
   runtime = "nodejs14.x"
-  image_uri = "${aws_ecr_repository.repository.repository_url}@${data.aws_ecr_image.id}"
+  image_uri = "${aws_ecr_repository.repository.repository_url}@${data.aws_ecr_image.form_image.id}"
 
   role = aws_iam_role.lambda_role.arn
 
