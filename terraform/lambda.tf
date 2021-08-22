@@ -8,6 +8,8 @@ resource "aws_lambda_function" "form_lambda" {
 
   role = aws_iam_role.lambda_role.arn
 
+  depends_on = [data.aws_ecr_image]
+
   environment {
     variables = {
       SENDGRID_API_KEY = var.SENDGRID_API_KEY
