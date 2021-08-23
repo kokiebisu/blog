@@ -3,13 +3,21 @@ data "aws_route53_zone" "public" {
   private_zone = false
 }
 
-resource "aws_route53_record" "validation" {
+resource "aws_route53_record" "default" {
+  for_each = {
+    for option in aws_acm_certificate.this.domain_validation_options : option.domain_name => {
+      name   = option.resource_record_name
+      record = option.resource_record_value
+      type   = option.resource_record_type
+    }
+  }
+
   allow_overwrite = true
-  name            = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_name
-  records         = [ aws_acm_certificate.certificate.domain_validation_options.0.resource_record_value ]
+  name            = each.value.name
+  records         = [each.value.record]
   ttl             = 60
-  type            = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_type
-  zone_id         = data.aws_route53_zone.public.zone_id
+  type            = each.value.type
+  zone_id         = data.aws_route53_zone.this.zone_id
 }
 
 resource "aws_route53_record" "plain" {
