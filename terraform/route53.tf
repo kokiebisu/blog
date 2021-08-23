@@ -34,7 +34,7 @@ resource "aws_route53_record" "plain" {
 }
 
 resource "aws_route53_record" "api" {
-  zone_id = data.aws_route53_zone.this.id
+  zone_id = data.aws_route53_zone.public.id
   name    = "api.${var.site_domain}"
   type    = "A"
 
