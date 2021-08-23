@@ -4,6 +4,7 @@ data "aws_route53_zone" "public" {
 }
 
 resource "aws_route53_record" "validation" {
+  depends_on = [aws_acm_certificate.certificate]
   for_each = {
     for option in aws_acm_certificate.certificate.domain_validation_options : option.domain_name => {
       name   = option.resource_record_name
