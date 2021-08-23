@@ -1,4 +1,6 @@
 resource "aws_cloudfront_distribution" "plain" {
+    depends_on = [aws_acm_certificate.certificate]
+    
     origin {
         domain_name = aws_s3_bucket.plain.website_endpoint
         origin_id = aws_s3_bucket.plain.id

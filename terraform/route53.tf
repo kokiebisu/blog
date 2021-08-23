@@ -3,12 +3,12 @@ data "aws_route53_zone" "public" {
   private_zone = false
 }
 
-resource "aws_route53_record" "default" {
+resource "aws_route53_record" "validation" {
   allow_overwrite = true
-  name            = tolist(aws_acm_certificate.certificate.domain_validation_options)[0].resource_record_name
-  records         = [ tolist(aws_acm_certificate.certificate.domain_validation_options)[0].resource_record_value ]
+  name            = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_name
+  records         = [ aws_acm_certificate.certificate.domain_validation_options.0.resource_record_value ]
   ttl             = 60
-  type            = tolist(aws_acm_certificate.certificate.domain_validation_options)[0].resource_record_type
+  type            = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_type
   zone_id         = data.aws_route53_zone.public.zone_id
 }
 
