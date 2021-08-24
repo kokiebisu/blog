@@ -14,9 +14,9 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
-    "deploy": "gatsby-plugin-s3 deploy",
     "lambda": "yarn upload:form && yarn terraform:apply",
-    "terraform:apply": "cd terraform && terraform apply -auto-approve"
+    "terraform:apply": "cd terraform && terraform apply -auto-approve",
+    "deploy:form": "cd ./api/form && docker build -t kocoblo/form . " 
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
