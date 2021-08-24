@@ -1,10 +1,11 @@
-FROM node:14
+FROM amazon/aws-lambda-nodejs:14
 
-WORKDIR /www/task/
-
-RUN COPY package.json yarn.lock .
+COPY package.json .
 RUN npm install
-RUN COPY . .
+COPY . .
+
+ENV SENDGRID_API_KEY=${SENDGRID_API_KEY}
+ENV SENDGRID_AUTHORIZED_EMAIL = ${SENDGRID_AUTHORIZED_EMAIL}
 
 CMD index.handler
 

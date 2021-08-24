@@ -1,4 +1,4 @@
-name: S3 Deployment on Schedule
+name: Docker Deployment
 on:
   [push]
   # schedule:
