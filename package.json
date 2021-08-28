@@ -15,18 +15,18 @@
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
     "lambda": "yarn upload:form && yarn terraform:apply",
+    "upload": "export AWS_PROFILE=kokoaj && aws s3 mv public s3://kocoblo.com/",
     "terraform:apply": "cd terraform && terraform apply -auto-approve",
-    "deploy:form": "cd ./api/form && docker build -t kocoblo/form . " 
+    "deploy:website": "yarn build && yarn upload",
+    "deploy:form": "cd ./api/form && docker build -t kocoblo/form . "
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "algoliasearch": "^4.9.1",
     "dotenv": "^8.2.0",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.2.1",
     "gatsby-image": "^3.5.0",
-    "gatsby-plugin-algolia": "^0.19.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-dark-mode": "^1.1.2",
     "gatsby-plugin-image": "^1.5.0",

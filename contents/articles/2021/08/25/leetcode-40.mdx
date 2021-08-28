@@ -1,0 +1,54 @@
+---
+title: すごい人脈術
+date: 2021-08-23
+category: network
+published: true
+coverImg: https://images.unsplash.com/photo-1519530720729-a2effdafab20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80
+photographer: Nqobile Vundla
+keywords: ["indexOf"]
+reference: ２０代のうちに知っておくべき「お金の稼ぎ方」を教えよう
+author: 金川顕教
+---
+
+ Backtracking is a general algorithm for finding all (or some) 
+ solutions to some computational problems. The idea is that it 
+ incrementally builds candidates to the solutions, and abandons 
+ a candidate ("backtrack") as soon as it determines that the 
+ candidate cannot lead to a final solution.
+
+```js
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum2 = function(candidates, target) {
+    candidates = candidates.sort((a, b) => a - b);
+    const result = []
+
+    function helper(temp, currentSum, currentIndex) {
+        if (currentSum === target) {
+            result.push(temp)
+            return
+        }
+        for (let i = currentIndex; i < candidates.length; i++) {
+            if (i !== currentIndex && candidates[i] === candidates[i - 1]) continue
+            if (currentSum > target) return
+            helper([...temp, candidates[i]], currentSum + candidates[i], i + 1)
+        }
+    }
+
+    helper([], 0, 0)
+    return result;
+};
+
+console.log(combinationSum2([2, 5, 2, 1, 2], 5))
+
+
+/**
+ * [2, 5, 2, 1, 2]
+ * [1, 2, 2, 2, 5]
+ * Target 5
+ */
+
+ ```
