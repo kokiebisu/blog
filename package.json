@@ -15,10 +15,10 @@
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook",
     "lambda": "yarn upload:form && yarn terraform:apply",
-    "upload": "export AWS_PROFILE=kokoaj && aws s3 mv public s3://kocoblo.com/",
+    "upload": "export AWS_PROFILE=kokoaj && aws s3 sync public/ s3://kocoblo.com/",
     "terraform:apply": "cd terraform && terraform apply -auto-approve",
-    "deploy:website": "yarn build && yarn upload",
-    "deploy:form": "cd ./api/form && docker build -t kocoblo/form . "
+    "publish": "yarn build && yarn upload",
+    "deploy:form": "cd ./api/form && aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 776733965771.dkr.ecr.us-east-1.amazonaws.com && docker build -t kocoblo/form ."
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
