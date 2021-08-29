@@ -10,43 +10,42 @@ keywords: []
 
 ```js
 function intToRoman(num) {
-    const romans = {
-        1: "I",
-        5: "V",
-        10: "X",
-        50: "L",
-        100: "C",
-        500: "D",
-        1000: "M"
+  const romans = {
+    1: "I",
+    5: "V",
+    10: "X",
+    50: "L",
+    100: "C",
+    500: "D",
+    1000: "M",
+  }
+  const special = {
+    4: "IV",
+    9: "IX",
+    40: "XL",
+    90: "XC",
+    400: "CD",
+    900: "CM",
+  }
+  num = num.toString()
+  const size = num.length
+  const result = []
+  for (let i = 0; i < size; i++) {
+    let target = num[i]
+    const digit = Math.pow(10, size - i - 1)
+    let value = target * digit
+    if (special[value]) {
+      result.push(special[value])
+      continue
     }
-    const special = {
-        4: "IV",
-        9: "IX",
-        40: "XL",
-        90: "XC",
-        400: "CD",
-        900: "CM"
+    if (target >= 5) {
+      value = 5 * digit
+      result.push(romans[value])
+      target = target % 5
     }
-    num = num.toString()
-    const size = num.length
-    const result = []
-    for (let i = 0; i < size; i++) {
-        let target = num[i]
-        const digit = Math.pow(10, size - i - 1)
-        let value = target * digit
-        if (special[value]) {
-            result.push(special[value])
-            continue;
-        }
-        if (target >= 5) {
-            value = 5 * digit
-            result.push(romans[value])
-            target = target % 5
-        }
-        value = digit
-        result.push(romans[value].repeat(target))
-    }
-    return result.join('')
+    value = digit
+    result.push(romans[value].repeat(target))
+  }
+  return result.join("")
 }
 ```
-

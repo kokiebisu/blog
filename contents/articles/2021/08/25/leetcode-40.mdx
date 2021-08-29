@@ -8,11 +8,11 @@ photographer: Johannes Plenio
 keywords: []
 ---
 
- Backtracking is a general algorithm for finding all (or some) 
- solutions to some computational problems. The idea is that it 
- incrementally builds candidates to the solutions, and abandons 
- a candidate ("backtrack") as soon as it determines that the 
- candidate cannot lead to a final solution.
+Backtracking is a general algorithm for finding all (or some)
+solutions to some computational problems. The idea is that it
+incrementally builds candidates to the solutions, and abandons
+a candidate ("backtrack") as soon as it determines that the
+candidate cannot lead to a final solution.
 
 ```js
 /**
@@ -20,33 +20,31 @@ keywords: []
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum2 = function(candidates, target) {
-    candidates = candidates.sort((a, b) => a - b);
-    const result = []
+var combinationSum2 = function (candidates, target) {
+  candidates = candidates.sort((a, b) => a - b)
+  const result = []
 
-    function helper(temp, currentSum, currentIndex) {
-        if (currentSum === target) {
-            result.push(temp)
-            return
-        }
-        for (let i = currentIndex; i < candidates.length; i++) {
-            if (i !== currentIndex && candidates[i] === candidates[i - 1]) continue
-            if (currentSum > target) return
-            helper([...temp, candidates[i]], currentSum + candidates[i], i + 1)
-        }
+  function helper(temp, currentSum, currentIndex) {
+    if (currentSum === target) {
+      result.push(temp)
+      return
     }
+    for (let i = currentIndex; i < candidates.length; i++) {
+      if (i !== currentIndex && candidates[i] === candidates[i - 1]) continue
+      if (currentSum > target) return
+      helper([...temp, candidates[i]], currentSum + candidates[i], i + 1)
+    }
+  }
 
-    helper([], 0, 0)
-    return result;
-};
+  helper([], 0, 0)
+  return result
+}
 
 console.log(combinationSum2([2, 5, 2, 1, 2], 5))
-
 
 /**
  * [2, 5, 2, 1, 2]
  * [1, 2, 2, 2, 5]
  * Target 5
  */
-
- ```
+```
