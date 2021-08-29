@@ -1,0 +1,40 @@
+---
+title: 47. Container with Most Water
+date: 2021-08-01
+category: algorithm
+published: true
+coverImg: https://images.unsplash.com/photo-1629927506216-fcdf656d74de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80
+photographer: Brittani Burns
+keywords: []
+---
+
+```js
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function(height) {
+  let start = 0
+  let end = height.length - 1
+  let result = 0
+  
+  while (start < end) {
+    const area = getArea(start, end, height);
+    if (area > result) {
+      result = area
+    } else {
+      // move up/down the index with the smaller height
+      if (height[start] >= height[end]) {
+        end--;
+      } else {
+        start++;
+      }
+    }
+  }
+  return result;
+};
+
+var getArea = function(start, end, array) {
+  return (end - start) * Math.min(array[start], array[end])
+}
+```
