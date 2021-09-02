@@ -1,0 +1,27 @@
+```js
+var uniquePaths = function (m, n) {
+  let memo = new Array(m).fill(0).map(() => new Array(n).fill(0))
+  return dfs(0, 0, m, n, memo)
+}
+
+function dfs(row, col, height, width, memo) {
+  if (col < 0 || row >= height || row < 0 || col >= width) {
+    return 0
+  }
+  if (col === width - 1 && row === height - 1) {
+    return 1
+  }
+  if (memo[row][col] > 0) {
+    return memo[row][col]
+  }
+
+  let res =
+    dfs(row + 1, col, height, width, memo) +
+    dfs(row, col + 1, height, width, memo)
+
+  memo[row][col] = res
+  return res
+}
+```
+
+console.log(uniquePaths(3, 3))
