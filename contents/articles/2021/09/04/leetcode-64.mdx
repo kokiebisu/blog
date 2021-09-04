@@ -1,0 +1,53 @@
+DFS Recursive
+
+```js
+var minPathSum = function (grid) {
+  let result = 9999
+  const maxRow = grid.length - 1
+  const maxCol = grid[0].length - 1
+  function dfs(row, col, cur) {
+    if (row > maxRow || col > maxCol) return
+    if (row === maxRow && col == maxCol) {
+      if (cur < result) {
+        result = cur
+      }
+      return
+    }
+    if (row !== maxRow) {
+      dfs(row + 1, col, cur + grid[row + 1][col])
+    }
+    if (col !== maxCol) {
+      dfs(row, col + 1, cur + grid[row][col + 1])
+    }
+  }
+
+  dfs(0, 0, grid[0][0], [])
+  return result
+}
+```
+
+Dynammic Programming
+
+```js
+var minPathSum = function (grid) {
+  const maxRow = grid.length - 1
+  const maxCol = grid[0].length - 1
+  for (let row = 0; row <= maxRow; row++) {
+    for (let col = 0; col <= maxCol; col++) {
+      if (row === 0 && col === 0) {
+        continue
+      }
+      if (row === 0) {
+        grid[row][col] = grid[row][col - 1] + grid[row][col]
+      } else if (row > 0 && col === 0) {
+        grid[row][col] = grid[row - 1][col] + grid[row][col]
+      } else if (row > 0) {
+        grid[row][col] =
+          Math.min(grid[row - 1][col], grid[row][col - 1]) + grid[row][col]
+      }
+    }
+  }
+
+  return grid[maxRow][maxCol]
+}
+```
