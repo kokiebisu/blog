@@ -1,0 +1,39 @@
+---
+title: 47. Permutations II
+date: 2021-08-01
+category: algorithm
+published: true
+coverImg: https://images.unsplash.com/photo-1630003092701-654f5236eedf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80
+photographer: Tai Ngo
+keywords: []
+---
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function(nums) {
+   const result = []
+   nums.sort((a, b) => a-b)
+
+   function helper(cur, rem) {
+     if (cur.length === nums.length) {
+       result.push(cur);
+       return
+     }
+     for (let i = 0; i < rem.length; i++) {
+       if (i !== 0 && rem[i] === rem[i-1]) {
+         continue
+       }
+       helper([...cur, rem[i]], [...rem.slice(0, i), ...rem.slice(i + 1, rem.length)])
+
+     }
+   }
+
+   helper([], nums)
+   return result; 
+};
+
+console.log(permuteUnique([4,3,2,1,4]))
+```

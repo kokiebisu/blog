@@ -1,0 +1,35 @@
+---
+title: 62. Unique Paths
+date: 2021-08-04
+category: leetcode
+published: true
+coverImg: https://images.unsplash.com/photo-1624546393313-f030fb3958b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80
+photographer: Zhouxing Lu
+keywords: ["アルゴリズム"]
+---
+
+```js
+var uniquePaths = function (m, n) {
+  let memo = new Array(m).fill(0).map(() => new Array(n).fill(0))
+  return dfs(0, 0, m, n, memo)
+}
+
+function dfs(row, col, height, width, memo) {
+  if (col < 0 || row >= height || row < 0 || col >= width) {
+    return 0
+  }
+  if (col === width - 1 && row === height - 1) {
+    return 1
+  }
+  if (memo[row][col] > 0) {
+    return memo[row][col]
+  }
+
+  let res =
+    dfs(row + 1, col, height, width, memo) +
+    dfs(row, col + 1, height, width, memo)
+
+  memo[row][col] = res
+  return res
+}
+```
