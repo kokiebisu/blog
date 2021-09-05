@@ -33,7 +33,7 @@ resource "aws_route53_record" "plain" {
   }
 }
 
-resource "aws_route53_record" "plain" {
+resource "aws_route53_record" "www" {
   zone_id = data.aws_route53_zone.public.zone_id
   name = "www.${var.site_domain}"
   type = "A"
