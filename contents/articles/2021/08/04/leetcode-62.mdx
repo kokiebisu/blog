@@ -1,3 +1,13 @@
+---
+title: 62. Unique Paths
+date: 2021-08-04
+category: leetcode
+published: true
+coverImg: https://images.unsplash.com/photo-1624546393313-f030fb3958b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80
+photographer: Zhouxing Lu
+keywords: ["アルゴリズム"]
+---
+
 ```js
 var uniquePaths = function (m, n) {
   let memo = new Array(m).fill(0).map(() => new Array(n).fill(0))
@@ -23,5 +33,3 @@ function dfs(row, col, height, width, memo) {
   return res
 }
 ```
-
-console.log(uniquePaths(3, 3))

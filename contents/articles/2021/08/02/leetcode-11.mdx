@@ -1,5 +1,5 @@
 ---
-title: 47. Container with Most Water
+title: 11. Max Area
 date: 2021-08-01
 category: algorithm
 published: true
@@ -13,28 +13,28 @@ keywords: []
  * @param {number[]} height
  * @return {number}
  */
-var maxArea = function(height) {
+var maxArea = function (height) {
   let start = 0
   let end = height.length - 1
   let result = 0
-  
+
   while (start < end) {
-    const area = getArea(start, end, height);
+    const area = getArea(start, end, height)
     if (area > result) {
       result = area
     } else {
       // move up/down the index with the smaller height
       if (height[start] >= height[end]) {
-        end--;
+        end--
       } else {
-        start++;
+        start++
       }
     }
   }
-  return result;
-};
+  return result
+}
 
-var getArea = function(start, end, array) {
+var getArea = function (start, end, array) {
   return (end - start) * Math.min(array[start], array[end])
 }
 ```

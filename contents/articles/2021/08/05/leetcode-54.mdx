@@ -1,4 +1,15 @@
-var spiral = function (nums) {
+---
+title: 54. Spiral Matrix
+date: 2021-08-04
+category: leetcode
+published: true
+coverImg: https://images.unsplash.com/photo-1624546393313-f030fb3958b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80
+photographer: Zhouxing Lu
+keywords: ["アルゴリズム"]
+---
+
+```js
+var spiralOrder = function (nums) {
   const map = new Array(nums).fill(0).map(() => new Array(nums).fill(0))
   function helper(cur, col, row) {
     if (col >= nums || row >= nums || col < 0 || row < 0) {
@@ -26,5 +37,4 @@ var spiral = function (nums) {
   helper(1, 0, 0)
   return map
 }
-
-console.log(spiral(4))
+```
