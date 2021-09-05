@@ -18,7 +18,8 @@
     "upload": "export AWS_PROFILE=kokoaj && aws s3 sync public/ s3://kocoblo.com/",
     "terraform:apply": "cd terraform && terraform apply -auto-approve",
     "publish": "yarn build && yarn upload",
-    "deploy:form": "bash scripts/form.sh"
+    "use:aws": "export AWS_PROFILE=kokoaj",
+    "deploy:form": "yarn use:aws && bash scripts/form.sh"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
