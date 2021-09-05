@@ -33,6 +33,18 @@ resource "aws_route53_record" "plain" {
   }
 }
 
+resource "aws_route53_record" "plain" {
+  zone_id = data.aws_route53_zone.public.zone_id
+  name = "www.${var.site_domain}"
+  type = "A"
+
+  alias {
+    name = aws_cloudfront_distribution.plain.domain_name
+    zone_id = aws_cloudfront_distribution.plain.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
+
 resource "aws_route53_record" "api" {
   zone_id = data.aws_route53_zone.public.id
   name    = "api.${var.site_domain}"
