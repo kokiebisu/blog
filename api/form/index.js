@@ -4,11 +4,7 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
 exports.handler = async (event, context, callback) => {
   console.log("ENTERED", event)
   try {
-    if (event.httpMethod !== "POST") {
-      callback(null, { status: "fail", message: "Try a POST!" })
-    }
-
-    if (event.body) {
+    if (event.routeKey === "POST /form") {
       const { email, content } = JSON.parse(event.body)
 
       const data = {
