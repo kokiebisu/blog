@@ -56,3 +56,27 @@ resource "aws_route53_record" "api" {
     evaluate_target_health = false
   }
 }
+
+resource "aws_route53_record" "sendgrid_auth_1" {
+  zone_id = data.aws_route53_zone.public.id
+  name = "em9229.kocoblo.com"
+  type = "CNAME"
+
+  records = ["u17513714.wl215.sendgrid.net"]
+}
+
+resource "aws_route53_record" "sendgrid_auth_2" {
+  zone_id = data.aws_route53_zone.public.id
+  name = "s1._domainkey.kocoblo.com"
+  type = "CNAME"
+
+  records = ["s1.domainkey.u17513714.wl215.sendgrid.net"]
+}
+
+resource "aws_route53_record" "sendgrid_auth_3" {
+  zone_id = data.aws_route53_zone.public.id
+  name = "s2._domainkey.kocoblo.com"
+  type = "CNAME"
+
+  records = ["s2.domainkey.u17513714.wl215.sendgrid.net"]
+}
