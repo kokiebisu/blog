@@ -10,8 +10,7 @@ resource "aws_apigatewayv2_stage" "stage" {
 
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.form.arn
-    format = <<CONFIG
-    { 
+    format = jsonencode({ 
       "requestId":"$context.requestId", 
       "ip": "$context.identity.sourceIp", 
       "caller":"$context.identity.caller", 
@@ -22,8 +21,7 @@ resource "aws_apigatewayv2_stage" "stage" {
       "status":"$context.status", 
       "protocol":"$context.protocol", 
       "responseLength":"$context.responseLength" 
-}
-    CONFIG
+    })
   }
 }
 
