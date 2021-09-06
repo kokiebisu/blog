@@ -45,7 +45,7 @@ resource "aws_apigatewayv2_api_mapping" "this" {
 
 resource "aws_apigatewayv2_route" "form" {
   api_id = aws_apigatewayv2_api.form.id
-  route_key = "ANY /form"
+  route_key = "POST /form"
 
   target = "integrations/${aws_apigatewayv2_integration.form.id}"
 }
@@ -53,5 +53,6 @@ resource "aws_apigatewayv2_route" "form" {
 resource "aws_apigatewayv2_integration" "form" {
   api_id = aws_apigatewayv2_api.form.id
   integration_type = "AWS_PROXY"
+  integration_method        = "POST"
   integration_uri = aws_lambda_function.form_lambda.invoke_arn
 }
