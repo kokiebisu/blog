@@ -27,7 +27,7 @@ jobs:
         run: cd api/form
 
       - name: Build Image
-        run: docker build --build-arg SENDGRID_API_KEY={{ secrets.SENDGRID_API_KEY }} --build-arg SENDGRID_AUTHORIZED_EMAIL={{ secrets.SENDGRID_AUTHORIZED_EMAIL }} -t kocoblo/form .
+        run: docker build --build-arg SENDGRID_API_KEY="${{ secrets.SENDGRID_API_KEY }}" --build-arg SENDGRID_AUTHORIZED_EMAIL="${{ secrets.SENDGRID_AUTHORIZED_EMAIL }}" -t kocoblo/form .
 
       - name: Tag Image
         run: docker tag kocoblo/form:latest 776733965771.dkr.ecr.us-east-1.amazonaws.com/kocoblo/form:latest
