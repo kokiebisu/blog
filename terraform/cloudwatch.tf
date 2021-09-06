@@ -1,5 +1,6 @@
-resource "aws_cloudwatch_log_group" "form" {
-    name = "blog"
+resource "aws_cloudwatch_log_group" "api_gateway" {
+    name = "/kocoblo/api-gateway"
+
 }
 
 resource "aws_cloudwatch_log_resource_policy" "policy" {
