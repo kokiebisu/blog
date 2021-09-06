@@ -28,3 +28,18 @@ variable "AWS_REGION" {
     type = string
     default = "us-east-1"
 }
+
+variable "sendgrid_authentications" {
+    type = [
+        {
+            KEY = string,
+            VALUE = string
+        }
+    ]
+    default = [
+        {
+            KEY = "em9229.kocoblo.com",
+            VALUE = "u17513714.wl215.sendgrid.net"
+        }
+    ]
+}
