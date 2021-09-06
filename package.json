@@ -19,7 +19,6 @@
     "terraform:apply": "cd terraform && terraform apply -auto-approve",
     "publish": "yarn build && yarn upload",
     "use:aws": "export AWS_PROFILE=kokoaj",
-    "deploy:form": "yarn use:aws && bash scripts/form.sh"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
