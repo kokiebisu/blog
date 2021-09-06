@@ -29,9 +29,8 @@ jobs:
       - name: Deploy to S3 Bucket
         run: aws s3 sync ./public s3://kocoblo.com
 
-      # - name: Invalidate Cloudfront CDN
-      #   run: aws cloudfront create-invalidation --distribution-id=${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
+      - name: Invalidate Cloudfront CDN
+        run: aws cloudfront create-invalidation --distribution-id=${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
 
-      # - name: Invalidate Cloudfront CDN (www)
-      #   run: aws cloudfront create-invalidation --distribution-id=${{ secrets.WWW_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
-
+      - name: Invalidate Cloudfront CDN (www)
+        run: aws cloudfront create-invalidation --distribution-id=${{ secrets.WWW_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
