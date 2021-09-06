@@ -1,4 +1,4 @@
-name: Article Deployment
+name: Publish
 on:
   [push]
   # schedule:
