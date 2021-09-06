@@ -59,11 +59,11 @@ resource "aws_route53_record" "api" {
 
 resource "aws_route53_record" "sendgrid_auth_1" {
   zone_id = data.aws_route53_zone.public.id
-  name = var.sendgrid_authorizations.[0].KEY
+  name = element(var.sendgrid_authorizations, 0).KEY
   type = "CNAME"
   ttl="5"
 
-  records = [var.sendgrid_authorizations.[0].VALUE]
+  records = [element(var.sendgrid_authorizations, 0).VALUE]
 }
 
 resource "aws_route53_record" "sendgrid_auth_2" {
