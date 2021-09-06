@@ -30,7 +30,7 @@ variable "AWS_REGION" {
 }
 
 variable "sendgrid_authentications" {
-    type = "list"
+    type = list(object({KEY=string, VALUE=string}))
     default = [
         {
             KEY = "em9229.kocoblo.com",
