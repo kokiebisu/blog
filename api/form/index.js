@@ -1,14 +1,6 @@
 const sendgrid = require("@sendgrid/mail")
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
 
-const buildContent = ({ content }) => {
-  return `
-      <div>
-        ${content}
-      </div>
-  `
-}
-
 exports.handler = async (event, context, callback) => {
   console.log("ENTERED", event)
   try {
@@ -26,7 +18,11 @@ exports.handler = async (event, context, callback) => {
         }, // Use the email address or domain you verified above
         subject: "連絡がありました！",
         text: content,
-        html: buildContent({ content }),
+        html: `
+          <div>
+            ${content}
+          </div>
+        `,
       }
       try {
         await sendgrid.send(data)
