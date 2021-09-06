@@ -1,10 +1,10 @@
 const sendgrid = require("@sendgrid/mail")
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
 
 exports.handler = async (event, context, callback) => {
   console.log("ENTERED", event)
   console.log("SENDGRID", process.env.SENDGRID_API_KEY)
   console.log("EMAIL", process.env.SENDGRID_AUTHORIZED_EMAIL)
+  sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
   try {
     if (event.routeKey === "POST /form") {
       const { email, content } = JSON.parse(event.body)
