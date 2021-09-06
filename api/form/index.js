@@ -10,6 +10,7 @@ const buildContent = ({ content }) => {
 }
 
 exports.handler = async (event, context, callback) => {
+  console.log("ENTERED", event)
   try {
     if (event.httpMethod !== "POST") {
       callback(null, { status: "fail", message: "Try a POST!" })
