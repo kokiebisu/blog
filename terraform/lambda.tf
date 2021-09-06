@@ -21,5 +21,5 @@ resource "aws_lambda_permission" "form_permission" {
   action = "lambda:InvokeFunction"
   function_name = aws_lambda_function.form_lambda.arn
   principal = "apigateway.amazonaws.com"
-  source_arn = aws_apigatewayv2_api.form.execution_arn
+  source_arn = "${aws_apigatewayv2_api.form.execution_arn}/*/*"
 }
