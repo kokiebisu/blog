@@ -16,3 +16,10 @@ resource "aws_lambda_function" "form_lambda" {
   }
 }
 
+resource "aws_lambda_permission" "form_permission" {
+  statement_id = "ALLOW_API_GATEWAY_FORM"
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.form_lambda.arn
+  principal = "apigateway.amazonaws.com"
+  source_arn = aws_apigatewayv2_api.form.execution_arn
+}
