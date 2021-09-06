@@ -7,6 +7,24 @@ resource "aws_apigatewayv2_stage" "stage" {
   api_id      = aws_apigatewayv2_api.form.id
   name        = "$default"
   auto_deploy = true
+
+  access_log_settings {
+    destination_arn = aws_cloudwatch_log_group.form.arn
+    format = <<CONFIG
+    { 
+      "requestId":"$context.requestId", 
+      "ip": "$context.identity.sourceIp", 
+      "caller":"$context.identity.caller", 
+      "user":"$context.identity.user", 
+      "requestTime":"$context.requestTime", 
+      "httpMethod":"$context.httpMethod", 
+      "resourcePath":"$context.resourcePath", 
+      "status":"$context.status", 
+      "protocol":"$context.protocol", 
+      "responseLength":"$context.responseLength" 
+}
+    CONFIG
+  }
 }
 
 resource "aws_apigatewayv2_domain_name" "this" {

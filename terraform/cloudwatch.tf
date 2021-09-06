@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_log_group" "log_group" {
+resource "aws_cloudwatch_log_group" "form" {
     name = "blog"
 }
 
