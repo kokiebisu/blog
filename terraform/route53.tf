@@ -72,7 +72,7 @@ resource "aws_route53_record" "sendgrid_auth_2" {
   type = "CNAME"
   ttl="5"
 
-  records = [element(var.sendgrid_authentications, 1).host]
+  records = [element(var.sendgrid_authentications, 1).value]
 }
 
 resource "aws_route53_record" "sendgrid_auth_3" {
@@ -81,5 +81,5 @@ resource "aws_route53_record" "sendgrid_auth_3" {
   type = "CNAME"
   ttl="5"
 
-  records = [element(var.sendgrid_authentications, 2).host]
+  records = [element(var.sendgrid_authentications, 2).value]
 }
