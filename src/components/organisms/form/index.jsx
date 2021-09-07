@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Icon } from "../../icons"
 import { motion } from "framer-motion"
 import { navigate } from "gatsby"
+import { API_ENDPOINT } from "../../../config"
 
 export const Form = () => {
   const [values, setValues] = useState({
@@ -14,23 +15,20 @@ export const Form = () => {
     e.preventDefault()
 
     try {
-      const response = await fetch(
-        "https://hcftyxv83c.execute-api.us-east-1.amazonaws.com/prod/form",
-        {
+      const response = await fetch(`${API_ENDPOINT}/form`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
+          body: {
+            email: values.email,
+            content: values.content,
           },
-          body: JSON.stringify({
-            method: "POST",
-            body: {
-              email: values.email,
-              content: values.content,
-            },
-          }),
-        }
-      )
+        }),
+      })
       console.log("RESPONSE", response)
       if (response.status === 200) {
         navigate("/contact/success")
