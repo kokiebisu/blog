@@ -59,27 +59,27 @@ resource "aws_route53_record" "api" {
 
 resource "aws_route53_record" "sendgrid_auth_1" {
   zone_id = data.aws_route53_zone.public.id
-  name = element(var.sendgrid_authentications, 0).KEY
+  name = element(var.sendgrid_authentications, 0).host
   type = "CNAME"
   ttl="5"
 
-  records = [element(var.sendgrid_authentications, 0).VALUE]
+  records = [element(var.sendgrid_authentications, 0).value]
 }
 
 resource "aws_route53_record" "sendgrid_auth_2" {
   zone_id = data.aws_route53_zone.public.id
-  name = "s1._domainkey.kocoblo.com"
+  name = element(var.sendgrid_authentications, 1).host
   type = "CNAME"
   ttl="5"
 
-  records = ["s1.domainkey.u17513714.wl215.sendgrid.net"]
+  records = [element(var.sendgrid_authentications, 1).host]
 }
 
 resource "aws_route53_record" "sendgrid_auth_3" {
   zone_id = data.aws_route53_zone.public.id
-  name = "s2._domainkey.kocoblo.com"
+  name = element(var.sendgrid_authentications, 2).host
   type = "CNAME"
   ttl="5"
 
-  records = ["s2.domainkey.u17513714.wl215.sendgrid.net"]
+  records = [element(var.sendgrid_authentications, 2).host]
 }
