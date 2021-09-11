@@ -3,7 +3,12 @@ resource "aws_elasticsearch_domain" "domain" {
   elasticsearch_version = "7.10"
 
   cluster_config {
-    instance_type = "r4.large.elasticsearch"
+    instance_type = "t2.micro.elasticsearch"
+  }
+
+  ebs_options {
+    ebs_enabled = true
+    volume_size = "10"
   }
 }
 
