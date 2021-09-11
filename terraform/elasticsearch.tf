@@ -3,7 +3,7 @@ resource "aws_elasticsearch_domain" "domain" {
   elasticsearch_version = "7.10"
 
   cluster_config {
-    instance_type = "t3.small.elasticsearch"
+    instance_type = "r4.large.elasticsearch"
   }
 }
 
